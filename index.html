@@ -3,26 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FindYourMonkey</title>
+<title>FindYourMonkey — Automated Content Pipelines</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0f0f14; color: #fff; font-family: 'Arial Black', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .logo { font-size: 3rem; color: #dc3232; letter-spacing: 2px; text-transform: uppercase; }
-  .tagline { color: #888; font-size: 1rem; margin-top: 12px; font-family: Arial, sans-serif; letter-spacing: 4px; text-transform: uppercase; }
-  .links { margin-top: 40px; display: flex; gap: 24px; }
-  .links a { color: #dc3232; text-decoration: none; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; border: 1px solid #dc3232; padding: 8px 20px; }
+  body { background: #0f0f14; color: #fff; font-family: Arial, sans-serif; }
+  
+  header { border-bottom: 3px solid #dc3232; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: 'Arial Black', sans-serif; font-size: 1.4rem; color: #dc3232; letter-spacing: 2px; }
+  nav a { color: #888; text-decoration: none; margin-left: 24px; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
+  nav a:hover { color: #dc3232; }
+
+  .hero { text-align: center; padding: 80px 40px 60px; }
+  .hero h1 { font-family: 'Arial Black', sans-serif; font-size: 3rem; color: #dc3232; letter-spacing: 3px; margin-bottom: 16px; }
+  .hero p { color: #888; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; }
+  .hero-desc { color: #bbb; font-size: 1rem; max-width: 600px; margin: 0 auto 40px; line-height: 1.7; }
+
+  .cards { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; padding: 0 40px 80px; }
+  .card { background: #16161e; border: 1px solid #222; padding: 32px; width: 280px; border-radius: 4px; }
+  .card h3 { color: #dc3232; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .card p { color: #888; font-size: 0.9rem; line-height: 1.6; }
+
+  .about { background: #13131a; padding: 60px 40px; text-align: center; border-top: 1px solid #222; border-bottom: 1px solid #222; }
+  .about h2 { font-family: 'Arial Black', sans-serif; color: #fff; font-size: 1.5rem; margin-bottom: 20px; letter-spacing: 2px; }
+  .about p { color: #888; max-width: 700px; margin: 0 auto 16px; line-height: 1.7; font-size: 0.95rem; }
+
+  .social-links { padding: 60px 40px; text-align: center; }
+  .social-links h2 { font-family: 'Arial Black', sans-serif; color: #fff; font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 32px; }
+  .links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .links a { color: #dc3232; text-decoration: none; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; border: 1px solid #dc3232; padding: 10px 24px; border-radius: 2px; }
   .links a:hover { background: #dc3232; color: #fff; }
-  footer { position: absolute; bottom: 20px; color: #333; font-size: 0.75rem; font-family: Arial, sans-serif; }
+
+  .contact { background: #13131a; padding: 40px; text-align: center; border-top: 1px solid #222; }
+  .contact h2 { color: #fff; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .contact a { color: #dc3232; text-decoration: none; }
+
+  footer { padding: 20px 40px; text-align: center; color: #333; font-size: 0.8rem; border-top: 1px solid #1a1a22; }
 </style>
 </head>
 <body>
-  <div class="logo">FindYourMonkey</div>
-  <div class="tagline">Automated Content Pipelines</div>
+
+<header>
+  <div class="logo">FINDYOURMONKEY</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+    <a href="/privacy.html">Privacy</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>FINDYOURMONKEY</h1>
+  <p>Automated Content Pipelines</p>
+  <div class="hero-desc">
+    We build and operate AI-powered content automation systems that clip, caption, and distribute short-form video across multiple platforms — automatically, every day.
+  </div>
+</div>
+
+<div class="cards" id="services">
+  <div class="card">
+    <h3>Comedy Clips</h3>
+    <p>AI pipeline that identifies the best moments from live comedy podcasts and publishes them as short-form vertical video across YouTube, TikTok, and more.</p>
+  </div>
+  <div class="card">
+    <h3>Local News</h3>
+    <p>Automated scanner news monitoring for Ocean County, NJ. Real incidents, real footage, published within minutes of being reported.</p>
+  </div>
+  <div class="card">
+    <h3>Mini Docs</h3>
+    <p>Daily 60-second documentary shorts. AI selects the story, writes the script, sources footage, and publishes — fully automated.</p>
+  </div>
+  <div class="card">
+    <h3>Multi-Platform</h3>
+    <p>Content posts automatically to YouTube, TikTok, Instagram, Threads, X, and Rumble via a unified publishing pipeline.</p>
+  </div>
+</div>
+
+<div class="about" id="about">
+  <h2>ABOUT</h2>
+  <p>FindYourMonkey is an AI content automation service based in Barnegat, NJ. We build fully automated video pipelines that source, process, caption, and distribute short-form content across social platforms.</p>
+  <p>Our TikTok integration uses the official Content Posting API to publish clips to our own creator account (@findyourmonkey). We do not collect, store, or process any TikTok user data.</p>
+</div>
+
+<div class="social-links">
+  <h2>FIND US</h2>
   <div class="links">
     <a href="https://youtube.com/@findyourmonkey" target="_blank">YouTube</a>
     <a href="https://tiktok.com/@findyourmonkey" target="_blank">TikTok</a>
-    <a href="/privacy.html">Privacy</a>
+    <a href="https://threads.net/@findyourmonkey.ai" target="_blank">Threads</a>
+    <a href="https://x.com/findyourmonkey_" target="_blank">X</a>
+    <a href="https://instagram.com/findyourmonkey.ai" target="_blank">Instagram</a>
   </div>
-  <footer>&copy; 2026 FindYourMonkey. All rights reserved.</footer>
+</div>
+
+<div class="contact" id="contact">
+  <h2>Contact</h2>
+  <p><a href="mailto:findyourmonkey@gmail.com">findyourmonkey@gmail.com</a></p>
+</div>
+
+<footer>
+  &copy; 2026 FindYourMonkey. All rights reserved. | <a href="/privacy.html" style="color:#444">Privacy Policy</a>
+</footer>
+
 </body>
 </html>
