@@ -91,9 +91,9 @@ footer a{color:var(--muted);text-decoration:none;font-size:12px}.footer a:hover{
 </div></div>
 
 <div class="proof-section"><div class="proof-inner">
-  <div><div class="stat-num">15+</div><div class="stat-label">live pipelines</div></div>
-  <div><div class="stat-num">660</div><div class="stat-label">comedians tracked</div></div>
-  <div><div class="stat-num">33K</div><div class="stat-label">views, one clip</div></div>
+  <div><div class="stat-num" id="stat-views">—</div><div class="stat-label">people have watched our clips</div></div>
+  <div><div class="stat-num" id="stat-clips">—</div><div class="stat-label">clips published and counting</div></div>
+  <div><div class="stat-num" id="stat-retention">—</div><div class="stat-label">average view retention</div></div>
   <div><div class="stat-num">24/7</div><div class="stat-label">fully automated</div></div>
 </div></div>
 
@@ -164,5 +164,20 @@ footer a{color:var(--muted);text-decoration:none;font-size:12px}.footer a:hover{
     <a href="/privacy.html">Privacy</a>
   </div>
 </footer>
+<script>
+(async () => {
+  try {
+    const d = await fetch('https://picker.findyourmonkey.com/fym-stats').then(r=>r.json());
+    const fmt = n => n >= 1000000 ? (n/1000000).toFixed(1)+'M' : n >= 1000 ? (n/1000).toFixed(0)+'K' : n;
+    document.getElementById('stat-views').textContent   = fmt(d.total_views);
+    document.getElementById('stat-clips').textContent   = fmt(d.total_clips) + '+';
+    document.getElementById('stat-retention').textContent = d.avg_retention + '%';
+  } catch(e) {
+    document.getElementById('stat-views').textContent = '153K';
+    document.getElementById('stat-clips').textContent = '679+';
+    document.getElementById('stat-retention').textContent = '85%';
+  }
+})();
+</script>
 </body>
 </html>
