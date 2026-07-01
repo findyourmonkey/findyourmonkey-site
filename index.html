@@ -3,107 +3,166 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FindYourMonkey — Automated Content Pipelines</title>
+<title>findyourmonkey — AI automation studio</title>
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<meta name="description" content="We clip podcasts into viral Shorts, build custom AI tools, and automate the stuff that eats your time. Based in NJ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0f0f14; color: #fff; font-family: Arial, sans-serif; }
-  
-  header { border-bottom: 3px solid #dc3232; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; }
-  .logo { font-family: 'Arial Black', sans-serif; font-size: 1.4rem; color: #dc3232; letter-spacing: 2px; }
-  nav a { color: #888; text-decoration: none; margin-left: 24px; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
-  nav a:hover { color: #dc3232; }
-
-  .hero { text-align: center; padding: 80px 40px 60px; }
-  .hero h1 { font-family: 'Arial Black', sans-serif; font-size: 3rem; color: #dc3232; letter-spacing: 3px; margin-bottom: 16px; }
-  .hero p { color: #888; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; }
-  .hero-desc { color: #bbb; font-size: 1rem; max-width: 600px; margin: 0 auto 40px; line-height: 1.7; }
-
-  .cards { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; padding: 0 40px 80px; }
-  .card { background: #16161e; border: 1px solid #222; padding: 32px; width: 280px; border-radius: 4px; }
-  .card h3 { color: #dc3232; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
-  .card p { color: #888; font-size: 0.9rem; line-height: 1.6; }
-
-  .about { background: #13131a; padding: 60px 40px; text-align: center; border-top: 1px solid #222; border-bottom: 1px solid #222; }
-  .about h2 { font-family: 'Arial Black', sans-serif; color: #fff; font-size: 1.5rem; margin-bottom: 20px; letter-spacing: 2px; }
-  .about p { color: #888; max-width: 700px; margin: 0 auto 16px; line-height: 1.7; font-size: 0.95rem; }
-
-  .social-links { padding: 60px 40px; text-align: center; }
-  .social-links h2 { font-family: 'Arial Black', sans-serif; color: #fff; font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 32px; }
-  .links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .links a { color: #dc3232; text-decoration: none; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; border: 1px solid #dc3232; padding: 10px 24px; border-radius: 2px; }
-  .links a:hover { background: #dc3232; color: #fff; }
-
-  .contact { background: #13131a; padding: 40px; text-align: center; border-top: 1px solid #222; }
-  .contact h2 { color: #fff; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
-  .contact a { color: #dc3232; text-decoration: none; }
-
-  footer { padding: 20px 40px; text-align: center; color: #333; font-size: 0.8rem; border-top: 1px solid #1a1a22; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0e0e0e;--surface:#161616;--border:#222;--orange:#c96442;--orange2:#e07850;--white:#ececec;--muted:#666;--dim:#333}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:99;display:flex;align-items:center;justify-content:space-between;padding:18px 32px;background:rgba(14,14,14,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:var(--white);text-decoration:none}.nav-logo span{color:var(--orange)}
+.nav-cta{background:var(--orange);color:#fff;text-decoration:none;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:500;transition:background .15s}.nav-cta:hover{background:var(--orange2)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 32px 80px;max-width:760px;margin:0 auto}
+.hero-eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:24px}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(38px,7vw,68px);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:28px}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero p{font-size:17px;color:#999;max-width:520px;margin-bottom:40px;line-height:1.7}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--orange);color:#fff;text-decoration:none;padding:13px 28px;border-radius:10px;font-size:14px;font-weight:600;transition:background .15s}.btn-primary:hover{background:var(--orange2)}
+.btn-ghost{background:transparent;color:var(--white);text-decoration:none;padding:13px 28px;border-radius:10px;font-size:14px;font-weight:500;border:1px solid var(--dim);transition:border-color .15s}.btn-ghost:hover{border-color:#555}
+.ticker-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;padding:14px 0;background:var(--surface)}
+.ticker{display:flex;gap:48px;white-space:nowrap;animation:ticker 22s linear infinite;will-change:transform}
+.ticker-item{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.ticker-item span{color:var(--orange);margin-right:10px}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.section{padding:96px 32px;max-width:960px;margin:0 auto}
+.section-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:16px}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:56px}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2px;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.service-card{background:var(--surface);padding:32px;transition:background .15s}.service-card:hover{background:#1c1c1c}
+.service-icon{font-size:28px;margin-bottom:16px;display:block}
+.service-card h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:8px}
+.service-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.service-price{font-size:12px;color:var(--orange);font-weight:600;letter-spacing:.03em}
+.proof-section{padding:64px 32px;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.proof-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:40px;text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;color:var(--orange);letter-spacing:-.02em;line-height:1;margin-bottom:6px}
+.stat-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:500}
+.how-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:32px}
+.how-num{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:var(--border);line-height:1;margin-bottom:12px}
+.how-step h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px}
+.how-step p{font-size:13px;color:var(--muted);line-height:1.6}
+.cta-section{padding:96px 32px;text-align:center;max-width:640px;margin:0 auto}
+.cta-section h2{font-family:'Syne',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+.cta-section p{color:var(--muted);font-size:16px;margin-bottom:36px}
+footer{border-top:1px solid var(--border);padding:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer p{font-size:12px;color:var(--muted)}
+footer a{color:var(--muted);text-decoration:none;font-size:12px}.footer a:hover{color:var(--white)}
+@media(max-width:600px){nav{padding:16px 20px}.hero{padding:100px 20px 60px}.section{padding:64px 20px}.proof-section{padding:48px 20px}footer{padding:24px 20px}}
 </style>
 </head>
 <body>
+<nav>
+  <a class="nav-logo" href="/">find<span>your</span>monkey</a>
+  <a class="nav-cta" href="mailto:findyourmonkey@gmail.com">Get in touch</a>
+</nav>
 
-<header>
-  <div class="logo">FINDYOURMONKEY</div>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-    <a href="/privacy.html">Privacy</a>
-  </nav>
-</header>
+<section class="hero">
+  <div class="hero-eyebrow">AI automation · NJ</div>
+  <h1>We build the<br><em>AI that runs</em><br>while you sleep.</h1>
+  <p>Podcast clipping. Custom portals. eBay tools. Video games. If it can be automated, we've probably already built it for someone.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="mailto:findyourmonkey@gmail.com">Let's talk</a>
+    <a class="btn-ghost" href="#services">See what we do</a>
+  </div>
+</section>
 
-<div class="hero">
-  <h1>FINDYOURMONKEY</h1>
-  <p>Automated Content Pipelines</p>
-  <div class="hero-desc">
-    We build and operate AI-powered content automation systems that clip, caption, and distribute short-form video across multiple platforms — automatically, every day.
-  </div>
-</div>
+<div class="ticker-wrap"><div class="ticker">
+  <span class="ticker-item"><span>→</span>PODCAST CLIPPING</span>
+  <span class="ticker-item"><span>→</span>YOUTUBE SHORTS</span>
+  <span class="ticker-item"><span>→</span>AI AUTOMATION</span>
+  <span class="ticker-item"><span>→</span>EBAY TOOLS</span>
+  <span class="ticker-item"><span>→</span>CUSTOM PORTALS</span>
+  <span class="ticker-item"><span>→</span>VIDEO GAMES</span>
+  <span class="ticker-item"><span>→</span>CLIENT DASHBOARDS</span>
+  <span class="ticker-item"><span>→</span>AGENTIC AI</span>
+  <span class="ticker-item"><span>→</span>PODCAST CLIPPING</span>
+  <span class="ticker-item"><span>→</span>YOUTUBE SHORTS</span>
+  <span class="ticker-item"><span>→</span>AI AUTOMATION</span>
+  <span class="ticker-item"><span>→</span>EBAY TOOLS</span>
+  <span class="ticker-item"><span>→</span>CUSTOM PORTALS</span>
+  <span class="ticker-item"><span>→</span>VIDEO GAMES</span>
+  <span class="ticker-item"><span>→</span>CLIENT DASHBOARDS</span>
+  <span class="ticker-item"><span>→</span>AGENTIC AI</span>
+</div></div>
 
-<div class="cards" id="services">
-  <div class="card">
-    <h3>Comedy Clips</h3>
-    <p>AI pipeline that identifies the best moments from live comedy podcasts and publishes them as short-form vertical video across YouTube, TikTok, and more.</p>
-  </div>
-  <div class="card">
-    <h3>Local News</h3>
-    <p>Automated scanner news monitoring for Ocean County, NJ. Real incidents, real footage, published within minutes of being reported.</p>
-  </div>
-  <div class="card">
-    <h3>Mini Docs</h3>
-    <p>Daily 60-second documentary shorts. AI selects the story, writes the script, sources footage, and publishes — fully automated.</p>
-  </div>
-  <div class="card">
-    <h3>Multi-Platform</h3>
-    <p>Content posts automatically to YouTube, TikTok, Instagram, Threads, X, and Rumble via a unified publishing pipeline.</p>
-  </div>
-</div>
+<div class="proof-section"><div class="proof-inner">
+  <div><div class="stat-num">15+</div><div class="stat-label">live pipelines</div></div>
+  <div><div class="stat-num">660</div><div class="stat-label">comedians tracked</div></div>
+  <div><div class="stat-num">33K</div><div class="stat-label">views, one clip</div></div>
+  <div><div class="stat-num">24/7</div><div class="stat-label">fully automated</div></div>
+</div></div>
 
-<div class="about" id="about">
-  <h2>ABOUT</h2>
-  <p>FindYourMonkey is an AI content automation service based in Barnegat, NJ. We build fully automated video pipelines that source, process, caption, and distribute short-form content across social platforms.</p>
-  <p>Our TikTok integration uses the official Content Posting API to publish clips to our own creator account (@findyourmonkey). We do not collect, store, or process any TikTok user data.</p>
-</div>
-
-<div class="social-links">
-  <h2>FIND US</h2>
-  <div class="links">
-    <a href="https://youtube.com/@findyourmonkey" target="_blank">YouTube</a>
-    <a href="https://tiktok.com/@findyourmonkey" target="_blank">TikTok</a>
-    <a href="https://threads.net/@findyourmonkey.ai" target="_blank">Threads</a>
-    <a href="https://x.com/findyourmonkey_" target="_blank">X</a>
-    <a href="https://instagram.com/findyourmonkey.ai" target="_blank">Instagram</a>
+<section class="section" id="services">
+  <div class="section-label">What we build</div>
+  <div class="section-title">Pick your problem.</div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">🎙️</span>
+      <h3>Podcast Clip Portal</h3>
+      <p>Your own branded portal. Paste an episode link. Get back vertical clips ready to post — with captions, cropped, done.</p>
+      <div class="service-price">$199/mo — white-label, your subdomain</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✂️</span>
+      <h3>Clip Pipeline</h3>
+      <p>We run the whole thing for you. Your show clips itself into Shorts daily. You just post. Already running for Kill Tony, YMH, and more.</p>
+      <div class="service-price">$300 setup + $99/mo</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🤖</span>
+      <h3>Custom AI Chat</h3>
+      <p>An AI that knows your business — your inventory, your clients, your data. Deployed as your own portal at your own URL.</p>
+      <div class="service-price">$500 setup + $99/mo</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🎮</span>
+      <h3>HTML5 &amp; Roblox Games</h3>
+      <p>Custom games built around your brand or character. Already shipped a Mario-style platformer for a wrestler's merch table.</p>
+      <div class="service-price">$500–2,000 one-time</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">📦</span>
+      <h3>eBay AI Tools</h3>
+      <p>Picker AI: photo a lot, get an instant BUY or PASS verdict with comps. Deal Finder: flags fast-selling items before anyone else sees them.</p>
+      <div class="service-price">From $49/mo — live now</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">⚙️</span>
+      <h3>Build Anything</h3>
+      <p>Automation, dashboards, scrapers, bots, outreach systems, local AI news pipelines. If it saves you time, we'll build it.</p>
+      <div class="service-price">$45/hr · Upwork or direct</div>
+    </div>
   </div>
-</div>
+</section>
 
-<div class="contact" id="contact">
-  <h2>Contact</h2>
-  <p><a href="mailto:findyourmonkey@gmail.com">findyourmonkey@gmail.com</a></p>
-</div>
+<section class="section" style="padding-top:0">
+  <div class="section-label">How it works</div>
+  <div class="section-title">Tell us what's eating your time.</div>
+  <div class="how-grid">
+    <div class="how-step"><div class="how-num">01</div><h3>You describe the problem</h3><p>Email or DM. No intake forms, no sales calls unless you want one.</p></div>
+    <div class="how-step"><div class="how-num">02</div><h3>We scope it fast</h3><p>Usually same day. Fixed price or hourly depending on the job.</p></div>
+    <div class="how-step"><div class="how-num">03</div><h3>It runs without you</h3><p>We build it, host it, keep it running. You get the output.</p></div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>What's costing you time right now?</h2>
+  <p>Small operation in NJ. Fast replies, real builds, no agency markup.</p>
+  <a class="btn-primary" href="mailto:findyourmonkey@gmail.com">findyourmonkey@gmail.com</a>
+</section>
 
 <footer>
-  &copy; 2026 FindYourMonkey. All rights reserved. | <a href="/privacy.html" style="color:#444">Privacy Policy</a>
+  <p>© 2026 findyourmonkey · Barnegat, NJ</p>
+  <div style="display:flex;gap:20px">
+    <a href="https://findyourmonkey.itch.io" target="_blank">itch.io</a>
+    <a href="https://picker.findyourmonkey.com" target="_blank">Picker AI</a>
+    <a href="/privacy.html">Privacy</a>
+  </div>
 </footer>
-
 </body>
 </html>
