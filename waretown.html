@@ -3,74 +3,168 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Waretown Stamp &amp; Coin — Market Intelligence</title>
 <meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#faf9f7;--ink:#1a1a1a;--sub:#6b6b6b;--line:#e5e2dc;--acc:#c96f4a;--good:#2e7d32;--gold:#b8860b}
-*{box-sizing:border-box}body{background:var(--bg);color:var(--ink);margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:640px;margin:0 auto;padding:44px 22px 60px}
-h1{font-family:Georgia,serif;font-weight:500;font-size:28px;margin:0 0 4px;text-align:center}
-.sub{color:var(--sub);text-align:center;font-size:15px;margin-bottom:36px}
-.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
-.card h2{font-family:Georgia,serif;font-size:19px;font-weight:600;margin:0 0 10px}
-.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.4px;padding:4px 10px;border-radius:20px;margin-bottom:12px}
-.tag.find{background:#fdf3ec;color:var(--acc)}
-.tag.solid{background:#edf7ee;color:var(--good)}
-.tag.idea{background:#fdf8e7;color:var(--gold)}
-p{font-size:15px;line-height:1.55;margin:8px 0}
-.price{font-size:15px;color:var(--sub)}
-.price b{color:var(--ink)}
-.hr{border:none;border-top:1px solid var(--line);margin:34px 0 26px}
-.small{font-size:13px;color:var(--sub)}
-.footer{text-align:center;margin-top:40px;font-size:12px;color:#b3b0aa}
-.footer a{color:#b3b0aa}
-ul{padding-left:20px;margin:8px 0}li{font-size:15px;line-height:1.5;margin-bottom:6px}
+:root{
+  --paper:#f4f1e8;      /* off-white to white pages */
+  --ink:#14181d;        /* slab case */
+  --ss:#ffd23e;         /* CGC Signature Series yellow */
+  --silver:#aab2ba;     /* Morgan dollar */
+  --emerald:#1f8a4c;    /* one Lantern-green moment */
+  --rule:#d9d4c6;
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--paper);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px 70px}
+
+/* ---------- masthead ---------- */
+header{padding:42px 0 10px;text-align:center}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#6d6a5f;font-weight:600}
+h1{font-family:'Archivo Black';font-size:clamp(26px,7vw,40px);line-height:1.08;margin:10px 0 6px;text-transform:uppercase;letter-spacing:-.01em}
+.dateline{font-size:13px;color:#6d6a5f}
+.dateline b{color:var(--ink)}
+
+/* ---------- hero slab ---------- */
+.slab{margin:34px 0 12px;background:#fff;border:1px solid #cfc9b8;border-radius:10px;box-shadow:0 14px 34px rgba(20,24,29,.14), 0 2px 0 #fff inset;overflow:hidden;
+  animation:stamp .5s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes stamp{from{transform:scale(1.06);opacity:0}to{transform:scale(1);opacity:1}}
+.ssbar{background:var(--ss);display:flex;justify-content:space-between;align-items:stretch;border-bottom:2px solid var(--ink)}
+.ssleft{padding:12px 16px 10px}
+.ssleft .t{font-family:'Archivo Black';font-size:16px;text-transform:uppercase;line-height:1.15}
+.ssleft .s{font-size:12px;font-weight:600;margin-top:2px}
+.gradebox{background:var(--ink);color:#fff;min-width:86px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 12px}
+.gradebox .g{font-family:'Archivo Black';font-size:30px;line-height:1}
+.gradebox .gl{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ss);margin-top:2px}
+.slabbody{display:grid;grid-template-columns:132px 1fr;gap:18px;padding:18px}
+.slabbody img{width:132px;border-radius:4px;border:1px solid var(--rule);display:block}
+.slabbody h2{font-family:'Archivo Black';font-size:19px;line-height:1.2;margin-bottom:8px}
+.slabbody p{font-size:14.5px;margin-bottom:8px}
+.was{font-size:13px;color:#6d6a5f}
+.was i{background:#f1ecdd;padding:1px 5px;border-radius:3px}
+.fixtitle{margin-top:10px;background:var(--ink);color:#fff;border-radius:6px;padding:10px 12px;font-size:13px;line-height:1.45}
+.fixtitle b{color:var(--ss)}
+.pricerow{display:flex;gap:10px;margin-top:12px}
+.chip{flex:1;text-align:center;border:1.5px solid var(--ink);border-radius:6px;padding:8px 4px}
+.chip .n{font-family:'Archivo Black';font-size:19px}
+.chip .l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#6d6a5f}
+.chip.hot{background:var(--ss);border-color:var(--ink)}
+@media(max-width:480px){.slabbody{grid-template-columns:1fr}.slabbody img{width:56%;margin:0 auto}}
+
+/* ---------- finding labels ---------- */
+.label{background:#fff;border:1px solid #cfc9b8;border-radius:10px;margin:22px 0;overflow:hidden;box-shadow:0 6px 18px rgba(20,24,29,.08);
+  opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.label.in{opacity:1;transform:none}
+.lbar{display:flex;justify-content:space-between;align-items:stretch;border-bottom:1.5px solid var(--ink)}
+.lbar.yellow{background:var(--ss)} .lbar.silver{background:var(--silver)} .lbar.green{background:var(--emerald)} 
+.lbar.green .lt,.lbar.green .ls{color:#fff}
+.lt{font-family:'Archivo Black';font-size:14px;text-transform:uppercase;padding:10px 14px 2px}
+.ls{font-size:11.5px;font-weight:600;padding:0 14px 9px}
+.lgrade{background:var(--ink);color:#fff;min-width:76px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 10px;text-align:center}
+.lgrade .g{font-family:'Archivo Black';font-size:13px;line-height:1.15;letter-spacing:.04em}
+.lbody{padding:16px 16px 18px}
+.lbody p{font-size:14.5px;margin-bottom:8px}
+.lbody ul{padding-left:19px}
+.lbody li{font-size:14.5px;margin-bottom:6px}
+.mono{font-variant-numeric:tabular-nums}
+
+/* ---------- method + footer ---------- */
+.method{margin-top:38px;border-top:2px solid var(--ink);padding-top:16px}
+.method h3{font-family:'Archivo Black';font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.method p{font-size:13.5px;color:#4c4a42}
+footer{text-align:center;margin-top:42px;font-size:12px;color:#8a8678}
+footer a{color:#8a8678}
+@media(prefers-reduced-motion:reduce){.slab{animation:none}.label{opacity:1;transform:none;transition:none}}
 </style></head><body><div class="wrap">
 
-<h1>Waretown Stamp &amp; Coin</h1>
-<div class="sub">Market intelligence on your eBay store · July 9, 2026<br>Every finding below was read directly from your own listings &amp; photos</div>
+<header>
+  <div class="eyebrow">Market Intelligence Report</div>
+  <h1>Waretown<br>Stamp &amp; Coin</h1>
+  <div class="dateline">July 9, 2026 · every finding read from <b>your own listings &amp; photos</b></div>
+</header>
 
-<div class="card">
-<span class="tag find">BIGGEST FIND</span>
-<h2>Your Green Lantern #48 is a hidden key — and the listing doesn't say so</h2>
-<p>We read the CGC label straight off your photos: this is <b>Green Lantern v3 #48 (Jan 1994) — the first appearance of Kyle Rayner</b>, signed by <b>Ron Marz and Darryl Banks — the writer and artist who created Kyle Rayner</b>.</p>
-<p class="price">Your title: <i>"Green Lantern #48 CGC Signature Series 9.6"</i></p>
-<p>A collector searching <b>"Kyle Rayner first appearance"</b> — the exact person who wants this book — will never see your listing. Comparable signed 9.6 GL books from this era are listed at <b>$290–$415</b>.</p>
-<p><b>Suggested title:</b> <i>Green Lantern #48 CGC SS 9.6 — 1st Kyle Rayner — Signed by Creators Marz &amp; Banks</i></p>
-<p class="price">Asking <b>$225</b> → with the right title, this supports <b>$275–$325</b></p>
+<!-- HERO: the GL48 discovery, styled as its own corrected CGC label -->
+<div class="slab">
+  <div class="ssbar">
+    <div class="ssleft">
+      <div class="t">Green Lantern v3 #48 · Signature Series</div>
+      <div class="s">1st appearance of Kyle Rayner · Signed by creators Ron Marz &amp; Darryl Banks</div>
+    </div>
+    <div class="gradebox"><div class="g">9.6</div><div class="gl">CGC SS</div></div>
+  </div>
+  <div class="slabbody">
+    <img src="https://i.ebayimg.com/images/g/ppUAAeSwRZlp2AiK/s-l500.jpg" alt="Bonnie's Green Lantern #48 CGC slab">
+    <div>
+      <h2>Your listing doesn't know what this book is.</h2>
+      <p>We read the CGC label straight off your photos. This is the <b>first appearance of Kyle Rayner</b> — signed by <b>the two people who created him</b>.</p>
+      <p class="was">Your current title: <i>"Green Lantern #48 CGC Signature Series 9.6"</i> — a collector searching <b>“Kyle Rayner first appearance”</b> will never find it.</p>
+      <div class="fixtitle"><b>Suggested title:</b> Green Lantern #48 CGC SS 9.6 · 1st Kyle Rayner · Signed by Creators Marz &amp; Banks</div>
+      <div class="pricerow">
+        <div class="chip"><div class="n mono">$225</div><div class="l">asking now</div></div>
+        <div class="chip"><div class="n mono">$290–415</div><div class="l">comparable signed 9.6s</div></div>
+        <div class="chip hot"><div class="n mono">$275–325</div><div class="l">supported ask</div></div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="card">
-<span class="tag find">SAME STORY</span>
-<h2>Thor: Vikings #1 — the signatures are the headline</h2>
-<p>Your label shows it's signed by <b>Garth Ennis</b> (writer — Preacher, The Boys) and <b>Glenn Fabry</b> (cover artist). At CGC 9.8, that's a name-brand signature book, but the title just says "Signature Series" without saying whose.</p>
-<p><b>Suggested title:</b> <i>Thor: Vikings #1 CGC SS 9.8 — Signed by Garth Ennis &amp; Glenn Fabry (MAX)</i></p>
-<p class="price">Asking <b>$160</b> — Ennis collectors cross-shop from Preacher &amp; The Boys; the name pulls them in</p>
+<!-- FINDINGS as grading labels -->
+<div class="label">
+  <div class="lbar yellow">
+    <div><div class="lt">Thor: Vikings #1 · Signature Series</div><div class="ls">Signed by Garth Ennis &amp; Glenn Fabry — read from your label</div></div>
+    <div class="lgrade"><div class="g">SAME<br>STORY</div></div>
+  </div>
+  <div class="lbody">
+    <p><b>Garth Ennis</b> wrote Preacher and The Boys — his signature is the headline, and your title doesn't say his name. At CGC 9.8 this pulls in Ennis collectors who never search "Thor."</p>
+    <p class="was">Suggested: <i>Thor: Vikings #1 CGC SS 9.8 · Signed by Garth Ennis &amp; Glenn Fabry (MAX)</i> · asking <b class="mono">$160</b></p>
+  </div>
 </div>
 
-<div class="card">
-<span class="tag solid">PRICED RIGHT</span>
-<h2>Green Lantern #76 — the crown jewel is priced well</h2>
-<p>April 1970, O'Neil/Adams, the book that began the legendary Green Lantern/Green Arrow run. One of the most famous Bronze Age keys there is. Your <b>$400</b> ask on a CGC 5.0 sits right in the fair zone — and your own history proves the demand: you previously sold a #76 SS 5.0 for <b>$515</b> and a 4.5 for <b>$350</b>.</p>
+<div class="label">
+  <div class="lbar green">
+    <div><div class="lt">Green Lantern #76 · O'Neil / Adams</div><div class="ls">April 1970 — the book that began the GL/GA run</div></div>
+    <div class="lgrade"><div class="g">PRICED<br>RIGHT</div></div>
+  </div>
+  <div class="lbody">
+    <p>One of the most famous Bronze Age keys there is, and your <b class="mono">$400</b> ask on a CGC 5.0 sits right in the fair zone. Your own history proves the demand — you sold a #76 SS 5.0 for <b class="mono">$515</b> and a 4.5 for <b class="mono">$350</b>.</p>
+  </div>
 </div>
 
-<div class="card">
-<span class="tag idea">EASY MONEY MOVE</span>
-<h2>The signed baseballs: three words are costing you half</h2>
-<p>Nolan Ryan ($80), Don Larsen perfect-game ball ($65), Whitey Ford ($50) — all listed <b>"No COA."</b> On eBay, no-COA autographs sell at a 30–50% discount because buyers can't verify.</p>
-<ul>
-<li>JSA or Beckett authentication runs roughly <b>$30–50 per ball</b></li>
-<li>If the signatures are genuine, an authenticated Nolan Ryan HOF ball is a <b>$150–250</b> item, not an $80 one</li>
-<li>Even authenticating just the Ryan and the Larsen likely pays for itself several times over</li>
-</ul>
+<div class="label">
+  <div class="lbar yellow">
+    <div><div class="lt">The Signed Baseballs</div><div class="ls">Nolan Ryan · Don Larsen PG · Whitey Ford — all listed “No COA”</div></div>
+    <div class="lgrade"><div class="g">EASY<br>WIN</div></div>
+  </div>
+  <div class="lbody">
+    <p>On eBay, “No COA” costs an autograph <b>30–50% of its value</b> — buyers can't verify, so they discount.</p>
+    <ul>
+      <li>JSA or Beckett authentication: roughly <b class="mono">$30–50</b> per ball</li>
+      <li>An authenticated Nolan Ryan HOF ball is a <b class="mono">$150–250</b> item — yours is listed at <b class="mono">$80</b></li>
+      <li>Authenticating just the Ryan and the Larsen likely pays for itself several times over</li>
+    </ul>
+  </div>
 </div>
 
-<div class="card">
-<span class="tag solid">YOUR STRONG SUIT</span>
-<h2>The Morgan dollars are dialed in</h2>
-<p>Your sold history shows graded Morgans moving consistently — MS63s around $100–110, an MS65 at $200, toned examples pulling premiums. Whatever you're doing on coin pricing, keep doing it.</p>
+<div class="label">
+  <div class="lbar silver">
+    <div><div class="lt">The Morgan Dollars</div><div class="ls">Your sold history, graded &amp; toned</div></div>
+    <div class="lgrade"><div class="g">DIALED<br>IN</div></div>
+  </div>
+  <div class="lbody">
+    <p>MS63s moving at <b class="mono">$100–110</b>, an MS65 at <b class="mono">$200</b>, toned examples pulling premiums. Whatever you're doing on coin pricing — keep doing it.</p>
+  </div>
 </div>
 
-<hr class="hr">
-<p class="small"><b>How this was done:</b> our system pulled your active listings and sold history, matched items against grade-locked market comps (a CGC 9.6 is only ever compared with a 9.6 — never a 5.0), and read your CGC labels directly off your listing photos to identify signatures and key issues. No logins, no access to your account — all from what's publicly visible.</p>
+<div class="method">
+  <h3>How this was done</h3>
+  <p>Our system pulled your active listings and sold history, matched items against grade-locked market comps — a CGC 9.6 is only ever compared with a 9.6, never a 5.0 — and read your CGC labels directly off your listing photos to identify signatures and key issues. No logins. No account access. Everything above came from what's already publicly visible.</p>
+</div>
 
-<div class="footer">Prepared by <a href="https://findyourmonkey.com">Find Your Monkey</a> · Barnegat, NJ<br>AI tools for resellers — built by a 25-year eBay seller</div>
-</div></body></html>
+<footer>Prepared by <a href="https://findyourmonkey.com">Find Your Monkey</a> · Barnegat, NJ<br>AI tools for resellers — built by a 25-year eBay seller</footer>
+</div>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.label').forEach(l=>io.observe(l));
+</script>
+</body></html>
