@@ -1,91 +1,233 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Waretown Stamp &amp; Coin — Inventory Health Check</title>
+<title>Waretown Stamp &amp; Coin — Market Report</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Newsreader:ital,opsz@0,6..72;1,6..72&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=Newsreader:opsz@6..72&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#f5f2ea;--ink:#1a1d21;--sub:#6a6559;--rule:#ddd7c8;--pass:#1f7a44;--pass-bg:#eaf5ee;--ss:#ffcf33}
+:root{--paper:#f5f2ea;--ink:#1a1d21;--sub:#6a6559;--rule:#ddd7c8;--pass:#1f7a44;--pass-bg:#eaf5ee;--warn:#b45309;--warn-bg:#fef3c7;--low:#1d4ed8;--low-bg:#eff6ff;--ss:#ffcf33}
 *{box-sizing:border-box;margin:0}
 body{background:var(--paper);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
-.wrap{max-width:620px;margin:0 auto;padding:0 20px 64px}
-header{text-align:center;padding:40px 0 6px;border-bottom:2px solid var(--ink);margin-bottom:6px}
-.kicker{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--sub);font-weight:600}
-h1{font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:clamp(27px,6.5vw,38px);line-height:1.1;margin:8px 0 4px}
-.for{font-size:14px;color:var(--sub)}.for b{color:var(--ink)}
-.verdict{text-align:center;padding:38px 0 30px;animation:rise .6s cubic-bezier(.2,1,.3,1) both}
-@keyframes rise{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
-.seal{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:168px;height:168px;border-radius:50%;background:var(--pass-bg);border:3px double var(--pass)}
-.seal .pct{font-family:'Archivo Black';font-size:52px;color:var(--pass);line-height:1}
-.seal .lbl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--pass);font-weight:700;margin-top:4px}
-.verdict .head{font-family:'Newsreader',serif;font-size:23px;margin:22px 0 6px}
-.verdict .say{font-size:15px;color:var(--sub);max-width:400px;margin:0 auto}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:#fff;margin:8px 0 30px}
-.stat{padding:16px 8px;text-align:center;border-right:1px solid var(--rule)}
-.stat:last-child{border-right:none}
-.stat .n{font-family:'Archivo Black';font-size:22px;line-height:1}
-.stat .l{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);margin-top:5px}
-@media(max-width:460px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--rule)}}
-.sh{font-family:'Archivo Black';font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin:30px 0 12px;padding-bottom:8px;border-bottom:1.5px solid var(--ink)}
-.finding{background:#fff;border:1px solid var(--rule);border-left:4px solid var(--ss);border-radius:8px;padding:16px 18px;margin-bottom:14px}
-.finding .ft{font-weight:700;font-size:15px;margin-bottom:4px}
-.finding .fd{font-size:14px;color:var(--sub)}
-.finding .fix{font-size:13.5px;margin-top:8px;background:var(--paper);border-radius:5px;padding:8px 10px}
-.finding .fix b{color:var(--ink)}
-.mono{font-variant-numeric:tabular-nums}
-.checks{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:6px 4px}
-.chk{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid var(--paper);font-size:14.5px}
-.chk:last-child{border-bottom:none}
-.chk .ic{flex:0 0 20px;height:20px;border-radius:50%;background:var(--pass-bg);color:var(--pass);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
-.chk .x{color:var(--sub);font-size:12.5px;margin-left:auto;white-space:nowrap}
-.breakdown{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
-.bchip{background:#fff;border:1px solid var(--rule);border-radius:20px;padding:7px 13px;font-size:13px}
-.bchip b{font-family:'Archivo Black';font-weight:400}
-.method{margin-top:34px;font-size:13px;color:var(--sub);border-top:1px solid var(--rule);padding-top:14px}
+.wrap{max-width:640px;margin:0 auto;padding:0 20px 64px}
+header{text-align:center;padding:38px 0 6px;border-bottom:2px solid var(--ink);margin-bottom:28px}
+.kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sub);font-weight:600}
+h1{font-family:'Newsreader',Georgia,serif;font-size:clamp(26px,6vw,38px);font-weight:400;line-height:1.1;margin:7px 0 4px}
+.for{font-size:13px;color:var(--sub)}
+.sh{font-family:'Archivo Black';font-size:12px;text-transform:uppercase;letter-spacing:.07em;padding-bottom:7px;border-bottom:1.5px solid var(--ink);margin:28px 0 12px}
+.row{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:13px 15px;margin-bottom:8px;display:flex;gap:14px;align-items:flex-start}
+.badge{flex:0 0 52px;border-radius:5px;padding:5px 4px;text-align:center;font-family:'Archivo Black';font-size:11px;letter-spacing:.04em;line-height:1.2}
+.badge.high{background:var(--warn-bg);color:var(--warn)}
+.badge.ok{background:var(--pass-bg);color:var(--pass)}
+.badge.low{background:var(--low-bg);color:var(--low)}
+.badge.ss{background:var(--ss);color:#78350f}
+.badge.thin{background:#f1f5f9;color:#475569}
+.rtitle{font-size:14px;font-weight:600;line-height:1.35;margin-bottom:3px}
+.rmeta{font-size:13px;color:var(--sub)}
+.rmeta b{color:var(--ink)}
+.rnote{font-size:12.5px;color:var(--sub);margin-top:5px;border-top:1px solid var(--rule);padding-top:5px}
+.caveat{background:var(--warn-bg);border:1px solid #fcd34d;border-radius:8px;padding:12px 15px;font-size:13px;color:#92400e;margin-bottom:12px}
 footer{text-align:center;margin-top:36px;font-size:12px;color:#9a9484}
 footer a{color:#9a9484}
-@media(prefers-reduced-motion:reduce){.verdict{animation:none}}
 </style></head><body><div class="wrap">
 <header>
-  <div class="kicker">Inventory Health Check</div>
+  <div class="kicker">Market Report</div>
   <h1>Waretown Stamp &amp; Coin</h1>
-  <div class="for">eBay store <b>@matstamp</b> · scanned July 9, 2026</div>
+  <div class="for">eBay store @matstamp · 35 listings · July 9, 2026 · grade-locked sold comps</div>
 </header>
-<div class="verdict">
-  <div class="seal"><div class="pct">97<span style="font-size:26px">%</span></div><div class="lbl">Clean</div></div>
-  <div class="head">This store passed.</div>
-  <div class="say">We ran every active listing through an automated audit — pricing, grades, typos, cut-off titles. Out of 35 listings, it found <b>one</b> thing worth a look. That's a tight ship.</div>
+
+<div class="sh">Worth a look — meaningful gap from market</div>
+
+<div class="caveat">The comps below are pulled from eBay sold listings matching the same grade. A 9.8 is only compared with a 9.8. But key-issue books and signed items are special cases — context noted where it matters.</div>
+
+<div class="row">
+  <div class="badge high">ABOVE<br>MARKET</div>
+  <div>
+    <div class="rtitle">Neil Young Signed Book — CSNY Crazy Horse</div>
+    <div class="rmeta">Asking <b>$500</b> · 38 signed-copy solds at median <b>$42</b></div>
+    <div class="rnote">Large gap. Neil Young signed books move but not at $500 on eBay — the 38 comps are convincing. Worth checking if COA or witnessed documentation is in the listing.</div>
+  </div>
 </div>
-<div class="stats">
-  <div class="stat"><div class="n mono">35</div><div class="l">Listings scanned</div></div>
-  <div class="stat"><div class="n mono">~20s</div><div class="l">Scan time</div></div>
-  <div class="stat"><div class="n mono">$5,375</div><div class="l">Total listed</div></div>
-  <div class="stat"><div class="n mono">1</div><div class="l">Flag raised</div></div>
+
+<div class="row">
+  <div class="badge high">ABOVE<br>MARKET</div>
+  <div>
+    <div class="rtitle">Fantastic Four #V2 #4</div>
+    <div class="rmeta">Asking <b>$315</b> · 96 solds at median <b>$25</b></div>
+    <div class="rnote">96 comps is a confident sample. At $315 vs $25 this needs either a reason (variant cover, signature, higher grade) or a reprice. The listing may have context we don't see in the title.</div>
+  </div>
 </div>
-<div class="sh">The one thing we found</div>
-<div class="finding">
-  <div class="ft">A double space in one title</div>
-  <div class="fd">“1911 D Barber Dime<span class="mono">&nbsp;&nbsp;</span>NGC Stacks W 57th St Collection” — two spaces between “Dime” and “NGC.”</div>
-  <div class="fix"><b>Why it matters (a little):</b> eBay's search can treat a double space as a broken token, so the listing occasionally misses a search it should catch. Thirty-second fix. That's genuinely the whole list.</div>
+
+<div class="row">
+  <div class="badge high">ABOVE<br>MARKET</div>
+  <div>
+    <div class="rtitle">Tomb Raider #1/2 2001</div>
+    <div class="rmeta">Asking <b>$75</b> · 29 solds at median <b>$10</b></div>
+    <div class="rnote">29 comps, consistent. The #1/2 is a common mail-in book — the ungraded raw market is soft around $10. If this is a high-grade copy it should say so in the title.</div>
+  </div>
 </div>
-<div class="sh">What the audit checked — and you passed</div>
-<div class="checks">
-  <div class="chk"><span class="ic">✓</span> Decimal-point price typos <span class="x">0 found</span></div>
-  <div class="chk"><span class="ic">✓</span> Silver priced below melt value <span class="x">0 found</span></div>
-  <div class="chk"><span class="ic">✓</span> Graded items missing their grade <span class="x">0 found</span></div>
-  <div class="chk"><span class="ic">✓</span> Titles cut off at eBay's limit <span class="x">0 found</span></div>
-  <div class="chk"><span class="ic">✓</span> Spelling &amp; formatting errors <span class="x">1 minor</span></div>
+
+<div class="row">
+  <div class="badge high">ABOVE<br>MARKET</div>
+  <div>
+    <div class="rtitle">Brian Johnson (AC/DC) Signed Book</div>
+    <div class="rmeta">Asking <b>$150</b> · 6 solds at median <b>$77</b></div>
+    <div class="rnote">6 comps is thin but plausible directionally. About 2x market. COA status not in title — adds or removes ~$40 in buyer confidence.</div>
+  </div>
 </div>
-<div class="sh">Your inventory at a glance</div>
-<div class="breakdown">
-  <div class="bchip"><b>16</b> Comics</div>
-  <div class="bchip"><b>9</b> Autographs</div>
-  <div class="bchip"><b>9</b> Coins &amp; Bullion</div>
-  <div class="bchip"><b>1</b> Stamps</div>
+
+<div class="row">
+  <div class="badge high">ABOVE<br>MARKET</div>
+  <div>
+    <div class="rtitle">Muttaburrasaurus 1oz Silver Proof NGC 70</div>
+    <div class="rmeta">Asking <b>$250</b> · 14 solds at median <b>$125</b></div>
+    <div class="rnote">NGC 70 is the top grade — comps are grade-locked. At 2x the median, could be justified by the current silver premium but worth monitoring.</div>
+  </div>
 </div>
-<div class="method">
-  <b>How this was done:</b> we pulled all 35 active listings through eBay's own official data system — no scraping, no logins, no access to your account — and ran each one against a checklist of objective errors. The audit deliberately doesn't second-guess prices on items you know better than anyone; it only flags things that are factually checkable. It found almost nothing, which is the point: this is what a well-run store looks like from the machine's side.
+
+<div class="row">
+  <div class="badge high">ABOVE<br>MARKET</div>
+  <div>
+    <div class="rtitle">Don Larsen Signed Ball "PG 10-8-56" No COA</div>
+    <div class="rmeta">Asking <b>$65</b> · 70 solds at median <b>$42</b></div>
+    <div class="rnote">No COA discount is real — buyers price authenticated balls $80-150+. At $65 unverified, modest gap. Authenticate and this becomes a different listing.</div>
+  </div>
 </div>
-<footer>Prepared by <a href="https://findyourmonkey.com">Find Your Monkey</a> · Barnegat, NJ<br>AI tools for resellers</footer>
+
+<div class="sh">Priced below market — money on the table</div>
+
+<div class="row">
+  <div class="badge low">BELOW<br>MARKET</div>
+  <div>
+    <div class="rtitle">Amazing Spider-Man #236 CGC 9.8</div>
+    <div class="rmeta">Asking <b>$85</b> · 107 solds at median <b>$135</b></div>
+    <div class="rnote">107 comps is very confident. CGC 9.8s of this book are consistently moving $50 above the ask. Strongest under-market flag in the store.</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="badge low">BELOW<br>MARKET</div>
+  <div>
+    <div class="rtitle">Nolan Ryan HOF Signed Baseball — No COA</div>
+    <div class="rmeta">Asking <b>$80</b> · 79 solds at median <b>$107</b></div>
+    <div class="rnote">Even the no-COA market comes in above the ask. Authenticated Ryan balls trade $150-250+. If the sig is genuine, authentication ROI is enormous.</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="badge low">BELOW<br>MARKET</div>
+  <div>
+    <div class="rtitle">1923 Peace Silver Dollar ICG MS65</div>
+    <div class="rmeta">Asking <b>$110</b> · 9 solds at median <b>$145</b></div>
+    <div class="rnote">Coins are your strength — this one's quietly underpriced vs the graded market.</div>
+  </div>
+</div>
+
+<div class="sh">Priced right</div>
+
+<div class="row">
+  <div class="badge ok">ON<br>MARKET</div>
+  <div>
+    <div class="rtitle">1909-VDB Lincoln Cent NGC MS64 RD</div>
+    <div class="rmeta">Asking <b>$125</b> · 5 solds at median <b>$110</b> · in range</div>
+  </div>
+</div>
+<div class="row">
+  <div class="badge ok">ON<br>MARKET</div>
+  <div>
+    <div class="rtitle">Fantastic Four #1 (1998) CGC 9.8 Both Covers</div>
+    <div class="rmeta">Asking <b>$100</b> · 113 solds at median <b>$85</b> · reasonable</div>
+  </div>
+</div>
+<div class="row">
+  <div class="badge ok">ON<br>MARKET</div>
+  <div>
+    <div class="rtitle">Whitey Ford Signed Baseball — No COA</div>
+    <div class="rmeta">Asking <b>$50</b> · 96 solds at median <b>$47</b> · spot on</div>
+  </div>
+</div>
+<div class="row">
+  <div class="badge ok">ON<br>MARKET</div>
+  <div>
+    <div class="rtitle">1963 D Franklin Half Dollar NGC (Stacks Holder)</div>
+    <div class="rmeta">Asking <b>$50</b> · 41 solds at median <b>$43</b> · close</div>
+  </div>
+</div>
+<div class="row">
+  <div class="badge ok">ON<br>MARKET</div>
+  <div>
+    <div class="rtitle">First Day Cover Collection — Birds &amp; Flowers</div>
+    <div class="rmeta">Asking <b>$20</b> · 2 solds at median <b>$20</b> · exact</div>
+  </div>
+</div>
+
+<div class="sh">Context needed — comps exist but may not tell the full story</div>
+
+<div class="row">
+  <div class="badge thin">CONTEXT</div>
+  <div>
+    <div class="rtitle">Green Lantern #76 CGC 5.0 — asking $400</div>
+    <div class="rmeta">14 CGC 5.0 solds at median <b>$64</b></div>
+    <div class="rnote">The O'Neil/Adams GL #76 is one of the most important Bronze Age books. The comps at $64 may be including low-grade raw copies — this is a key issue and should command a premium a computer can't fully capture. Your own sold history: SS 5.0 → $515, CGC 4.5 → $350. $400 may be deliberate.</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="badge thin">CONTEXT</div>
+  <div>
+    <div class="rtitle">Green Lantern #39 (Sept 1965) — asking $150</div>
+    <div class="rmeta">4 solds at median <b>$13</b></div>
+    <div class="rnote">4 comps is too thin to trust, and a 1965 Silver Age GL has a wide grade range. If this is a high-grade raw copy or a key issue, the $150 ask may be well-founded — this comp says almost nothing.</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="badge thin">CONTEXT</div>
+  <div>
+    <div class="rtitle">Mercury Dime &amp; Barber Dime (Genuine/Details grade)</div>
+    <div class="rmeta">Asking $30–35 · market $12 (58–60 solds)</div>
+    <div class="rnote">"Genuine Grade" = NGC details designation (cleaning, damage etc). Market for details-graded dimes is around $12 — the asking prices are 2-3x that. May be priced for a retail walk-in customer rather than eBay buyers.</div>
+  </div>
+</div>
+
+<div class="sh">Signature Series — grade comps are just the floor</div>
+
+<div class="row">
+  <div class="badge ss">SIGNED</div>
+  <div>
+    <div class="rtitle">Green Lantern #48 CGC SS 9.6 — asking $225</div>
+    <div class="rmeta">Grade comps: ~$80 · but this is signed by co-creators Marz &amp; Banks</div>
+    <div class="rnote">This is the 1st appearance of Kyle Rayner, signed by the writer and artist who created him. The title doesn't say any of that. "First appearance + co-creator sigs" buyers are searching different terms entirely and paying $290-415 for comparable books.</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="badge ss">SIGNED</div>
+  <div>
+    <div class="rtitle">Thor: Vikings #1 CGC SS 9.8 — asking $160</div>
+    <div class="rmeta">Grade comps: ~$60 · signed Garth Ennis &amp; Glenn Fabry</div>
+    <div class="rnote">Ennis collectors cross-shop from Preacher and The Boys. "Signed Garth Ennis" in the title pulls a completely different buyer pool than "Signature Series."</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="badge ss">SIGNED</div>
+  <div>
+    <div class="rtitle">Green Lantern #39 CGC 9.8 Signed Ivan Reis — asking $100</div>
+    <div class="rmeta">Signed 9.8 — Ivan Reis is the current definitive GL artist</div>
+    <div class="rnote">Current-era creator sig at 9.8 — different market from a raw 1965 GL#39. Hard to comp without knowing which GL run/cover variant.</div>
+  </div>
+</div>
+
+<div class="sh">Thin market — too scarce for reliable comps</div>
+<div class="row"><div class="badge thin">SCARCE</div><div><div class="rtitle">Green Lantern #9 (Nov-Dec 1961) — $350</div><div class="rmeta">Early Silver Age GL. No volume to comp against.</div></div></div>
+<div class="row"><div class="badge thin">SCARCE</div><div><div class="rtitle">2016 UK Royal Mint Proof Set — $400</div><div class="rmeta">1 comp at $174. Too thin to call directionally.</div></div></div>
+<div class="row"><div class="badge thin">SCARCE</div><div><div class="rtitle">Green Lantern: Rebirth #1 Third Printing — $150</div><div class="rmeta">Specific printing variant — low volume.</div></div></div>
+<div class="row"><div class="badge thin">SCARCE</div><div><div class="rtitle">Alicia Keys Signed Songbook — $65</div><div class="rmeta">No clean comp pool.</div></div></div>
+<div class="row"><div class="badge thin">SCARCE</div><div><div class="rtitle">Steve Carlton Signed Ball (Steiner COA) — $60</div><div class="rmeta">Steiner COA present — but no reliable comp found.</div></div></div>
+
+<footer>
+  <div style="margin-bottom:8px;font-size:13px;color:var(--ink)">Every comp is grade-locked · SS books flagged · context noted where the numbers don't tell the full story</div>
+  Prepared by <a href="https://findyourmonkey.com">Find Your Monkey</a> · Barnegat, NJ
+</footer>
 </div></body></html>
