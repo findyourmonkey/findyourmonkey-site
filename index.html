@@ -120,9 +120,9 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
     <span class="live-pill"><span class="dot"></span>STATS REFRESH DAILY</span>
   </div>
   <div class="statbar">
-    <div class="stat"><div class="n orange" id="s-views" data-n="170198">170,198</div><div class="l">Views &amp; counting</div></div>
-    <div class="stat"><div class="n" id="s-clips" data-n="1056">1,056</div><div class="l">Clips published</div></div>
-    <div class="stat"><div class="n" id="s-likes" data-n="2440">2,440</div><div class="l">Likes</div></div>
+    <div class="stat"><div class="n orange" id="s-views" data-n="1162410">1,162,410</div><div class="l">Views across platforms</div></div>
+    <div class="stat"><div class="n" id="s-clips" data-n="2007">2,007</div><div class="l">Clips &amp; posts published</div></div>
+    <div class="stat"><div class="n" id="s-recent" data-n="353162">353,162</div><div class="l">Views, last 30 days</div></div>
     <div class="stat"><div class="n">24/7</div><div class="l">Systems in production</div></div>
   </div>
   <div class="wall" id="wall"></div>
@@ -192,7 +192,7 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
         '<span class="views"><b>'+(c.views>=1000?(c.views/1000).toFixed(1).replace(/\.0$/,'')+'K':c.views)+'</b> views</span>';
       w.appendChild(a);
     });
-    var pairs=[['s-views',data.total_views],['s-clips',data.total_clips],['s-likes',data.total_likes]];
+    var pairs=[['s-views',data.total_views],['s-clips',data.total_clips],['s-recent',data.views_30d_ig]];
     var fired=false;
     var io=new IntersectionObserver(function(es){es.forEach(function(e){
       if(e.isIntersecting&&!fired){fired=true;pairs.forEach(function(p){countUp(document.getElementById(p[0]),p[1])})}})},{threshold:.3});
