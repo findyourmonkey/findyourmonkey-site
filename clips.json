@@ -1,22 +1,26 @@
 {
- "updated": "2026-07-14",
- "total_views": 1233185,
- "total_clips": 2151,
- "views_30d_ig": 397516,
- "followers": 504,
- "yt_views": 835669,
+ "updated": "2026-07-15",
+ "total_views": 1272952,
+ "total_clips": 2215,
+ "views_30d_ig": 430082,
+ "followers": 518,
+ "yt_views": 842870,
  "top": [
   {
    "id": "tVP2iZ6B_U0",
-   "views": 114705
+   "views": 114772
+  },
+  {
+   "id": "bFKgY4IXZ1w",
+   "views": 32770
   },
   {
    "id": "Z9SOmlPq-Tk",
-   "views": 32449
+   "views": 32451
   },
   {
    "id": "uOV9fdbxlUI",
-   "views": 28120
+   "views": 28121
   },
   {
    "id": "X4VQFJlJx4U",
@@ -24,23 +28,23 @@
   },
   {
    "id": "oPCXZ_mEQx4",
-   "views": 24810
+   "views": 24811
   },
   {
-   "id": "bBsuyMTrPXo",
-   "views": 23570
+   "id": "UUsGROA8JDM",
+   "views": 22348
   },
   {
    "id": "1sBVgKR7gys",
-   "views": 22005
+   "views": 22006
   },
   {
    "id": "VuceBukTag4",
-   "views": 20952
+   "views": 20954
   },
   {
    "id": "5FZ1J308MmA",
-   "views": 15724
+   "views": 15790
   },
   {
    "id": "iI7mFuwcTbA",
@@ -49,10 +53,6 @@
   {
    "id": "9dj0aRzkGJE",
    "views": 12351
-  },
-  {
-   "id": "33HM2shAVlI",
-   "views": 10835
   }
  ]
 }
