@@ -204,9 +204,14 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
     var w=document.getElementById('wall');w.innerHTML='';
     data.top.forEach(function(c){
       var a=document.createElement('a');a.className='tile';a.target='_blank';a.rel='noopener';
-      a.href='https://www.youtube.com/shorts/'+c.id;
-      a.innerHTML='<img loading="lazy" alt="clip thumbnail" src="https://i.ytimg.com/vi/'+c.id+'/oar2.jpg" onerror="this.src=\'https://i.ytimg.com/vi/'+c.id+'/hqdefault.jpg\'">'+
-        '<span class="views"><b>'+(c.views>=1000?(c.views/1000).toFixed(1).replace(/\.0$/,'')+'K':c.views)+'</b> views</span>';
+      var vtxt='<span class="views"><b>'+(c.views>=1000?(c.views/1000).toFixed(1).replace(/\.0$/,'')+'K':c.views)+'</b> views</span>';
+      if(c.platform==='ig'){
+        a.href=c.url;
+        a.innerHTML='<img loading="lazy" alt="clip thumbnail" src="'+c.thumb+'">'+vtxt;
+      }else{
+        a.href='https://www.youtube.com/shorts/'+c.id;
+        a.innerHTML='<img loading="lazy" alt="clip thumbnail" src="https://i.ytimg.com/vi/'+c.id+'/oar2.jpg" onerror="this.src=\'https://i.ytimg.com/vi/'+c.id+'/hqdefault.jpg\'">'+vtxt;
+      }
       w.appendChild(a);
     });
     var pairs=[['s-views',data.total_views],['s-clips',data.total_clips],['s-recent',data.views_30d_ig]];

@@ -48,14 +48,62 @@ def ig_totals():
     return views30, media, followers
 
 def top_wall():
-    d = json.load(open(CLIP_SRC)); best = {}
-    for c in d:
-        v = c.get("views", 0) or 0
-        if c["video_id"] not in best or v > best[c["video_id"]]["views"]:
-            c = dict(c); c["views"] = v; best[c["video_id"]] = c
-    top = [x for x in sorted(best.values(), key=lambda x: x["views"], reverse=True)
-           if x["video_id"] not in EXCLUDE][:12]
-    return [{"id": t["video_id"], "views": t["views"]} for t in top]
+    """v2.1: all-time top shorts via API (clip_stats only tracked last-7d uploads,
+    so all-time hits like the 113K short never made the wall)."""
+    from google.oauth2.credentials import Credentials
+    from googleapiclient.discovery import build
+    creds = Credentials.from_authorized_user_info(json.load(open(YT_TOKEN)))
+    yt = build("youtube", "v3", credentials=creds)
+    allstats = []
+    for h in CHANNELS:
+        try:
+            ch = yt.channels().list(part="contentDetails", forHandle=h).execute()
+            up = ch["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
+            ids, page = [], None
+            while True:
+                r = yt.playlistItems().list(part="contentDetails", playlistId=up,
+                                            maxResults=50, pageToken=page).execute()
+                ids += [i["contentDetails"]["videoId"] for i in r["items"]]
+                page = r.get("nextPageToken")
+                if not page: break
+            for i in range(0, len(ids), 50):
+                vr = yt.videos().list(part="statistics,contentDetails", id=",".join(ids[i:i+50])).execute()
+                for v in vr["items"]:
+                    dur = v["contentDetails"].get("duration", "")
+                    if "H" in dur: continue  # shorts wall only — skip long-form
+                    allstats.append({"id": v["id"], "views": int(v["statistics"].get("viewCount", 0))})
+        except Exception as e:
+            print(f"wall {h}: {e}", file=sys.stderr)
+    top = [x for x in sorted(allstats, key=lambda x: -x["views"]) if x["id"] not in EXCLUDE][:12]
+    return top
+
+def ig_wall(n=3):
+    """2026-07-17: top IG reels for the clip wall. Views come from
+    ig_performance_insights.json (ig-analytics.timer, daily 11am); permalink +
+    thumbnail fetched per-media from the Graph API. Guaranteed n slots so IG's
+    best (5.7K) isn't drowned out by 114K YT clips in a pure sort."""
+    import requests
+    sys.path.insert(0, "/var/home/findyourmonkey/projects/shared")
+    from instagram_poster import IG_TOKEN
+    out = []
+    try:
+        ig = json.load(open("/var/home/findyourmonkey/projects/shared/ig_performance_insights.json"))
+        posts = sorted(ig.get("all_posts", []), key=lambda p: -(p.get("views") or 0))
+        for p in posts:
+            if len(out) >= n: break
+            try:
+                m = requests.get(f"https://graph.facebook.com/v21.0/{p['id']}",
+                    params={"fields": "permalink,thumbnail_url,media_url", "access_token": IG_TOKEN},
+                    timeout=20).json()
+                url = m.get("permalink"); thumb = m.get("thumbnail_url") or m.get("media_url")
+                if url and thumb:
+                    out.append({"id": p["id"], "views": p.get("views", 0),
+                                "platform": "ig", "url": url, "thumb": thumb})
+            except Exception as e:
+                print(f"ig_wall {p.get('id')}: {e}", file=sys.stderr)
+    except Exception as e:
+        print(f"ig_wall: {e}", file=sys.stderr)
+    return out
 
 def main():
     yv, yvids, ysubs = yt_totals()
@@ -67,7 +115,8 @@ def main():
         "views_30d_ig": igv30,
         "followers": ysubs + igfol,
         "yt_views": yv,
-        "top": top_wall(),
+        # 2026-07-17: wall = top 9 YT + top 3 IG (guaranteed slots), sorted by views
+        "top": sorted(top_wall()[:9] + ig_wall(3), key=lambda x: -x.get("views", 0)),
     }
     old = None
     if os.path.exists(OUT):
