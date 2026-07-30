@@ -75,6 +75,12 @@ header.top{padding:96px 0 34px}
 .frame .tag{position:absolute;top:14px;left:14px;font-family:'JetBrains Mono',monospace;font-size:10px;
   letter-spacing:.1em;color:var(--cream);background:rgba(0,0,0,.5);padding:5px 9px;border-radius:7px}
 .setup{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+.stepper{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px;
+  font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.stepper b{color:var(--gold)}
+.stepper button{width:28px;height:28px;border-radius:9px;border:1px solid var(--dim);background:var(--surface2);
+  color:var(--cream);font-size:15px;line-height:1;cursor:pointer;font-family:inherit}
+.stepper button:hover{border-color:var(--orange)}
 
 .bars{display:flex;flex-direction:column;gap:16px}
 .bar .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:7px}
@@ -141,6 +147,9 @@ tr:last-child td{border-bottom:none}
         <div class="cap"><div class="amt" id="r-price">$0</div><div class="per" id="r-per">PER MONTH</div></div>
       </div>
       <div class="setup" id="r-setup">+ $100 once to set up</div>
+      <div class="stepper"><button id="cpe-down" aria-label="fewer clips per episode">−</button>
+        <span><b id="cpe-n">3</b> clips per episode</span>
+        <button id="cpe-up" aria-label="more clips per episode">+</button></div>
     </div>
     <div class="bars" id="r-bars"></div>
   </div>
@@ -158,7 +167,7 @@ tr:last-child td{border-bottom:none}
       <tr><td>8 clips / month</td><td>$200</td></tr>
       <tr><td>20 clips / month</td><td>$400</td></tr>
       <tr><td>40 clips / month</td><td>$700</td></tr>
-      <tr><td>Extra clips</td><td>$10 ea</td></tr>
+      <tr><td>Every clip past 40</td><td>$13 ea</td></tr>
       <tr><td>Transcript, summary, chapters, quotes, subtitles</td><td>$15 / ep</td></tr>
       <tr><td>Guest pack — 4 clips built for your guest to post</td><td>$35 / guest</td></tr>
       <tr><td>Launch or event set — 6 clips</td><td>$75</td></tr>
@@ -176,15 +185,21 @@ tr:last-child td{border-bottom:none}
 var API='https://relay.findyourmonkey.com/quote/api/show?q=';
 var $=function(i){return document.getElementById(i)};
 
-function tier(clips){
-  if(clips<=8) return 200;
-  if(clips<=20) return 400;
-  if(clips<=40) return 700;
-  return 700+(clips-40)*10;
+function tier(c){
+  // declining scale that lands exactly on the published tiers:
+  // 8 -> $200, 20 -> $404, 40 -> $704. No cliff between them.
+  var t=0;
+  t += Math.min(c,8)*25;
+  if(c>8)  t += (Math.min(c,20)-8)*17;
+  if(c>20) t += (Math.min(c,40)-20)*15;
+  if(c>40) t += (c-40)*13;
+  return Math.round(t/5)*5;
 }
 function money(n){return '$'+Math.round(n).toLocaleString()}
 
+var LAST=null;
 function render(d){
+  LAST=d;
   var eps = d.per_month || 0;
   var cpe = d.cpe || 3;
   var clips = Math.max(1, Math.round(eps*cpe));
@@ -227,7 +242,7 @@ function render(d){
   requestAnimationFrame(function(){
     [].forEach.call(document.querySelectorAll('.fill'),function(el){el.style.width=el.dataset.w+'%'});
   });
-  $('out').scrollIntoView({behavior:'smooth',block:'start'});
+  if(!d._seen){ d._seen=1; $('out').scrollIntoView({behavior:'smooth',block:'start'}); }
 }
 
 function ask(){
@@ -249,6 +264,9 @@ function manual(){
 $('go').onclick=ask;
 $('go2').onclick=manual;
 $('q').addEventListener('keydown',function(e){if(e.key==='Enter')ask()});
+function bump(n){ if(!LAST) return; var c=Math.max(1,Math.min(10,(LAST.cpe||3)+n)); LAST.cpe=c; $('cpe-n').textContent=c; render(LAST); }
+$('cpe-up').onclick=function(){bump(1)};
+$('cpe-down').onclick=function(){bump(-1)};
 $('toggle').onclick=function(){$('manual').classList.toggle('on')};
 $('toggle').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();$('manual').classList.toggle('on')}});
 </script>
