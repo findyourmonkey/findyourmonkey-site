@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Clipping — price</title>
+<meta name="description" content="What clipping costs, priced against your own feed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#161311;--surface:#1f1a17;--surface2:#241e1a;--border:#2e2621;
+  --cream:#f5ede1;--tan:#c9a988;--orange:#e8834f;--gold:#f2c14e;
+  --mint:#5fd9b4;--muted:#a8988a;--dim:#3a3129;
+}
+body{background:var(--bg);color:var(--cream);font-family:Inter,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--orange)}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);font-weight:700;display:flex;align-items:center;gap:8px}
+.eyebrow:before{content:"";width:20px;height:2px;background:var(--orange);border-radius:2px}
+h1{font-family:Syne,sans-serif;font-size:clamp(30px,5.5vw,48px);font-weight:800;line-height:1.08;letter-spacing:-.02em;margin:20px 0 14px}
+h1 em{font-style:normal;color:var(--orange)}
+.sub{color:var(--tan);font-size:17px;max-width:30em}
+.mono{font-family:'JetBrains Mono',monospace}
+
+header.top{padding:96px 0 34px}
+/* ---- the ask ---- */
+.ask{display:flex;gap:10px;margin-top:30px;flex-wrap:wrap}
+.ask input{flex:1 1 300px;background:var(--surface2);border:1.5px solid var(--dim);color:var(--cream);
+  font-family:Inter,sans-serif;font-size:15px;padding:15px 18px;border-radius:14px}
+.ask input::placeholder{color:#6d5f54}
+.ask input:focus{outline:none;border-color:var(--orange)}
+.ask button{background:var(--orange);color:#1a1210;border:none;font-weight:700;font-size:14px;
+  padding:15px 26px;border-radius:14px;cursor:pointer;font-family:Inter,sans-serif}
+.ask button:hover{background:#f2a35e}
+.ask button:disabled{opacity:.5;cursor:default}
+.hint{font-size:13px;color:var(--muted);margin-top:10px}
+.hint a{cursor:pointer;text-decoration:underline}
+.err{color:var(--gold);font-size:14px;margin-top:14px;min-height:1.2em}
+
+/* ---- manual fallback ---- */
+.manual{display:none;gap:14px;margin-top:16px;flex-wrap:wrap;align-items:flex-end}
+.manual.on{display:flex}
+.manual label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:6px}
+.manual input{width:110px;background:var(--surface2);border:1.5px solid var(--dim);color:var(--cream);
+  font-family:'JetBrains Mono',monospace;font-size:16px;padding:11px 14px;border-radius:12px}
+.manual input:focus{outline:none;border-color:var(--orange)}
+
+/* ---- result ---- */
+#out{display:none;padding-bottom:80px}
+#out.on{display:block}
+.readout{border-top:1px solid var(--border);margin-top:52px;padding-top:34px}
+.showname{font-family:Syne,sans-serif;font-size:22px;font-weight:700;letter-spacing:-.01em}
+.facts{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--tan);margin-top:8px;line-height:1.9}
+.facts b{color:var(--gold);font-weight:700}
+
+.split{display:grid;grid-template-columns:220px 1fr;gap:34px;margin-top:34px;align-items:start}
+@media(max-width:640px){.split{grid-template-columns:1fr;gap:26px}}
+
+/* the signature: the number captioned into a vertical frame, the way we burn
+   captions into the clips themselves */
+.frame{position:relative;aspect-ratio:9/16;border-radius:18px;overflow:hidden;
+  border:1px solid var(--border);background:#0d0b0a;display:flex;align-items:flex-end;justify-content:center}
+.frame .art{position:absolute;inset:0;background-size:cover;background-position:center;
+  filter:blur(18px) saturate(.7) brightness(.42);transform:scale(1.25)}
+.frame .glow{position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 8%,rgba(232,131,79,.30),transparent 62%)}
+.frame .cap{position:relative;text-align:center;padding:0 14px 40px;width:100%}
+.frame .cap .amt{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(34px,9vw,46px);line-height:1;
+  color:#fff;text-shadow:0 3px 0 #000,0 0 16px rgba(0,0,0,.9);letter-spacing:-.02em}
+.frame .cap .per{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--gold);
+  margin-top:10px;text-shadow:0 2px 0 #000}
+.frame .tag{position:absolute;top:14px;left:14px;font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:.1em;color:var(--cream);background:rgba(0,0,0,.5);padding:5px 9px;border-radius:7px}
+.setup{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+
+.bars{display:flex;flex-direction:column;gap:16px}
+.bar .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:7px}
+.bar .who{font-size:14px;font-weight:600}
+.bar .amt{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--tan);white-space:nowrap}
+.bar .track{height:9px;border-radius:99px;background:var(--surface2);overflow:hidden}
+.bar .fill{height:100%;border-radius:99px;background:var(--dim);width:0;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.bar.us .fill{background:linear-gradient(90deg,var(--orange),var(--gold))}
+.bar.us .who{color:var(--orange)}
+.bar.us .amt{color:var(--gold)}
+.bar .note{font-size:12px;color:var(--muted);margin-top:6px}
+.bar .note b{color:var(--mint);font-weight:700}
+@media(prefers-reduced-motion:reduce){.bar .fill{transition:none}}
+
+.why{border-top:1px solid var(--border);margin-top:46px;padding-top:30px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:640px){.why{grid-template-columns:1fr;gap:18px}}
+.why h4{font-family:Syne,sans-serif;font-size:15px;font-weight:700;margin-bottom:6px}
+.why p{font-size:13.5px;color:var(--muted);line-height:1.6}
+
+.card-tbl{border-top:1px solid var(--border);margin-top:46px;padding-top:30px}
+.card-tbl h3{font-family:Syne,sans-serif;font-size:16px;font-weight:700;margin-bottom:16px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td{padding:10px 0;border-bottom:1px solid var(--border);vertical-align:top}
+td:last-child{text-align:right;font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--gold);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+.foot{color:var(--muted);font-size:13px;margin-top:34px;padding-bottom:60px}
+.foot a{color:var(--tan)}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <div class="eyebrow">Clipping</div>
+  <h1>What it costs, <em>using your show's real numbers.</em></h1>
+  <p class="sub">Paste your feed. We read it and price it against everything else you could do instead.</p>
+
+  <div class="ask">
+    <input id="q" type="text" autocomplete="off" placeholder="Show name, Apple link, or RSS URL" aria-label="Show name, Apple Podcasts link, or RSS URL">
+    <button id="go">Price it</button>
+  </div>
+  <div class="hint">No feed yet? <a id="toggle" tabindex="0" role="button">Set it by hand.</a></div>
+
+  <div class="manual" id="manual">
+    <div><label for="m-eps">Episodes / month</label><input id="m-eps" class="mono" type="number" min="1" max="200" value="8"></div>
+    <div><label for="m-cpe">Clips / episode</label><input id="m-cpe" class="mono" type="number" min="1" max="10" value="3"></div>
+    <div><button id="go2">Price it</button></div>
+  </div>
+
+  <div class="err" id="err"></div>
+</div></header>
+
+<main id="out"><div class="wrap">
+  <div class="readout">
+    <div class="showname" id="r-name"></div>
+    <div class="facts" id="r-facts"></div>
+  </div>
+
+  <div class="split">
+    <div>
+      <div class="frame">
+        <div class="art" id="r-art"></div><div class="glow"></div>
+        <div class="tag mono">FIND YOUR MONKEY</div>
+        <div class="cap"><div class="amt" id="r-price">$0</div><div class="per" id="r-per">PER MONTH</div></div>
+      </div>
+      <div class="setup" id="r-setup">+ $100 once to set up</div>
+    </div>
+    <div class="bars" id="r-bars"></div>
+  </div>
+
+  <div class="why">
+    <div><h4>The machine cuts</h4><p>We wrote the pipeline once. It finds the moment, crops, captions and renders while we sleep. You're not paying for an editor's afternoon.</p></div>
+    <div><h4>Nobody to bill you</h4><p>No account manager, no studio, no office. One person and a rack of machines.</p></div>
+    <div><h4>Priced per clip</h4><p>Not per hour. If we get faster, you don't pay more — and there's no incentive to take longer.</p></div>
+  </div>
+
+  <div class="card-tbl">
+    <h3>The whole card</h3>
+    <table>
+      <tr><td>Setup — one time</td><td>$100</td></tr>
+      <tr><td>8 clips / month</td><td>$200</td></tr>
+      <tr><td>20 clips / month</td><td>$400</td></tr>
+      <tr><td>40 clips / month</td><td>$700</td></tr>
+      <tr><td>Extra clips</td><td>$10 ea</td></tr>
+      <tr><td>Transcript, summary, chapters, quotes, subtitles</td><td>$15 / ep</td></tr>
+      <tr><td>Guest pack — 4 clips built for your guest to post</td><td>$35 / guest</td></tr>
+      <tr><td>Launch or event set — 6 clips</td><td>$75</td></tr>
+      <tr><td>We post them, and flag comments for you</td><td>$350 / mo</td></tr>
+      <tr><td>Searchable library of your whole back catalogue</td><td>$600 + $25 / mo</td></tr>
+      <tr><td>Something custom</td><td>from $400</td></tr>
+    </table>
+  </div>
+
+  <p class="foot">Comparison figures are published 2026 rates: DIY clip tools $12–25/mo, freelance short-form gigs from $10–35 a clip, managed services from $800/mo. Hours assume 2.5 per episode to find, cut, caption and resize by hand.<br><br>
+  <a href="/">findyourmonkey.com</a> — we are no longer burdened by the impossible.</p>
+</div></main>
+
+<script>
+var API='https://relay.findyourmonkey.com/quote/api/show?q=';
+var $=function(i){return document.getElementById(i)};
+
+function tier(clips){
+  if(clips<=8) return 200;
+  if(clips<=20) return 400;
+  if(clips<=40) return 700;
+  return 700+(clips-40)*10;
+}
+function money(n){return '$'+Math.round(n).toLocaleString()}
+
+function render(d){
+  var eps = d.per_month || 0;
+  var cpe = d.cpe || 3;
+  var clips = Math.max(1, Math.round(eps*cpe));
+  var us = tier(clips);
+
+  $('r-name').textContent = d.title || 'Your show';
+  var f=[];
+  if(d.episodes) f.push('<b>'+d.episodes.toLocaleString()+'</b> episodes');
+  if(d.hours) f.push('<b>'+d.hours+'</b> hours of audio');
+  if(eps) f.push('<b>'+eps+'</b> a month');
+  if(d.median_min) f.push('median <b>'+d.median_min+'</b> min');
+  if(d.last) f.push('last one '+d.last);
+  $('r-facts').innerHTML = f.join(' &nbsp;·&nbsp; ') || 'Set by hand';
+  $('r-art').style.backgroundImage = d.art ? 'url('+d.art+')' : 'none';
+
+  $('r-price').textContent = money(us);
+  $('r-per').textContent = clips+' CLIPS / MONTH';
+
+  var hours = Math.round(eps*2.5);
+  var free = clips*25, agency = 800;
+  var rows=[
+    {who:'You, by hand', amt:'$18/mo', v:18,
+     note:'plus <b>'+hours+' hours</b> of your month, every month'},
+    {who:'Freelancer, per clip', amt:money(free)+'/mo', v:free,
+     note:clips+' clips at $25 — new person, new brief, every time'},
+    {who:'Managed service', amt:'from $800/mo', v:agency,
+     note:'where done-for-you clipping starts'},
+    {who:'Find Your Monkey', amt:money(us)+'/mo', v:us, us:true,
+     note:'every clip captioned, cropped and ready to post'}
+  ];
+  var max=Math.max.apply(null,rows.map(function(r){return r.v}));
+  $('r-bars').innerHTML = rows.map(function(r){
+    return '<div class="bar'+(r.us?' us':'')+'">'+
+      '<div class="row"><span class="who">'+r.who+'</span><span class="amt">'+r.amt+'</span></div>'+
+      '<div class="track"><div class="fill" data-w="'+Math.max(3,r.v/max*100)+'"></div></div>'+
+      '<div class="note">'+r.note+'</div></div>';
+  }).join('');
+
+  $('out').classList.add('on');
+  requestAnimationFrame(function(){
+    [].forEach.call(document.querySelectorAll('.fill'),function(el){el.style.width=el.dataset.w+'%'});
+  });
+  $('out').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function ask(){
+  var q=$('q').value.trim();
+  if(!q){ $('err').textContent='Enter a show name, an Apple Podcasts link, or an RSS URL.'; return; }
+  $('err').textContent='Reading the feed\u2026'; $('go').disabled=true;
+  fetch(API+encodeURIComponent(q)).then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j}})})
+  .then(function(res){
+    $('go').disabled=false;
+    if(!res.ok){ $('err').textContent=res.j.error||'Couldn\u2019t read that one.'; return; }
+    if(!res.j.per_month){ $('err').textContent='That feed hasn\u2019t published lately \u2014 set it by hand below.'; $('manual').classList.add('on'); return; }
+    $('err').textContent=''; render(res.j);
+  }).catch(function(){ $('go').disabled=false; $('err').textContent='Network hiccup. Try again.'; });
+}
+function manual(){
+  $('err').textContent='';
+  render({title:'Your show', per_month:parseFloat($('m-eps').value)||8, cpe:parseInt($('m-cpe').value)||3});
+}
+$('go').onclick=ask;
+$('go2').onclick=manual;
+$('q').addEventListener('keydown',function(e){if(e.key==='Enter')ask()});
+$('toggle').onclick=function(){$('manual').classList.toggle('on')};
+$('toggle').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();$('manual').classList.toggle('on')}});
+</script>
+</body>
+</html>
