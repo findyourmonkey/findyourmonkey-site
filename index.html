@@ -87,6 +87,29 @@ footer{border-top:1px solid var(--border);padding:32px;display:flex;justify-cont
 footer .f-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:15px}footer .f-logo span{color:var(--orange)}
 footer .f-links{display:flex;gap:18px}
 footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{color:var(--cream)}
+/* ---- TRY TILES (added 2026-07-30) ---- */
+.section-sub{color:var(--muted);font-size:15px;max-width:580px;margin-top:12px;line-height:1.7}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:12px;margin-top:34px}
+.tile-x{display:flex;flex-direction:column;gap:7px;padding:22px;border:1px solid var(--border);border-radius:16px;background:var(--surface);text-decoration:none;transition:border-color .15s,transform .12s}
+.tile-x:hover{border-color:var(--orange);transform:translateY(-2px)}
+.tx-k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.tx-n{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;color:var(--cream);letter-spacing:-.01em}
+.tx-p{font-size:13.5px;color:var(--tan);line-height:1.6;flex:1}
+.tx-go{font-size:13px;font-weight:700;color:var(--orange);margin-top:4px}
+/* ---- CAPABILITY RAILS ---- */
+.rails{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:30px 34px;margin-top:34px}
+.rail h3{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--orange);margin-bottom:13px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.rail ul{list-style:none}
+.rail li{font-size:13.5px;color:var(--tan);line-height:1.55;padding:7px 0 7px 15px;position:relative}
+.rail li:before{content:"";position:absolute;left:0;top:15px;width:5px;height:1px;background:var(--tan);opacity:.5}
+.rail li b{color:var(--cream);font-weight:600}
+.alsoline{max-width:1040px;margin:34px auto 0;padding:18px 22px;border-left:2px solid var(--dim);font-size:13.5px;color:var(--muted);line-height:1.7}
+.alsoline b{color:var(--tan);font-weight:600}
+/* ---- PRICE STRIP ---- */
+.pricestrip{margin-top:44px;padding:24px 26px;border:1px solid var(--border);border-radius:18px;background:var(--surface2);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.ps-k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
+.ps-v{font-size:14.5px;color:var(--tan);line-height:1.65}
+.ps-v b{color:var(--gold);font-family:'JetBrains Mono',monospace;font-weight:700}
 </style>
 </head>
 <body>
@@ -95,9 +118,9 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
   <a class="nav-logo" href="#">findyour<span>monkey</span></a>
   <div class="nav-links">
     <a class="txt" href="#proof">Proof</a>
+    <a class="txt" href="#try">Try it</a>
     <a class="txt" href="#build">What we build</a>
-    <a class="txt" href="#products">Products</a>
-    <a class="txt" href="#how">How it works</a>
+    <a class="txt" href="price.html">Pricing</a>
     <a class="nav-cta" href="mailto:findyourmonkey@gmail.com?subject=Build%20something%20for%20me">Get in touch</a>
   </div>
 </nav>
@@ -107,7 +130,7 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
   <h1>We make products that work <em>for you</em>.</h1>
   <p>Content engines, pricing intelligence, live apps, autonomous agents. Designed, built, and operated end-to-end. If it's repetitive, we can make it automatic.</p>
   <div class="hero-actions">
-    <a class="btn btn-primary" href="#proof">See it running</a>
+    <a class="btn btn-primary" href="#try">Try what we built</a>
     <a class="btn btn-ghost" href="mailto:findyourmonkey@gmail.com?subject=Build%20something%20for%20me">Tell us what you need</a>
   </div>
 </header>
@@ -130,67 +153,121 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
   <div class="proof-foot">Every tile is a real short our pipelines wrote, cut, captioned, and posted — automatically.</div>
 </section>
 
+<section class="section" id="try">
+  <div class="section-label">Open these right now</div>
+  <h2 class="section-title">Don't take our word for it.</h2>
+  <p class="section-sub">Seven things we built, live on the public internet. No signup, no demo call, no waiting on us.</p>
+  <div class="tiles">
+
+    <a class="tile-x" href="https://kt.findyourmonkey.com" target="_blank" rel="noopener">
+      <span class="tx-k">Library search</span>
+      <span class="tx-n">Kill Tony Search</span>
+      <span class="tx-p">Type any phrase and jump to the exact second it was said — across a thousand hours of a comedy show. Ask the assistant a question instead, if you'd rather.</span>
+      <span class="tx-go">Search the archive &rarr;</span>
+    </a>
+
+    <a class="tile-x" href="https://relay.findyourmonkey.com/work" target="_blank" rel="noopener">
+      <span class="tx-k">Content engine</span>
+      <span class="tx-n">The Work</span>
+      <span class="tx-p">Real clips from real shows. Every frame generated from what was actually said — not stock footage, not a waveform.</span>
+      <span class="tx-go">Watch the clips &rarr;</span>
+    </a>
+
+    <a class="tile-x" href="https://picker.findyourmonkey.com" target="_blank" rel="noopener">
+      <span class="tx-k">Pricing intelligence</span>
+      <span class="tx-n">Picker AI</span>
+      <span class="tx-p">Point it at a box lot and get back what the pile is actually worth, item by item, from live sold prices. Built for people who buy to resell.</span>
+      <span class="tx-go">Value a lot &rarr;</span>
+    </a>
+
+    <a class="tile-x" href="https://audit.findyourmonkey.com" target="_blank" rel="noopener">
+      <span class="tx-k">Commerce</span>
+      <span class="tx-n">eBay Store Audit</span>
+      <span class="tx-p">Hand it a store and it reads the listings the way a buyer does, then hands back the specific things costing you sales.</span>
+      <span class="tx-go">Audit a store &rarr;</span>
+    </a>
+
+    <a class="tile-x" href="https://melt.findyourmonkey.com" target="_blank" rel="noopener">
+      <span class="tx-k">Calculator</span>
+      <span class="tx-n">Melt Check</span>
+      <span class="tx-p">Live scrap value for gold and silver — weight and purity in, real money out, at the current spot price.</span>
+      <span class="tx-go">Check a price &rarr;</span>
+    </a>
+
+    <a class="tile-x" href="https://findyourmonkey.itch.io/super-chini-family" target="_blank" rel="noopener">
+      <span class="tx-k">Yes, we do games</span>
+      <span class="tx-n">Super Chini Family</span>
+      <span class="tx-p">An 8-bit boardwalk platformer built for a pro wrestler — three playable characters, ten storefronts, a championship belt at the end. Plays in your browser.</span>
+      <span class="tx-go">Play it &rarr;</span>
+    </a>
+
+    <a class="tile-x" href="https://monkey.findyourmonkey.com" target="_blank" rel="noopener">
+      <span class="tx-k">Autonomous agent</span>
+      <span class="tx-n">MONKEY</span>
+      <span class="tx-p">The assistant that runs this studio — the same kind of agent we build for clients, pointed at our own machines.</span>
+      <span class="tx-go">Talk to it &rarr;</span>
+    </a>
+
+  </div>
+</section>
+
 <section class="section" id="build">
   <div class="section-label">What we build</div>
-  <h2 class="section-title">One studio, a fleet of machines.</h2>
-  <div class="cards">
-    <div class="card"><span class="icon">🎬</span><h3>Content engines</h3><p>Long video in, branded vertical clips out. Transcription, smart crop, captions, titles, posting — on a schedule, every day, without anyone touching it. <a href="price.html" style="color:var(--muted);text-decoration:none;border-bottom:1px dotted var(--dim)">price.</a></p></div>
-    <div class="card"><span class="icon">🏷️</span><h3>Pricing &amp; market intelligence</h3><p>Live sold-price data, instant valuations, listing audits, deal alerts. Know what anything is worth before you buy it or list it.</p></div>
-    <div class="card"><span class="icon">📱</span><h3>Live apps &amp; portals</h3><p>Audience request boards, tipping flows, client dashboards, booking tools. Built fast, hosted by us, live the same week.</p></div>
-    <div class="card"><span class="icon">🤖</span><h3>Autonomous agents</h3><p>Systems that scan, decide, draft, and act on their own schedule — then report back to you in plain English.</p></div>
-    <div class="card"><span class="icon">🎨</span><h3>Generative media</h3><p>Custom-trained image models, voice, and video generation wired into real pipelines — production tools, not demos.</p></div>
-    <div class="card"><span class="icon">🔧</span><h3>Glue &amp; infrastructure</h3><p>APIs, scrapers, schedulers, self-healing services. The plumbing that makes everything above run for months untouched.</p></div>
-  </div>
-</section>
+  <h2 class="section-title">Everything we do, on one screen.</h2>
+  <div class="rails">
 
-<section class="section" id="products">
-  <div class="section-label">Try it right now</div>
-  <h2 class="section-title">Live machines, built and running today.</h2>
-  <div class="cards">
-    <div class="card"><span class="icon">📸</span><h3>Picker AI</h3>
-      <p>Point your camera at a lot, a collection, a garage-sale table — anything. The AI identifies what's in the pile and tells you what it's actually worth on eBay before you spend a dime. 3 free scans every day — unlimited is $4.99/mo.</p>
-      <p style="margin-top:14px"><a class="btn btn-primary" href="https://picker.findyourmonkey.com">Try 3 scans free →</a></p>
+    <div class="rail">
+      <h3>Content engines</h3>
+      <ul>
+        <li><b>Clips on autopilot</b> — long video in, branded vertical clips out, every day, untouched</li>
+        <li><b>Visual Audiobook</b> — for shows with no video, visuals generated from your own words</li>
+        <li><b>Transcripts &amp; guest packs</b> — word-accurate, per episode or per guest</li>
+        <li>Smart crop, burned captions, titles, and scheduled posting</li>
+      </ul>
     </div>
-    <div class="card"><span class="icon">🩺</span><h3>eBay Store Audit</h3>
-      <p>A full AI teardown of your eBay store: which listings are dead, where your pricing is off, what your photos are costing you — and exactly what to fix first. Delivered as a complete report for under $10.</p>
-      <p style="margin-top:14px"><a class="btn btn-primary" href="https://audit.findyourmonkey.com">Audit my store — $9.99 →</a></p>
-    </div>
-  </div>
-</section>
 
-<section class="section" id="built">
-  <div class="section-label">Also built and running</div>
-  <h2 class="section-title">A sample of what we've shipped for real people.</h2>
-  <div class="cards">
-    <div class="card"><span class="icon">🎬</span><h3>ClipMonkey</h3>
-      <p>Conversational AI clipping — you talk to it like a producer ("find me 5 funny moments," "clip where she talks about the trip") and it finds, cuts, and captions the moment automatically. Whisper transcription, an LLM producer agent, and an auto-crop/caption pipeline underneath.</p>
+    <div class="rail">
+      <h3>Search &amp; archives</h3>
+      <ul>
+        <li><b>Any library becomes a search engine</b> — podcast back-catalog, channel, course</li>
+        <li>Word-level index — land on the exact second, not the episode</li>
+        <li>An AI assistant that answers from <b>your own</b> material</li>
+        <li>Built for archives with hundreds of hours</li>
+      </ul>
     </div>
-    <div class="card"><span class="icon">📖</span><h3>Visual Audiobook</h3>
-      <p>For shows with no video at all. Send an audio episode and get back short vertical clips where every image is generated from your own words as you say them &mdash; not stock footage, not a waveform. The thing an audio-only podcast could never make itself.</p>
-      <p style="margin-top:14px"><a class="btn btn-primary" href="https://relay.findyourmonkey.com/clipsample">See real examples &rarr;</a></p>
+
+    <div class="rail">
+      <h3>Pricing &amp; commerce</h3>
+      <ul>
+        <li><b>Live valuation</b> from real sold prices, for lots or single items</li>
+        <li><b>Store audits</b> that name the specific things costing you sales</li>
+        <li>Phone-to-listing capture — photograph it, list it</li>
+        <li>Melt calculators, deal alerts, market scans</li>
+      </ul>
     </div>
-    <div class="card"><span class="icon">🔎</span><h3>Library Search</h3>
-      <p>Turn any video or audio library into a search engine. Point it at a podcast back-catalog, a YouTube channel, a course archive &mdash; hundreds or thousands of hours &mdash; and anyone can type a phrase and jump to the exact second it was said. Word-level transcription plus an AI assistant you can just ask. The whole archive, finally searchable like text. We built one for the entire Kill Tony catalog &mdash; every set, every comedian, instantly searchable.</p>
-      <p style="margin-top:14px"><a class="btn btn-primary" href="https://kt.findyourmonkey.com">See it live: Kill Tony Search &rarr;</a></p>
+
+    <div class="rail">
+      <h3>Custom builds</h3>
+      <ul>
+        <li><b>Apps &amp; portals</b> — request boards, dashboards, booking, tipping</li>
+        <li><b>Autonomous agents</b> that scan, decide, draft, and act on a schedule</li>
+        <li><b>Browser games</b> — genuinely, we ship those too</li>
+        <li>Hosting, monitoring, and fixes included. It stays running.</li>
+      </ul>
     </div>
-    <div class="card"><span class="icon">🥁</span><h3>SetFlow</h3>
-      <p>A live set/tip portal for a working band's real shows — audience song requests and real-time tips hitting a dashboard the band actually checks mid-set. Real-time web app, live payment flow.</p>
-    </div>
-    <div class="card"><span class="icon">🥈</span><h3>Melt</h3>
-      <p>A precious-metals spot-price calculator for scrap gold and silver sellers — live spot-price API feed doing instant melt-value math, no spreadsheet required.</p>
-    </div>
-    <div class="card"><span class="icon">🧳</span><h3>Kate App</h3>
-      <p>An AI travel companion that plans and adjusts a trip through plain conversation instead of a static itinerary — an assistant that actually holds the trip in memory as it evolves.</p>
-    </div>
-    <div class="card"><span class="icon">🎭</span><h3>Callboard</h3>
-      <p>A career OS for a working stage actor — one concrete daily action, submission tracking, and agent-outreach emails drafted automatically. Built to turn "I should audition more" into an actual daily habit.</p>
-    </div>
-    <div class="card"><span class="icon">🏆</span><h3>Chini Flip</h3>
-      <p>A merch-collection tracker for a wrestling-memorabilia reseller &mdash; log inventory, mark items sold or traded, and share a public, filterable showcase of the collection. Built for one collector’s real buying and flipping.</p>
-    </div>
+
   </div>
-  <div style="text-align:center;margin-top:28px">
-    <a class="btn btn-primary" href="mailto:findyourmonkey@gmail.com?subject=Build%20something%20for%20me">Got something you want built? Get in touch →</a>
+
+  <div class="alsoline">
+    <b>Also shipped, quietly:</b> a set-list and tipping app for a working band &middot; a travel companion &middot; an audition tracker for a young actor &middot; a merch tracker for a pro wrestler &middot; a buy-counter for a coin shop &middot; and the outreach system that found most of the people above.
+  </div>
+
+  <div class="pricestrip">
+    <div>
+      <div class="ps-k">What it costs</div>
+      <div class="ps-v">Setup <b>$100</b> once &middot; clips from <b>$13</b> each &middot; transcripts <b>$15</b>/episode &middot; a searchable library from <b>$600</b>. Cheap on purpose.</div>
+    </div>
+    <a class="btn btn-primary" href="price.html">Price your show &rarr;</a>
   </div>
 </section>
 
