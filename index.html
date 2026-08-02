@@ -28,9 +28,9 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--cream);font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
 .mono{font-family:'JetBrains Mono',monospace}
-nav{position:fixed;top:0;left:0;right:0;z-index:99;display:flex;align-items:center;justify-content:space-between;padding:18px 32px;background:rgba(22,19,17,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav{position:fixed;top:0;left:0;right:0;z-index:99;display:flex;align-items:center;justify-content:flex-start;gap:38px;padding:18px 32px;background:rgba(22,19,17,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:var(--cream);text-decoration:none;display:inline-flex;align-items:center;gap:10px}.nav-logo img{display:block;width:38px;height:38px}.nav-logo .wm{display:flex;flex-direction:column;line-height:.92;letter-spacing:-.01em}.nav-logo .wm span{color:var(--orange)}.nav-logo span{color:var(--orange)}
-.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
 .nav-links a.txt{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500}.nav-links a.txt:hover{color:var(--cream)}
 .nav-cta{background:var(--orange);color:#1a1210;text-decoration:none;padding:9px 20px;border-radius:99px;font-size:13px;font-weight:700;transition:background .15s}.nav-cta:hover{background:var(--orange2)}
 @media(max-width:640px){.nav-links a.txt{display:none}}
@@ -130,6 +130,7 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
     <a class="txt" href="#proof">Proof</a>
     <a class="txt" href="#try">Try it</a>
     <a class="txt" href="#build">What we build</a>
+    <a class="txt" href="#care">Why ours</a>
     <a class="txt" href="price.html">Pricing</a>
     <a class="nav-cta" href="mailto:findyourmonkey@gmail.com?subject=Build%20something%20for%20me">Get in touch</a>
   </div>
@@ -223,6 +224,7 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
       <h3>Content engines</h3>
       <ul>
         <li><b>Clips on autopilot</b> — long video in, branded vertical clips out, every day, untouched</li>
+        <li>Each clip ships with a <b>title, description, tags and hashtags</b> written from what was actually said</li>
         <li><b>Visual Audiobook</b> — for shows with no video, visuals generated from your own words</li>
         <li><b>Transcripts &amp; guest packs</b> — word-accurate, per episode or per guest</li>
         <li>Smart crop, burned captions, titles, and scheduled posting</li>
@@ -271,6 +273,49 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
       <div class="ps-v">Setup <b>$100</b> once &middot; clips from <b>$13</b> each &middot; transcripts <b>$15</b>/episode &middot; a searchable library from <b>$600</b>. Cheap on purpose.</div>
     </div>
     <a class="btn btn-primary" href="price.html">Price your show &rarr;</a>
+  </div>
+</section>
+
+<section class="section" id="care">
+  <div class="section-label">Why ours are different</div>
+  <h2 class="section-title">The machine checks its own work.</h2>
+  <p class="section-sub">Anything can cut a video into pieces. These are the things that go wrong when nobody is watching &mdash; and what we do about each one.</p>
+  <div class="rails">
+    <div class="rail">
+      <h3>It starts where the thought starts</h3>
+      <ul>
+        <li>Clips <b>never open or close mid-sentence</b>. Boundaries snap to real sentence ends, not to a stopwatch.</li>
+        <li>Length follows the moment. A joke that lands in 19 seconds isn&#39;t padded to fill a slot.</li>
+        <li>The title quotes <b>words actually spoken in that clip</b> &mdash; not a paraphrase of the episode.</li>
+      </ul>
+    </div>
+    <div class="rail">
+      <h3>Your sponsor never gets clipped</h3>
+      <ul>
+        <li>Ad reads are found and <b>excluded before anything is cut</b>.</li>
+        <li>Ads run in pods, so the whole block goes &mdash; not just the part with the promo code.</li>
+        <li>&ldquo;Checked and clean&rdquo; and &ldquo;nobody looked&rdquo; are tracked as different things. We never confuse the two.</li>
+      </ul>
+    </div>
+    <div class="rail">
+      <h3>The captions match the audio</h3>
+      <ul>
+        <li>Every finished clip is <b>transcribed again and compared to its own burned-in captions</b>. Anything that drifted is rejected before you see it.</li>
+        <li>Captions sit clear of the buttons and handles the apps paint over your video.</li>
+        <li>Hosts swap fresh ads into a published file &mdash; we detect that and re-read the audio instead of trusting an old transcript.</li>
+      </ul>
+    </div>
+    <div class="rail">
+      <h3>Somebody is always on screen</h3>
+      <ul>
+        <li>The crop follows <b>a real person</b>, verified as a person &mdash; not a poster, a plant, or an elbow.</li>
+        <li>On multi-camera shows the framing is re-checked at <b>every camera cut</b>, not once per clip.</li>
+        <li>Audio-only show? Every frame is generated from your own words as you say them.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="alsoline">
+    <b>What that&#39;s worth:</b> the failures above are the ones that make a clip unpostable &mdash; a punchline cut in half, captions a second behind the mouth, your sponsor&#39;s promo code in a Short. We found each one the hard way, on our own output, and the checks run on every clip whether or not anyone is looking.
   </div>
 </section>
 
