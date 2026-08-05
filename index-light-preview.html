@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="brand/icon-192.png">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+<meta property="og:title" content="Find Your Monkey — AI automation studio">
+<meta property="og:description" content="We build the machines that do the repetitive work. Clips, search engines, pricing tools, agents.">
+<meta property="og:image" content="https://findyourmonkey.com/brand/og-card.png">
+<meta property="og:url" content="https://findyourmonkey.com">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://findyourmonkey.com/brand/og-card.png">
+<title>findyourmonkey — we build AI that just works</title>
+<meta name="description" content="AI automation studio. Content engines, pricing intelligence, live apps, autonomous agents. Built end-to-end, running 24/7.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* 5 Aug -- LIGHT PREVIEW. Same token NAMES as the dark version, deliberately,
+     so every existing rule below still resolves correctly with zero other
+     changes needed. --orange stays bright for button backgrounds (dark text
+     sits on top); --orange-ink is new, used only where orange is plain text.
+     --gold/--mint deepened because in this file they're ONLY ever text or
+     thin borders, never a solid fill, so they needed real contrast on white. */
+  --bg:#faf6ef;--surface:#ffffff;--surface2:#f4efe6;--border:#e6ddd0;
+  --cream:#241d19;--tan:#6b5a4a;--orange:#e8834f;--orange2:#f2a35e;
+  --orange-ink:#a8531f;
+  --gold:#a8790c;--mint:#1a7a5e;--muted:#8a7a68;--dim:#d8cebe;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.mono{font-family:'JetBrains Mono',monospace}
+nav{position:fixed;top:0;left:0;right:0;z-index:99;display:flex;align-items:center;justify-content:flex-start;gap:38px;padding:18px 32px;background:rgba(250,246,239,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:var(--cream);text-decoration:none;display:inline-flex;align-items:center;gap:10px}.nav-logo img{display:block;width:38px;height:38px}.nav-logo .wm{display:flex;flex-direction:column;line-height:.92;letter-spacing:-.01em}.nav-logo .wm span{color:var(--orange-ink)}.nav-logo span{color:var(--orange-ink)}
+.nav-links{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.nav-links a.txt{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500}.nav-links a.txt:hover{color:var(--cream)}
+.nav-cta{background:var(--orange);color:#1a1210;text-decoration:none;padding:9px 20px;border-radius:99px;font-size:13px;font-weight:700;transition:background .15s}.nav-cta:hover{background:var(--orange2)}
+@media(max-width:640px){.nav-links a.txt{display:none}}
+
+.hero{min-height:78vh;display:flex;flex-direction:column;justify-content:center;padding:130px 32px 40px;max-width:860px;margin:0 auto;position:relative}
+.hero:before{content:"";position:absolute;top:0;right:-100px;width:480px;height:480px;background:radial-gradient(circle,rgba(232,131,79,.10),transparent 65%);pointer-events:none}
+.hero-eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mint);font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:8px}
+.hero-eyebrow:before{content:"";width:20px;height:2px;background:var(--mint);border-radius:2px}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(36px,6.5vw,64px);font-weight:800;line-height:1.06;letter-spacing:-.02em;margin-bottom:24px}
+.hero h1 em{font-style:normal;color:var(--orange-ink)}
+.hero p{font-size:18px;color:var(--tan);max-width:560px;margin-bottom:36px;line-height:1.7}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font-weight:700;font-size:14px;text-decoration:none;padding:14px 28px;border-radius:99px;display:inline-block;transition:transform .12s,background .15s;border:none;cursor:pointer}
+.btn-primary{background:var(--orange);color:#1a1210}.btn-primary:hover{background:var(--orange2);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--cream);border:1.5px solid var(--dim)}.btn-ghost:hover{border-color:var(--tan)}
+
+/* ---- PROOF WALL ---- */
+.proof{padding:70px 0 80px;border-top:1px solid var(--border);background:linear-gradient(180deg,var(--surface) 0%,var(--bg) 100%)}
+.proof-head{max-width:1040px;margin:0 auto 8px;padding:0 32px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.section-label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;max-width:640px}
+.live-pill{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--mint);border:1px solid rgba(95,217,180,.35);padding:7px 14px;border-radius:99px;white-space:nowrap}
+.live-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@media(prefers-reduced-motion:reduce){.live-pill .dot{animation:none}}
+.statbar{max-width:1040px;margin:26px auto 34px;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
+.stat{background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:20px 22px}
+.stat .n{font-family:'JetBrains Mono',monospace;font-size:clamp(24px,3.4vw,34px);font-weight:700;color:var(--gold);line-height:1.1}
+.stat .n.orange{color:var(--orange)}
+.stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-top:6px}
+.wall{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;max-width:1180px;margin:0 auto;padding:0 32px}
+.tile{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:9/16;background:var(--surface2);border:1px solid var(--border);display:block;transition:transform .15s,border-color .15s}
+.tile:hover{transform:translateY(-3px);border-color:var(--orange)}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile .views{position:absolute;left:8px;bottom:8px;background:rgba(22,19,17,.85);backdrop-filter:blur(4px);color:#f5ede1;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;padding:4px 9px;border-radius:8px;border:1px solid var(--border)}
+.tile .views b{color:var(--gold)}
+@media(max-width:900px){.wall{grid-template-columns:repeat(4,1fr)}.tile:nth-child(n+9){display:none}}
+@media(max-width:560px){.wall{grid-template-columns:repeat(3,1fr);gap:8px;padding:0 20px}.tile:nth-child(n+7){display:none}}
+.proof-foot{text-align:center;margin-top:26px;font-size:13px;color:var(--muted)}
+
+.section{padding:80px 32px;max-width:1040px;margin:0 auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-top:44px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:28px;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--orange);transform:translateY(-2px)}
+.card .icon{font-size:26px;margin-bottom:14px;display:block}
+.card h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px}
+.card p{font-size:13.5px;color:var(--muted);line-height:1.6}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:44px}
+.step{border-left:2px solid var(--dim);padding:4px 0 4px 22px}
+.step .k{font-family:'JetBrains Mono',monospace;color:var(--orange-ink);font-size:12px;font-weight:700;letter-spacing:.08em}
+.step h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin:8px 0 6px}
+.step p{font-size:13.5px;color:var(--muted)}
+
+.anywhere{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);padding:70px 32px;text-align:center}
+.anywhere h2{font-family:'Syne',sans-serif;font-size:clamp(24px,4.5vw,42px);font-weight:800;letter-spacing:-.02em;max-width:760px;margin:0 auto 14px}
+.anywhere h2 em{font-style:normal;color:var(--orange-ink)}
+.anywhere p{color:var(--tan);max-width:560px;margin:0 auto;font-size:16px}
+
+.cta{padding:100px 32px;text-align:center}
+.cta h2{font-family:'Syne',sans-serif;font-size:clamp(28px,5vw,46px);font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+.cta p{color:var(--tan);max-width:480px;margin:0 auto 34px;font-size:16px}
+footer{border-top:1px solid var(--border);padding:32px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;max-width:1040px;margin:0 auto}
+footer .f-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:15px}footer .f-logo span{color:var(--orange-ink)}
+footer .f-links{display:flex;gap:18px}
+footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{color:var(--cream)}
+/* ---- TRY TILES (added 2026-07-30) ---- */
+.section-sub{color:var(--muted);font-size:15px;max-width:580px;margin-top:12px;line-height:1.7}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:12px;margin-top:34px}
+.tile-x{display:flex;flex-direction:column;gap:7px;padding:22px;border:1px solid var(--border);border-radius:16px;background:var(--surface);text-decoration:none;transition:border-color .15s,transform .12s}
+.tile-x:hover{border-color:var(--orange);transform:translateY(-2px)}
+.tx-k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.tx-n{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;color:var(--cream);letter-spacing:-.01em}
+.tx-p{font-size:13.5px;color:var(--tan);line-height:1.6;flex:1}
+.tx-go{font-size:13px;font-weight:700;color:var(--orange-ink);margin-top:4px}
+/* ---- CAPABILITY RAILS ---- */
+.rails{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:30px 34px;margin-top:34px}
+.rail h3{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--gold);margin-bottom:13px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.rail ul{list-style:none}
+.rail li{font-size:13.5px;color:var(--tan);line-height:1.55;padding:7px 0 7px 15px;position:relative}
+.rail li:before{content:"";position:absolute;left:0;top:15px;width:5px;height:1px;background:var(--tan);opacity:.5}
+.rail li b{color:var(--cream);font-weight:600}
+.alsoline{max-width:1040px;margin:34px auto 0;padding:18px 22px;border-left:2px solid var(--dim);font-size:13.5px;color:var(--muted);line-height:1.7}
+.alsoline b{color:var(--tan);font-weight:600}
+/* ---- PRICE STRIP ---- */
+.pricestrip{margin-top:44px;padding:24px 26px;border:1px solid var(--border);border-radius:18px;background:var(--surface2);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.ps-k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
+.ps-v{font-size:14.5px;color:var(--tan);line-height:1.65}
+.ps-v b{color:var(--gold);font-family:'JetBrains Mono',monospace;font-weight:700}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#"><img src="brand/mark-160.png" alt="" width="38" height="38"><span class="wm">findyour<span>monkey</span></span></a>
+  <div class="nav-links">
+    <a class="txt" href="#proof">Proof</a>
+    <a class="txt" href="#try">Try it</a>
+    <a class="txt" href="#build">What we build</a>
+    <a class="txt" href="#care">Why ours</a>
+    <a class="txt" href="price.html">Pricing</a>
+    <a class="nav-cta" href="mailto:findyourmonkey@gmail.com?subject=Build%20something%20for%20me">Get in touch</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">AI automation studio</div>
+  <h1>We make products that work <em>for you</em>.</h1>
+  <p>Content engines, pricing intelligence, live apps, autonomous agents. Designed, built, and operated end-to-end. If it's repetitive, we can make it automatic.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="#try">Try what we built</a>
+    <a class="btn btn-ghost" href="mailto:findyourmonkey@gmail.com?subject=Build%20something%20for%20me">Tell us what you need</a>
+  </div>
+</header>
+
+<section class="proof" id="proof">
+  <div class="proof-head">
+    <div>
+      <div class="section-label">Live proof</div>
+      <h2 class="section-title">Real clips. Real numbers.</h2>
+    </div>
+    <span class="live-pill"><span class="dot"></span>STATS REFRESH DAILY</span>
+  </div>
+  <div class="statbar">
+    <div class="stat"><div class="n orange" id="s-views" data-n="1162410">1,162,410</div><div class="l">Views across platforms</div></div>
+    <div class="stat"><div class="n" id="s-clips" data-n="2007">2,007</div><div class="l">Clips &amp; posts published</div></div>
+    <div class="stat"><div class="n" id="s-recent" data-n="353162">353,162</div><div class="l">Views, last 30 days</div></div>
+    <div class="stat"><div class="n">24/7</div><div class="l">Systems in production</div></div>
+  </div>
+  <div class="wall" id="wall"></div>
+  <div class="proof-foot">Every tile is a real short our pipelines wrote, cut, captioned, and posted — automatically.</div>
+</section>
+
+<section class="section" id="try">
+  <div class="section-label">Open these right now</div>
+  <h2 class="section-title">Don't take our word for it.</h2>
+  <p class="section-sub">All live on the public internet, right now. No signup, no demo call, no waiting on us.</p>
+  <div class="tiles">
+
+    <a class="tile-x" href="https://searchtony.com" target="_blank" rel="noopener">
+      <span class="tx-k">Library search</span>
+      <span class="tx-n">Search Tony</span>
+      <span class="tx-p">Type any phrase and jump to the exact second it was said — across a thousand hours of a comedy show. Ask the assistant a question instead, if you'd rather.</span>
+      <span class="tx-go">Search the archive &rarr;</span>
+    </a>
+
+    <a class="tile-x" href="https://relay.findyourmonkey.com/work" target="_blank" rel="noopener">
+      <span class="tx-k">Content engine</span>
+      <span class="tx-n">The Work</span>
+      <span class="tx-p">Real clips from real shows. Every frame generated from what was actually said — not stock footage, not a waveform.</span>
+      <span class="tx-go">Watch the clips &rarr;</span>
+    </a>
+
+    <a class="tile-x" href="https://picker.findyourmonkey.com" target="_blank" rel="noopener">
+      <span class="tx-k">Pricing intelligence</span>
+      <span class="tx-n">Picker AI</span>
+      <span class="tx-p">Point it at a box lot and get back what the pile is actually worth, item by item, from live sold prices. Built for people who buy to resell.</span>
+      <span class="tx-go">Value a lot &rarr;</span>
+    </a>
+
+    <a class="tile-x" href="https://audit.findyourmonkey.com" target="_blank" rel="noopener">
+      <span class="tx-k">Commerce</span>
+      <span class="tx-n">eBay Store Audit</span>
+      <span class="tx-p">Hand it a store and it reads the listings the way a buyer does, then hands back the specific things costing you sales.</span>
+      <span class="tx-go">Audit a store &rarr;</span>
+    </a>
+
+    <a class="tile-x" href="https://melt.findyourmonkey.com" target="_blank" rel="noopener">
+      <span class="tx-k">Calculator</span>
+      <span class="tx-n">Melt Check</span>
+      <span class="tx-p">Live scrap value for gold and silver — weight and purity in, real money out, at the current spot price.</span>
+      <span class="tx-go">Check a price &rarr;</span>
+    </a>
+
+    <a class="tile-x" href="https://findyourmonkey.itch.io/super-chini-family" target="_blank" rel="noopener">
+      <span class="tx-k">Yes, we do games</span>
+      <span class="tx-n">Super Chini Family</span>
+      <span class="tx-p">An 8-bit boardwalk platformer built for a pro wrestler — three playable characters, ten storefronts, a championship belt at the end. Plays in your browser.</span>
+      <span class="tx-go">Play it &rarr;</span>
+    </a>
+
+  </div>
+</section>
+
+<section class="section" id="build">
+  <div class="section-label">What we build</div>
+  <h2 class="section-title">Everything we do, on one screen.</h2>
+  <div class="rails">
+
+    <div class="rail">
+      <h3>Content engines</h3>
+      <ul>
+        <li><b>Clips on autopilot</b> — long video in, branded vertical clips out, every day, untouched</li>
+        <li>Each clip ships with a <b>title, description, tags and hashtags</b> written from what was actually said</li>
+        <li><b>Visual Audiobook</b> — for shows with no video, visuals generated from your own words</li>
+        <li><b>Transcripts &amp; guest packs</b> — word-accurate, per episode or per guest</li>
+        <li>Smart crop, burned captions, titles, and scheduled posting</li>
+      </ul>
+    </div>
+
+    <div class="rail">
+      <h3>Search &amp; archives</h3>
+      <ul>
+        <li><b>Any library becomes a search engine</b> — podcast back-catalog, channel, course</li>
+        <li>Word-level index — land on the exact second, not the episode</li>
+        <li>An AI assistant that answers from <b>your own</b> material</li>
+        <li>Built for archives with hundreds of hours</li>
+      </ul>
+    </div>
+
+    <div class="rail">
+      <h3>Pricing &amp; commerce</h3>
+      <ul>
+        <li><b>Live valuation</b> from real sold prices, for lots or single items</li>
+        <li><b>Store audits</b> that name the specific things costing you sales</li>
+        <li>Phone-to-listing capture — photograph it, list it</li>
+        <li>Melt calculators, deal alerts, market scans</li>
+      </ul>
+    </div>
+
+    <div class="rail">
+      <h3>Custom builds</h3>
+      <ul>
+        <li><b>Apps &amp; portals</b> — request boards, dashboards, booking, tipping</li>
+        <li><b>Autonomous agents</b> that scan, decide, draft, and act on a schedule</li>
+        <li><b>Browser games</b> — genuinely, we ship those too</li>
+        <li>Hosting, monitoring, and fixes included. It stays running.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="alsoline">
+    <b>Also shipped, quietly:</b> a set-list and tipping app for a working band &middot; a travel companion &middot; an audition tracker for a young actor &middot; a merch tracker for a pro wrestler &middot; a buy-counter for a coin shop &middot; and the outreach system that found most of the people above.
+  </div>
+
+  <div class="pricestrip">
+    <div>
+      <div class="ps-k">What it costs</div>
+      <div class="ps-v">Setup <b>$100</b> once &middot; clips from <b>$13</b> each &middot; transcripts <b>$15</b>/episode &middot; a searchable library from <b>$600</b>. Cheap on purpose.</div>
+    </div>
+    <a class="btn btn-primary" href="price.html">Price your show &rarr;</a>
+  </div>
+</section>
+
+<section class="section" id="care">
+  <div class="section-label">Why ours are different</div>
+  <h2 class="section-title">The machine checks its own work.</h2>
+  <p class="section-sub">Anything can cut a video into pieces. These are the things that go wrong when nobody is watching &mdash; and what we do about each one.</p>
+  <div class="rails">
+    <div class="rail">
+      <h3>It starts where the thought starts</h3>
+      <ul>
+        <li>Clips <b>never open or close mid-sentence</b>. Boundaries snap to real sentence ends, not to a stopwatch.</li>
+        <li>Length follows the moment. A joke that lands in 19 seconds isn&#39;t padded to fill a slot.</li>
+        <li>The title quotes <b>words actually spoken in that clip</b> &mdash; not a paraphrase of the episode.</li>
+      </ul>
+    </div>
+    <div class="rail">
+      <h3>Your sponsor never gets clipped</h3>
+      <ul>
+        <li>Ad reads are found and <b>excluded before anything is cut</b>.</li>
+        <li>Ads run in pods, so the whole block goes &mdash; not just the part with the promo code.</li>
+        <li>&ldquo;Checked and clean&rdquo; and &ldquo;nobody looked&rdquo; are tracked as different things. We never confuse the two.</li>
+      </ul>
+    </div>
+    <div class="rail">
+      <h3>The captions match the audio</h3>
+      <ul>
+        <li>Every finished clip is <b>transcribed again and compared to its own burned-in captions</b>. Anything that drifted is rejected before you see it.</li>
+        <li>Captions sit clear of the buttons and handles the apps paint over your video.</li>
+        <li>Hosts swap fresh ads into a published file &mdash; we detect that and re-read the audio instead of trusting an old transcript.</li>
+      </ul>
+    </div>
+    <div class="rail">
+      <h3>Somebody is always on screen</h3>
+      <ul>
+        <li>The crop follows <b>a real person</b>, verified as a person &mdash; not a poster, a plant, or an elbow.</li>
+        <li>On multi-camera shows the framing is re-checked at <b>every camera cut</b>, not once per clip.</li>
+        <li>Audio-only show? Every frame is generated from your own words as you say them.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="alsoline">
+    <b>What that&#39;s worth:</b> the failures above are the ones that make a clip unpostable &mdash; a punchline cut in half, captions a second behind the mouth, your sponsor&#39;s promo code in a Short. We found each one the hard way, on our own output, and the checks run on every clip whether or not anyone is looking.
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="section-label">How it works</div>
+  <h2 class="section-title">Three steps. Then it just runs.</h2>
+  <div class="steps">
+    <div class="step"><div class="k">STEP 1</div><h3>Tell us the grind</h3><p>The task you do over and over — or the thing you wish existed. A conversation is enough.</p></div>
+    <div class="step"><div class="k">STEP 2</div><h3>We build the machine</h3><p>Days, not months. You see it working before you commit to anything ongoing.</p></div>
+    <div class="step"><div class="k">STEP 3</div><h3>It runs while you don't</h3><p>We host it, watch it, and fix it. You get the output — and your time back.</p></div>
+  </div>
+</section>
+
+<section class="anywhere">
+  <h2>We are no longer burdened by the <em>impossible.</em></h2>
+  <p>Built from a phone. No office, no laptop required — just an idea and a few minutes. Deployed to the cloud. Working around the clock — for anyone, anywhere, in any line of work that has a grind worth killing.</p>
+</section>
+
+<section class="cta">
+  <h2>Got something repetitive?</h2>
+  <p>Tell us what eats your time. We'll tell you if a machine can do it — usually the answer is yes.</p>
+  <a class="btn btn-primary" href="mailto:findyourmonkey@gmail.com?subject=Build%20something%20for%20me">Start a conversation</a>
+</section>
+
+<footer>
+  <div><div class="f-logo" style="display:flex;align-items:center;gap:8px"><img src="brand/mark-160.png" alt="" width="30" height="30"><span style="display:flex;flex-direction:column;line-height:.92">findyour<span>monkey</span></span></div><div style="color:#6a5a4a;font-size:11px;margin-top:4px;letter-spacing:.04em">We are no longer burdened by the impossible.</div></div>
+  <div class="f-links">
+    <a href="https://findyourmonkey.itch.io">Games</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="mailto:findyourmonkey@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  if(location.protocol==='http:'&&location.hostname!=='localhost'){location.replace('https://'+location.host+location.pathname+location.search);return}
+  var fmt=function(n){return n.toLocaleString('en-US')};
+  function countUp(el,target){
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=fmt(target);return}
+    var start=0,dur=1400,t0=null;
+    function f(t){if(!t0)t0=t;var p=Math.min((t-t0)/dur,1);p=1-Math.pow(1-p,3);
+      el.textContent=fmt(Math.round(start+(target-start)*p));
+      if(p<1)requestAnimationFrame(f)}
+    requestAnimationFrame(f);
+  }
+  function renderWall(data){
+    var w=document.getElementById('wall');w.innerHTML='';
+    data.top.forEach(function(c){
+      var a=document.createElement('a');a.className='tile';a.target='_blank';a.rel='noopener';
+      var vtxt='<span class="views"><b>'+(c.views>=1000?(c.views/1000).toFixed(1).replace(/\.0$/,'')+'K':c.views)+'</b> views</span>';
+      if(c.platform==='ig'){
+        a.href=c.url;
+        a.innerHTML='<img loading="lazy" alt="clip thumbnail" src="'+c.thumb+'">'+vtxt;
+      }else{
+        a.href='https://www.youtube.com/shorts/'+c.id;
+        a.innerHTML='<img loading="lazy" alt="clip thumbnail" src="https://i.ytimg.com/vi/'+c.id+'/oar2.jpg" onerror="this.src=\'https://i.ytimg.com/vi/'+c.id+'/hqdefault.jpg\'">'+vtxt;
+      }
+      w.appendChild(a);
+    });
+    var pairs=[['s-views',data.total_views],['s-clips',data.total_clips],['s-recent',data.views_30d_ig]];
+    var fired=false;
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting&&!fired){fired=true;pairs.forEach(function(p){countUp(document.getElementById(p[0]),p[1])})}})},{threshold:.3});
+    io.observe(document.getElementById('s-views'));
+  }
+  fetch('clips.json?t='+Date.now()).then(function(r){return r.json()}).then(renderWall)
+    .catch(function(){/* baked-in numbers remain */});
+})();
+</script>
+</body>
+</html>
