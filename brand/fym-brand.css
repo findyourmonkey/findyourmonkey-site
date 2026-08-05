@@ -1,0 +1,101 @@
+/* ==========================================================================
+   FIND YOUR MONKEY — shared brand system. ONE canonical file, imported by
+   every FYM-owned property so the whole empire reads as one thing on sight.
+   Built 5 Aug 2026, grounded in evidence, not vibes:
+     - Orange CTAs convert ~2.4-3.1% higher than green/blue (2026 ad data)
+     - Orange reads as creative/approachable/innovative, not corporate --
+       the right note for an indie automation studio, not a bank
+     - Warm dark neutral + warm-off-white text is the 2025-2026 SaaS
+       reaction against cold corporate white/blue, and differentiates from
+       the sea of blue/purple dev-tool sites
+   Originated on findyourmonkey.com's 30 Jul rebuild; this file is that same
+   system, extracted so every other property can reuse it byte-for-byte
+   instead of reinventing it.
+
+   DELIBERATELY EXCLUDED — do not force this onto:
+     - Search Tony / KT Search family (searchtony.com, /c/, /e/ pages) --
+       that is a Kill-Tony-parody identity on purpose, keep its own look.
+     - Any client hub page (the /s/<slug>/ sites hub.py builds) -- those
+       are branded to the CLIENT's own show via client.py's brand_rgb,
+       e.g. Lisa's teal. That is HER page, not our storefront. Forcing
+       FYM orange onto it would be wrong for the business, not an oversight.
+     - Cookie Meister's own character-facing pages, if any -- she has her
+       own persona, same reasoning as Search Tony.
+   Everything else FYM owns and runs itself -- internal tools, the price
+   calculator, generic products sold to strangers (Picker, eBay Audit,
+   the guest portal, the cockpit) -- gets this.
+
+   USAGE: one line in <head>, after the Google Fonts link below.
+     <link rel="stylesheet" href="https://findyourmonkey.com/brand/fym-brand.css">
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root{
+  --bg:#161311;--surface:#1f1a17;--surface2:#241e1a;--border:#2e2621;
+  --cream:#f5ede1;--tan:#c9a988;--orange:#e8834f;--orange2:#f2a35e;
+  --gold:#f2c14e;--mint:#5fd9b4;--muted:#a8988a;--dim:#3a3129;
+  --danger:#e85f5f;
+  --font-display:'Syne',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+
+/* ---- base ------------------------------------------------------------ */
+body.fym{
+  background:var(--bg);color:var(--cream);font-family:var(--font-body);
+  font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;margin:0;
+}
+.fym h1,.fym h2,.fym h3{font-family:var(--font-display);font-weight:800;
+  letter-spacing:-.02em;margin:0 0 .4em}
+.fym .mono{font-family:var(--font-mono)}
+.fym a{color:var(--orange)}
+.fym p{color:var(--tan)}
+
+/* ---- the lockup: mark + wordmark, used in every nav/footer ----------- */
+.fym-logo{font-family:var(--font-display);font-weight:800;font-size:16px;
+  color:var(--cream);text-decoration:none;display:inline-flex;
+  align-items:center;gap:10px}
+.fym-logo img{display:block;width:34px;height:34px}
+.fym-logo .wm{display:flex;flex-direction:column;line-height:.92;letter-spacing:-.01em}
+.fym-logo .wm span,.fym-logo span{color:var(--orange)}
+
+/* ---- buttons ----------------------------------------------------------*/
+.fym-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;
+  border-radius:99px;font-size:13px;font-weight:700;text-decoration:none;
+  border:1.5px solid transparent;cursor:pointer;transition:background .15s,
+  border-color .15s,transform .15s;font-family:var(--font-body)}
+.fym-btn-primary{background:var(--orange);color:#1a1210}
+.fym-btn-primary:hover{background:var(--orange2);transform:translateY(-1px)}
+.fym-btn-ghost{background:transparent;color:var(--cream);border-color:var(--dim)}
+.fym-btn-ghost:hover{border-color:var(--tan)}
+
+/* ---- surfaces ----------------------------------------------------------*/
+.fym-card{background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:22px;transition:border-color .15s,transform .15s}
+.fym-card:hover{border-color:var(--orange)}
+.fym-stat{background:var(--surface2);border:1px solid var(--border);
+  border-radius:14px;padding:16px 18px}
+.fym-stat .n{font-family:var(--font-mono);font-weight:700;color:var(--gold);
+  font-size:clamp(20px,3vw,28px);line-height:1.1}
+.fym-stat .n.orange{color:var(--orange)}
+
+/* ---- labels / pills ----------------------------------------------------*/
+.fym-eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--orange);font-weight:700;display:flex;align-items:center;gap:8px}
+.fym-pill{display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:11px;font-weight:700;
+  border:1px solid var(--border);padding:6px 13px;border-radius:99px;
+  white-space:nowrap;color:var(--cream)}
+.fym-pill.live{color:var(--mint);border-color:rgba(95,217,180,.35)}
+.fym-pill.live .dot{width:6px;height:6px;border-radius:50%;
+  background:var(--mint);display:inline-block;animation:fym-pulse 2s infinite}
+@keyframes fym-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ---- status colours, shared meaning everywhere ------------------------*/
+.fym-ok{color:var(--mint)}
+.fym-warn{color:var(--gold)}
+.fym-bad{color:var(--danger)}
+
+/* ---- scrollbar + selection, small polish, costs nothing ---------------*/
+.fym ::selection{background:var(--orange);color:#1a1210}
