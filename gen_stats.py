@@ -77,19 +77,40 @@ def top_wall():
     top = [x for x in sorted(allstats, key=lambda x: -x["views"]) if x["id"] not in EXCLUDE][:12]
     return top
 
-def ig_wall(n=3):
+def ig_wall(n=8):
     """2026-07-17: top IG reels for the clip wall. Views come from
     ig_performance_insights.json (ig-analytics.timer, daily 11am); permalink +
     thumbnail fetched per-media from the Graph API. Guaranteed n slots so IG's
-    best (5.7K) isn't drowned out by 114K YT clips in a pure sort."""
+    best isn't drowned out by big YT clips in a pure sort.
+    9 Aug -- n raised 3 -> 8 and slots now SAMPLE from the real pool instead
+    of always the exact same fixed top-N. Chris: "cycle newer clips in...
+    we have some cool ones to show off." Same shape as the leaderboard
+    rotation pattern: always include the single best clip so the current
+    standout (a 178K-view breakout, ~40x the next entry) never disappears,
+    then randomly sample the REST from everything above a real floor (500
+    views -- high enough to exclude noise, low enough that a fresh clip a
+    day or two old can realistically clear it) so a repeat visitor sees a
+    different mix, not a frozen top-3 from whenever this was last glanced at.
+    Falls back to a strict view-sorted top-n if the pool is smaller than n,
+    so the wall can never come up short because the bar was set too high.
+    """
+    import random
     import requests
     sys.path.insert(0, "/var/home/findyourmonkey/projects/shared")
     from instagram_poster import IG_TOKEN
     out = []
     try:
         ig = json.load(open("/var/home/findyourmonkey/projects/shared/ig_performance_insights.json"))
-        posts = sorted(ig.get("all_posts", []), key=lambda p: -(p.get("views") or 0))
-        for p in posts:
+        all_posts = ig.get("all_posts", [])
+        ranked = sorted(all_posts, key=lambda p: -(p.get("views") or 0))
+        pool = [p for p in ranked if (p.get("views") or 0) >= 500]
+        if len(pool) >= n:
+            picks = ([ranked[0]] if ranked else []) + random.sample(
+                [p for p in pool if p is not (ranked[0] if ranked else None)],
+                min(n - 1, len(pool) - 1))
+        else:
+            picks = ranked[:n]
+        for p in picks:
             if len(out) >= n: break
             try:
                 m = requests.get(f"https://graph.facebook.com/v21.0/{p['id']}",
@@ -98,7 +119,8 @@ def ig_wall(n=3):
                 url = m.get("permalink"); thumb = m.get("thumbnail_url") or m.get("media_url")
                 if url and thumb:
                     out.append({"id": p["id"], "views": p.get("views", 0),
-                                "platform": "ig", "url": url, "thumb": thumb})
+                                "platform": "ig", "url": url, "thumb": thumb,
+                                "name": p.get("comedian") or ""})
             except Exception as e:
                 print(f"ig_wall {p.get('id')}: {e}", file=sys.stderr)
     except Exception as e:
@@ -116,7 +138,7 @@ def main():
         "followers": ysubs + igfol,
         "yt_views": yv,
         # 2026-07-17: wall = top 9 YT + top 3 IG (guaranteed slots), sorted by views
-        "top": sorted(top_wall()[:9] + ig_wall(3), key=lambda x: -x.get("views", 0)),
+        "top": sorted(top_wall()[:9] + ig_wall(8), key=lambda x: -x.get("views", 0)),
     }
     old = None
     if os.path.exists(OUT):
