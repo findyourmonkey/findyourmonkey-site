@@ -1,74 +1,9 @@
 {
  "updated": "2026-08-09",
- "total_views": 822284,
- "total_clips": 631,
- "views_30d_ig": 822284,
- "followers": 544,
+ "total_views": 0,
+ "total_clips": 0,
+ "views_30d_ig": 0,
+ "followers": 0,
  "yt_views": 0,
- "top": [
-  {
-   "id": "18382553578205149",
-   "views": 4749,
-   "platform": "ig",
-   "url": "https://www.instagram.com/reel/DbyAvgxCMbL/",
-   "thumb": "https://scontent.cdninstagram.com/v/t51.82787-15/769051361_17939740047325989_7408825182562776305_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=xHY4092WL1YQ7kNvwGEiEAF&_nc_oc=AdrP4HWsOfK6Pk2MkSoCf0vUcZIhyDGk4VBay9MjY6aP177mZ4Ntl-32gxBydi4DzJ9b2YO-iMfN0TPg8FyMrlW5&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=VlhGPJFLvoy8aAyX1TofzA&_nc_tpa=Q5bMBQK5Ls7ttrJVpigb1gTL-QO_J5WDXl0Vf74haJKStxM0Enh5Kjmvvrcq1_RPWDl6pGQE1a1TewYb5w&oh=00_AQEX5Wmp1gVBNnD2L3ptx_J4XQ3xqmTTF7eg5CL6RtZCAA&oe=6A7E91EF",
-   "name": "Uncle Laser"
-  },
-  {
-   "id": "18126684007668458",
-   "views": 1952,
-   "platform": "ig",
-   "url": "https://www.instagram.com/reel/Dbz1WDViecF/",
-   "thumb": "https://scontent.cdninstagram.com/v/t51.82787-15/769412426_17939856462325989_7286071509510239563_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=zVASCT9fUOwQ7kNvwFz1YiO&_nc_oc=AdrRp2KvuGyhivA-XQzsKOia_xb0njrlFHPAs7cKSKrHCWhA5Xn_kNs8rWI7bzJghNzoCCuj_8uLfnhS9HCV46Rk&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=VFDJP7X8tcHFJDmy4DgjUg&_nc_tpa=Q5bMBQIj_a8_O41oKyWCv1ShhBvZKrOlI2nPyyBZcOng65qASrFQp3xafJxvh_X23LAY32gL940jG2WbSA&oh=00_AQFt8eQ1CuixbKZdeNmVdBcqi0nCnzHrlLdQRwXeN6S3UA&oe=6A7E8341",
-   "name": "Mark Normand"
-  },
-  {
-   "id": "18088924316138823",
-   "views": 1913,
-   "platform": "ig",
-   "url": "https://www.instagram.com/reel/DbuR8akgKAM/",
-   "thumb": "https://scontent.cdninstagram.com/v/t51.82787-15/765573177_17939500632325989_7236560813449259483_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=lBumyD5tlCkQ7kNvwEdoe90&_nc_oc=AdommU_XbK9xMYHLqMO-aZP4NltUT_jD0kgzqefieja7v2QN2pExek6-vKmp-23K4XtgTSR_IIT6PgRkbrguC_gn&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=--aZNkCP-UQm5nREebfxXg&_nc_tpa=Q5bMBQKcsUOKzOA3b2WcSCwBBPsoCIBi9QzAJ7HPu_SuukaOoIi8rYwp1sJmMpjgW71wt98hvIm4M4URyg&oh=00_AQHYsunUnshVPY1PMxyv6vj2zwUC0o92gGsWlQV9gmGlDQ&oe=6A7E9A14",
-   "name": "Harlan Williams"
-  },
-  {
-   "id": "18432872365123153",
-   "views": 1597,
-   "platform": "ig",
-   "url": "https://www.instagram.com/reel/DbzFa5jjJpi/",
-   "thumb": "https://scontent.cdninstagram.com/v/t51.82787-15/769483914_17939808417325989_4826929758210809511_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=p_dpbjlrG4sQ7kNvwHPzVEg&_nc_oc=Adpx5F-dLdBS_Z8yXyQRJNWhVWweQYGb8C88pgBaXhJBD8osp9lHwwqpv13mfCQTA6X7Tu_GO0h9lfZ7MKooQguP&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=qWUpKfrNzDp27wR_qtsI_Q&_nc_tpa=Q5bMBQKXvp0mLHg3whmdxpsU8vgnb7FTkQP3Pzjfw9-NJ_d0mkJYuFjZkQDOaSIGrkSQibd83d3lHl114g&oh=00_AQFOGVJZwd_1cPkQijl6HP1ujYXsdgo8i8EKPz1Lt2gCTg&oe=6A7E85A4",
-   "name": "Jack Shaw"
-  },
-  {
-   "id": "17903090241516718",
-   "views": 1110,
-   "platform": "ig",
-   "url": "https://www.instagram.com/reel/DbzaCM3ERlf/",
-   "thumb": "https://scontent.cdninstagram.com/v/t51.82787-15/770751257_17939825331325989_2259235278538366330_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=vb0RTUtrqFQQ7kNvwHaH-8Q&_nc_oc=AdoHEdnuhtaI-wUWG42vo7RLMw1k6ZFvC4xQcaJ-UTVF0vcFS_DRsx5iAkfAGK6JElZ05JVZbOxudSKthDELpDb2&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=RanRTWJxLOKv0h6JH9se6A&_nc_tpa=Q5bMBQLy0LRtZxnNC69lmtNJL0ux81NWKgZaDLOhMs9sivz4F8M9x83uD65FUz9EuOGwM1uRoX_-Kwk0ZQ&oh=00_AQGQbfWLRlFyEvMCfBAWtH1J5p_7HYDCFQjhyV8p-z3VOw&oe=6A7E82D0",
-   "name": "Keaton McAdams"
-  },
-  {
-   "id": "18087928667166137",
-   "views": 847,
-   "platform": "ig",
-   "url": "https://www.instagram.com/reel/DbwZj7cAnT6/",
-   "thumb": "https://scontent.cdninstagram.com/v/t51.82787-15/765871873_17939635431325989_7277123128911348784_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=nQUHkOYKkVkQ7kNvwG07KVO&_nc_oc=Adqc6AB1zwZHNpRBMupM8za1ASAJR7iiq8mEy7b9YGPpa2wWRKlt7S0KzGuVoi9xISKN_A-7faBXlGy1lM7rBzgs&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=7RjyRlLWXXdkTWvWgNQhPQ&_nc_tpa=Q5bMBQK-9vcew4a2m5wvTHOtYlxMnC9kNdgXP82g1h3w9k-E8JCl-GCCW6Jmo6dapiuamuJ1Joqffak7lQ&oh=00_AQFiL3LCfZgRQxzNxBLVF_YJ3eICxBPOvRVquNfbQ1NJEQ&oe=6A7E7775",
-   "name": "Kenny Cabinot"
-  },
-  {
-   "id": "17895619407577601",
-   "views": 721,
-   "platform": "ig",
-   "url": "https://www.instagram.com/reel/DbwgdQRDIvr/",
-   "thumb": "https://scontent.cdninstagram.com/v/t51.82787-15/768309850_17939640768325989_3248887876273349694_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=Gep013WaFOgQ7kNvwGg_Wzx&_nc_oc=AdqFX9Gaeh0wN1NDM0qyV8B7TAowckrJyQ803OuS7E4Ol7hZt7ihNjjvi5fjCXOaGq29PlleLWhFPVXBtKuA5g_p&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=p0PgXXjaMiakdScCnY14pA&_nc_tpa=Q5bMBQKGjnH_51j0Lna3DKcpJ3khuUQO7NlpG0qLyGiCXI9F7SWPLXBkhD81A3cgo-pqOWMSbzpg5xTPlw&oh=00_AQEdqYxmWW0h9U5HbISej1_CEIGfu-SJpL5dH0J43n5W0w&oe=6A7E8FDA",
-   "name": "Sinigen"
-  },
-  {
-   "id": "17901702036514672",
-   "views": 563,
-   "platform": "ig",
-   "url": "https://www.instagram.com/reel/Dbz8ER3kUXJ/",
-   "thumb": "https://scontent.cdninstagram.com/v/t51.82787-15/768172768_17939861385325989_6095259124496647866_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=msE5GtKSrxsQ7kNvwEE4tLL&_nc_oc=Adr948ypWi9jYt8vmG1ZQtYTGcJmvyXWU3AFUN6vUWqfu_5-u2s9YG1TF9LZjIXw50QM3ynffFcHX7yFJI_Fga_a&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=E31zH7gkXs195_sGZbQK3g&_nc_tpa=Q5bMBQK0xkQZAu1Deo6lW6p0ovlAC1Lwk0FZyjK4TinP3MGKpNFJF-mvuoSFGIHgm7h8DlS_K_i5bdoy_Q&oh=00_AQFNg_xUZoLGC5dCKUEp7scJLt3Bt4asze8383pIE3vSWQ&oe=6A7E934A",
-   "name": "David Lyon"
-  }
- ]
+ "top": []
 }
