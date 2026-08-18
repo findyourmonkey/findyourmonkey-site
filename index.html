@@ -185,6 +185,13 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
       <span class="tx-go">Search the archive &rarr;</span>
     </a>
 
+    <a class="tile-x" href="https://relay.findyourmonkey.com/askedge/" target="_blank" rel="noopener">
+      <span class="tx-k">Library search</span>
+      <span class="tx-n">Ask the Edge</span>
+      <span class="tx-p">Same idea, a completely different show. Ask a real question in your own words and find the exact moment a wellness podcast host actually answered it — across every episode.</span>
+      <span class="tx-go">Ask a question &rarr;</span>
+    </a>
+
     <a class="tile-x" href="https://relay.findyourmonkey.com/work" target="_blank" rel="noopener">
       <span class="tx-k">Content engine</span>
       <span class="tx-n">The Work</span>
@@ -264,8 +271,9 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
       <ul>
         <li><b>Apps &amp; portals</b> — request boards, dashboards, booking, tipping</li>
         <li><b>Autonomous agents</b> that scan, decide, draft, and act on a schedule</li>
+        <li><b>Live status screens</b> — put your systems and your numbers on an actual TV, not buried in a login</li>
         <li><b>Browser games</b> — genuinely, we ship those too</li>
-        <li>Hosting, monitoring, and fixes included. It stays running.</li>
+        <li>Hosting, monitoring, and fixes included. Our own systems watch themselves and flag it the day something's actually wrong — not a month later.</li>
       </ul>
     </div>
 
@@ -384,7 +392,7 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
       }
       w.appendChild(a);
     });
-    var pairs=[['s-views',data.total_views],['s-clips',data.total_clips],['s-recent',data.views_30d_ig]];
+    var pairs=[['s-views',data.total_views],['s-clips',data.total_clips],['s-recent',data.views_30d]];
     var fired=false;
     var io=new IntersectionObserver(function(es){es.forEach(function(e){
       if(e.isIntersecting&&!fired){fired=true;pairs.forEach(function(p){countUp(document.getElementById(p[0]),p[1])})}})},{threshold:.3});
