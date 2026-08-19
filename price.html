@@ -116,9 +116,9 @@ tr:last-child td{border-bottom:none}
 <body>
 
 <header class="top"><div class="wrap">
-  <div class="eyebrow">Clipping</div>
-  <h1>What it costs, <em>using your show's real numbers.</em></h1>
-  <p class="sub">Paste your feed. We read it and price it against everything else you could do instead.</p>
+  <div class="eyebrow">Podcast clipping</div>
+  <h1>What it costs, <em>using your podcast's real numbers.</em></h1>
+  <p class="sub">Paste your podcast feed &mdash; a show name, an Apple Podcasts link, or an RSS URL. We read it and price it against everything else you could do instead.</p>
 
   <div class="ask">
     <input id="q" type="text" autocomplete="off" placeholder="Show name, Apple link, or RSS URL" aria-label="Show name, Apple Podcasts link, or RSS URL">
@@ -253,6 +253,17 @@ function render(d){
 function ask(){
   var q=$('q').value.trim();
   if(!q){ $('err').textContent='Enter a show name, an Apple Podcasts link, or an RSS URL.'; return; }
+  // 19 Aug -- Chris tried his own YouTube handle here and it failed
+  // generically. "If I made that mistake, so shall a customer." This
+  // only ever searches podcasts (Apple/RSS), so catch the shape of a
+  // YouTube/social handle BEFORE spending a call on a search that can
+  // only ever come back empty, and say plainly why instead of a bare
+  // "not found."
+  if(/^@/.test(q) && !/podcast|rss|feed/i.test(q)){
+    $('err').innerHTML='This prices <b>podcasts</b> specifically \u2014 looks like you typed a handle, not a podcast feed. On YouTube without a podcast feed? <a href="mailto:findyourmonkey@gmail.com">get in touch</a> and we\u2019ll price it directly, or set it by hand below.';
+    $('manual').classList.add('on');
+    return;
+  }
   $('err').textContent='Reading the feed\u2026'; $('go').disabled=true;
   fetch(API+encodeURIComponent(q)).then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j}})})
   .then(function(res){
