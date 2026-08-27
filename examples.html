@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Examples — findyourmonkey</title>
+<meta name="description" content="A few of the different formats and techniques our clip pipeline can produce.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1c1815;--cream:#f2ede1;--paper:#fbf8f2;--line:#d6cab5;--orange:#c1622d}
+*{box-sizing:border-box;margin:0}
+body{background:var(--cream);color:var(--ink);font-family:'Work Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+header{padding:22px 0}
+.back{font-family:'Syne',sans-serif;font-weight:600;font-size:14px;text-decoration:none;color:var(--ink)}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:34px;padding:8px 0 4px}
+.sub{color:#6b6357;font-size:15px;padding-bottom:28px;max-width:56ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;padding-bottom:60px}
+.tile{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:20px}
+.tx-k{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:8px}
+.tx-n{display:block;font-family:'Syne',sans-serif;font-weight:700;font-size:19px;margin-bottom:8px}
+.tx-p{display:block;font-size:14px;color:#5a5449;margin-bottom:12px}
+.tx-go{display:inline-block;font-family:'Syne',sans-serif;font-weight:600;font-size:13px;color:var(--orange);text-decoration:none}
+video{width:100%;border-radius:8px;display:block;background:#000}
+a.tile{text-decoration:none;color:inherit;display:block}
+</style>
+</head>
+<body>
+
+<header class="wrap"><a class="back" href="index.html">&larr; findyourmonkey</a></header>
+
+<div class="wrap">
+  <h1>A few of the ways we cut a clip</h1>
+  <p class="sub">Same pipeline, different jobs. This isn't every format — just a sample of the range.</p>
+
+  <div class="grid">
+    <div class="tile">
+      <span class="tx-k">Composite footage, two boxed hosts</span>
+      <span class="tx-n">Reaction-in-a-box</span>
+      <span class="tx-p">Two hosts tracked and boxed live over the source footage, frame by frame — the box has to actually follow them, not sit fixed.</span>
+      <video controls preload="metadata" src="media/format-boxed-hosts.mp4"></video>
+    </div>
+    <a class="tile" href="https://youtu.be/_9appj3wYVM" target="_blank" rel="noopener">
+      <span class="tx-k">Original commentary, our own show</span>
+      <span class="tx-n">Reaction &amp; response</span>
+      <span class="tx-p">Source clip on top, blurred replay underneath, our own take laid over it. This one's ours end to end — not client work.</span>
+      <span class="tx-go">Watch it &rarr;</span>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
