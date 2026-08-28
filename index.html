@@ -71,7 +71,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:99;display:flex;align-items:cent
 .wall{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;max-width:1180px;margin:0 auto;padding:0 32px}
 .tile{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:9/16;background:var(--surface2);border:1px solid var(--border);display:block;transition:transform .15s,border-color .15s}
 .tile:hover{transform:translateY(-3px);border-color:var(--orange)}
-.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;background:#1c1815}
 .tile .views{position:absolute;left:8px;bottom:8px;background:rgba(22,19,17,.85);backdrop-filter:blur(4px);color:#f5ede1;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;padding:4px 9px;border-radius:8px;border:1px solid var(--border)}
 .tile .views b{color:var(--gold)}
 .tile .name{position:absolute;left:8px;bottom:34px;max-width:calc(100% - 16px);background:rgba(22,19,17,.85);backdrop-filter:blur(4px);color:#f5ede1;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;padding:4px 9px;border-radius:8px;border:1px solid var(--border);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
