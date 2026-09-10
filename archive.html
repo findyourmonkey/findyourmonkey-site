@@ -1,0 +1,110 @@
+<!doctype html><html lang=en><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Make your back catalogue searchable — Find Your Monkey</title>
+<meta name=description content="Every word of every episode, searchable. Type a word, jump to the second it was said.">
+<style>
+:root{--bg:#0c0c10;--surface:#15151b;--border:#25252f;--text:#ecedf0;
+ --muted:#8b8b96;--accent:#7fb98a;--link:#8ab4f8}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);margin:0;padding:0 0 80px;
+ font:16px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 20px}
+header{padding:44px 0 10px}
+h1{font-size:30px;line-height:1.2;margin:0 0 12px;letter-spacing:-.4px}
+.lede{color:var(--muted);font-size:17px;margin:0 0 30px}
+.box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px}
+input{width:100%;padding:15px 16px;font-size:17px;border-radius:10px;border:1px solid var(--border);
+ background:#0e0e13;color:#fff;outline:none;-webkit-appearance:none}
+input:focus{border-color:var(--accent)}
+button{margin-top:12px;width:100%;padding:15px;font-size:16px;font-weight:600;
+ border-radius:10px;border:0;background:var(--accent);color:#0b2612;cursor:pointer}
+button:active{opacity:.8}
+.hint{color:#6b6b76;font-size:13px;margin-top:10px;text-align:center}
+.err{color:#e0796d;font-size:14px;margin-top:12px}
+#res{display:none;margin-top:26px}
+.show{display:flex;gap:15px;align-items:center;margin-bottom:20px}
+.show img{width:70px;height:70px;border-radius:10px;object-fit:cover;flex:none}
+.show h2{font-size:18px;margin:0 0 3px}
+.show .meta{color:var(--muted);font-size:14px}
+.price{display:flex;gap:12px;margin:18px 0}
+.p{flex:1;background:#0e0e13;border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.p .n{font-size:27px;font-weight:700;letter-spacing:-.5px}
+.p .l{color:var(--muted);font-size:12.5px;margin-top:3px}
+.what{border-top:1px solid var(--border);padding-top:18px;margin-top:6px}
+.what li{margin:9px 0;color:#cfcfd6;font-size:15px}
+.buy{display:block;text-align:center;background:var(--accent);color:#0b2612;
+ text-decoration:none;padding:16px;border-radius:11px;font-weight:700;font-size:17px;margin-top:20px}
+.fine{color:#6b6b76;font-size:13px;text-align:center;margin-top:12px}
+.demo{margin-top:34px;padding-top:22px;border-top:1px solid var(--border)}
+.demo a{color:var(--link)}
+footer{color:#5a5a64;font-size:13px;margin-top:50px}
+</style>
+<div class=wrap>
+<header>
+  <h1>Every word you've ever said, searchable.</h1>
+  <p class=lede>Someone hears one episode, wants the thing you said two years ago,
+     and there's no way to find it. This fixes that.</p>
+</header>
+
+<div class=box>
+  <input id=q placeholder="Your show name, or paste your RSS feed" autocomplete=off>
+  <button onclick="go()">Price my archive</button>
+  <div class=hint>We read your feed and price it on your real episode count.</div>
+  <div class=err id=err></div>
+</div>
+
+<div id=res>
+  <div class=show>
+    <img id=art alt="">
+    <div><h2 id=title></h2><div class=meta id=meta></div></div>
+  </div>
+  <div class=price>
+    <div class=p><div class=n id=setup></div><div class=l>once, to build it</div></div>
+    <div class=p><div class=n id=month></div><div class=l>per month after</div></div>
+  </div>
+  <div class=what>
+    <ul>
+      <li>Every episode transcribed, word by word</li>
+      <li>A search box on your own page &mdash; type anything, jump to the second it was said</li>
+      <li>New episodes indexed automatically as they drop</li>
+      <li>Full transcripts, yours to keep and post</li>
+    </ul>
+  </div>
+  <a class=buy id=buy href="#">Yes &mdash; build my archive</a>
+  <div class=fine>No contract. Cancel the monthly whenever. Usually live within a few days.</div>
+</div>
+
+<div class=demo>
+  <p style="color:#8b8b96;font-size:15px">Want to see one first?
+  <a href="https://searchtony.com" target="_blank">Here's one we built</a> &mdash;
+  every episode of a 500-episode comedy show, searchable.</p>
+</div>
+
+<footer>Find Your Monkey &middot; findyourmonkey.com</footer>
+</div>
+<script>
+var API='https://relay.findyourmonkey.com/quote/api/show?q=';
+var ORDER='https://relay.findyourmonkey.com/quote/api/order';
+function $(i){return document.getElementById(i)}
+async function go(){
+  var v=($('q').value||'').trim(); if(!v) return;
+  $('err').textContent=''; $('res').style.display='none';
+  try{
+    var r=await fetch(API+encodeURIComponent(v));
+    var d=await r.json();
+    if(d.error){ $('err').textContent=d.error; return; }
+    $('art').src=d.art||''; $('art').style.display=d.art?'block':'none';
+    $('title').textContent=d.title||'Your show';
+    $('meta').textContent=(d.episodes||0).toLocaleString()+' episodes'
+      +(d.hours?' · '+Math.round(d.hours)+' hours of audio':'');
+    $('setup').textContent='$'+d.index_setup;
+    $('month').textContent='$'+d.index_month;
+    $('buy').href=ORDER+'?feed='+encodeURIComponent(d.feed||v)
+      +'&title='+encodeURIComponent(d.title||v)+'&eps='+(d.episodes||0);
+    $('res').style.display='block';
+    $('res').scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(e){ $('err').textContent='Could not read that. Try your RSS link instead.'; }
+}
+$('q').addEventListener('keydown',function(e){if(e.key==='Enter')go();});
+</script>
+</html>
