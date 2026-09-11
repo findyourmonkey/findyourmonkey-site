@@ -71,7 +71,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:99;display:flex;align-items:cent
 .wall{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;max-width:1180px;margin:0 auto;padding:0 32px}
 .tile{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:9/16;background:var(--surface2);border:1px solid var(--border);display:block;transition:transform .15s,border-color .15s}
 .tile:hover{transform:translateY(-3px);border-color:var(--orange)}
-.tile img{width:100%;height:100%;object-fit:cover;display:block;background:#1c1815}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
 .tile .views{position:absolute;left:8px;bottom:8px;background:rgba(22,19,17,.85);backdrop-filter:blur(4px);color:#f5ede1;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;padding:4px 9px;border-radius:8px;border:1px solid var(--border)}
 .tile .views b{color:var(--gold)}
 .tile .name{position:absolute;left:8px;bottom:34px;max-width:calc(100% - 16px);background:rgba(22,19,17,.85);backdrop-filter:blur(4px);color:#f5ede1;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;padding:4px 9px;border-radius:8px;border:1px solid var(--border);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -139,7 +139,7 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
     <a class="txt" href="#try">Try it</a>
     <a class="txt" href="#build">What we build</a>
     <a class="txt" href="#care">Why ours</a>
-    <a class="txt" href="archive.html">Searchable archive</a> <a href="price.html">Pricing</a>
+    <a class="txt" href="price.html">Pricing</a>
     <a class="nav-cta" href="mailto:findyourmonkey@gmail.com?subject=Build%20something%20for%20me">Get in touch</a>
   </div>
 </nav>
@@ -169,7 +169,34 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
     <div class="stat"><div class="n">24/7</div><div class="l">Systems in production</div></div>
   </div>
   <div class="wall" id="wall"></div>
-  <div class="proof-foot">Every tile is a real short our pipelines wrote, cut, captioned, and posted — automatically. <a href="examples.html" style="color:inherit;text-decoration:underline">See more formats &rarr;</a></div>
+  <div class="proof-foot">Every tile is a real short our pipelines wrote, cut, captioned, and posted — automatically.</div>
+
+  <div class="proof-head" style="margin-top:44px">
+    <div>
+      <div class="section-label">Different shows, different formats</div>
+      <h2 class="section-title">One pipeline, not one look</h2>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+    <a class="tile-x" href="https://relay.findyourmonkey.com/scottcrop/" target="_blank" rel="noopener">
+      <span class="tx-k">Comedy podcast, composite footage</span>
+      <span class="tx-n">Tag Team Talent</span>
+      <span class="tx-p">Two hosts react live in an inset box over the act itself. Took real engineering to detect and track that box per-second before a single clip could even be cut clean.</span>
+      <span class="tx-go">Watch the cut &rarr;</span>
+    </a>
+    <a class="tile-x" href="https://www.youtube.com/shorts/Z6o9hEdg9VI" target="_blank" rel="noopener">
+      <span class="tx-k">Wellness &amp; mental health</span>
+      <span class="tx-n">Notes From the Edge</span>
+      <span class="tx-p">Same pipeline, a completely different register — long-form, reflective conversation cut down without losing the moment that actually mattered.</span>
+      <span class="tx-go">Watch the short &rarr;</span>
+    </a>
+    <a class="tile-x" href="https://searchtony.com" target="_blank" rel="noopener">
+      <span class="tx-k">Comedy, high volume</span>
+      <span class="tx-n">Kill Tony</span>
+      <span class="tx-p">Thousands of hours, cut fast and consistently — the proof wall above is pulled straight from this one. Same engine, just running at scale.</span>
+      <span class="tx-go">See the archive &rarr;</span>
+    </a>
+  </div>
 </section>
 
 <section class="section" id="try">
@@ -192,7 +219,12 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
       <span class="tx-go">Ask a question &rarr;</span>
     </a>
 
-
+    <a class="tile-x" href="https://relay.findyourmonkey.com/work" target="_blank" rel="noopener">
+      <span class="tx-k">Content engine</span>
+      <span class="tx-n">The Work</span>
+      <span class="tx-p">Real clips from real shows. Every frame generated from what was actually said — not stock footage, not a waveform.</span>
+      <span class="tx-go">Watch the clips &rarr;</span>
+    </a>
 
     <a class="tile-x" href="https://picker.findyourmonkey.com" target="_blank" rel="noopener">
       <span class="tx-k">Pricing intelligence</span>
