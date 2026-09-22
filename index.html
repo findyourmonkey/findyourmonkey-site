@@ -32,7 +32,13 @@
   --orange-ink:#a8531f;
   --gold:#a8790c;--mint:#1a7a5e;--muted:#766652;--dim:#d8cebe;
 }
-html{scroll-behavior:smooth}
+/* 22 Sep: the .hero:before glow sits at right:-100px. On desktop the hero is
+   860px centred so the overhang lands in the margin; on a phone the hero IS
+   the viewport, so it pushed the document to 512px wide at 412px and the whole
+   page scrolled sideways. clip (not hidden) kills the scroll without creating
+   a scroll container, so the fixed nav and smooth anchors still work. */
+html{scroll-behavior:smooth;overflow-x:clip}
+body{overflow-x:clip}
 body{background:var(--bg);color:var(--cream);font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
 .mono{font-family:'JetBrains Mono',monospace}
 nav{position:fixed;top:0;left:0;right:0;z-index:99;display:flex;align-items:center;justify-content:flex-start;gap:38px;padding:18px 32px;background:rgba(250,246,239,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
@@ -141,7 +147,13 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
     <a class="txt" href="#try">Try it</a>
     <a class="txt" href="#build">What we build</a>
     <a class="txt" href="#care">Why ours</a>
-    <a class="txt" href="archive.html">Searchable archive</a> <a href="price.html">Pricing</a>
+    <a class="txt" href="archive.html">Searchable archive</a>
+    <!-- 22 Sep: this was <a href="price.html"> with no class. Two bugs from one
+         omission: it rendered as a default blue underlined link, and the mobile
+         rule .nav-links a.txt{display:none} skipped it, so on a phone it was the
+         only surviving link and wrapped onto its own line on top of the logo.
+         Pricing is still reachable on mobile via the "Price your show" button. -->
+    <a class="txt" href="price.html">Pricing</a>
     <a class="nav-cta" href="mailto:findyourmonkey@gmail.com?subject=Build%20something%20for%20me">Get in touch</a>
   </div>
 </nav>
