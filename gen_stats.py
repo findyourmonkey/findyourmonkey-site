@@ -92,10 +92,16 @@ def top_wall():
                 page = r.get("nextPageToken")
                 if not page: break
             for i in range(0, len(ids), 50):
-                vr = yt.videos().list(part="statistics,contentDetails", id=",".join(ids[i:i+50])).execute()
+                vr = yt.videos().list(part="statistics,contentDetails,status", id=",".join(ids[i:i+50])).execute()
                 for v in vr["items"]:
                     dur = v["contentDetails"].get("duration", "")
                     if "H" in dur: continue  # shorts wall only — skip long-form
+                    # 22 Sep: PUBLIC ONLY. The 115K/36K/32K/28K/26K shorts were
+                    # switched to private; they stayed on the wall as grey
+                    # "..." tiles (dead thumbnails, embed 403) because nothing
+                    # checked privacy. A private clip is not proof of anything
+                    # a visitor can see.
+                    if v.get("status", {}).get("privacyStatus") != "public": continue
                     allstats.append({"id": v["id"], "views": int(v["statistics"].get("viewCount", 0))})
         except Exception as e:
             print(f"wall {h}: {e}", file=sys.stderr)
