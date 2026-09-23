@@ -13,6 +13,19 @@ OUT = os.path.join(REPO, "clips.json")
 CLIP_SRC = "/var/home/findyourmonkey/projects/cookie_MASTER/clip_stats.json"
 YT_TOKEN = "/var/home/findyourmonkey/projects/shannan_pipeline/youtube_credentials.json"
 CHANNELS = ["findyourmonkey", "RyanVersion0", "OpenMicClips", "TCVlogs96"]  # add handles here
+# 23 Sep: look channels up by their PERMANENT id, never the handle. @TCVlogs96
+# was renamed to @chinivlogs96 and forHandle returned nothing -> the channel
+# silently vanished from the total (-128K views, -142 clips, two alert emails).
+# A handle is a nickname; the UC... id never changes. New channel = add both.
+CHANNEL_IDS = {
+    "findyourmonkey": "UCEtdFUeqICm_NLF5tF1U5NQ",
+    "RyanVersion0":   "UCXHf0uPSL4545ScdbK5ev4A",
+    "OpenMicClips":   "UCVVOviMvkXp70Nd--fy5HSg",
+    "TCVlogs96":      "UCcr0lUROUr9v2cy3cHAaisQ",   # now @chinivlogs96
+}
+def _chan_kw(h):
+    cid = CHANNEL_IDS.get(h)
+    return {"id": cid} if cid else {"forHandle": h}
 IG_ID = "17841469779642555"
 EXCLUDE = {"JOGEUHGGHDE","e66WhxjPqY8","D24gQX63JPk","3GZX9DgRwjk"}
 
@@ -23,14 +36,24 @@ def yt_totals():
     yt = build("youtube", "v3", credentials=creds)
     views = vids = subs = 0
     ok = False
+    # 23 Sep: per-channel memory. One channel failing used to vanish from the
+    # sum while the others still "succeeded", publishing a smaller total. Now a
+    # failed channel reuses ITS OWN last-known numbers and says so loudly.
+    _pc_path = Path(__file__).parent / "yt_per_channel_cache.json"
+    try: per = json.loads(_pc_path.read_text())
+    except Exception: per = {}
     for h in CHANNELS:
         try:
-            r = yt.channels().list(part="statistics", forHandle=h).execute()
+            r = yt.channels().list(part="statistics", **_chan_kw(h)).execute()
             st = r["items"][0]["statistics"]
-            views += int(st.get("viewCount", 0)); vids += int(st.get("videoCount", 0)); subs += int(st.get("subscriberCount", 0))
+            per[h] = {"views": int(st.get("viewCount", 0)), "vids": int(st.get("videoCount", 0)), "subs": int(st.get("subscriberCount", 0))}
             ok = True
         except Exception as e:
-            print(f"yt {h}: {e}", file=sys.stderr)
+            print(f"yt {h}: {e} -- using its last-known numbers" if h in per else f"yt {h}: {e} -- NO last-known numbers, left out", file=sys.stderr)
+        if h in per:
+            views += per[h]["views"]; vids += per[h]["vids"]; subs += per[h]["subs"]
+    try: _pc_path.write_text(json.dumps(per))
+    except Exception: pass
     # 14 Aug -- same cache-don't-zero fix as top_wall(), same root cause
     # (YouTube quota exhaustion). This is the SEPARATE function that feeds
     # the headline "X views" number specifically -- fixing top_wall() alone
@@ -82,7 +105,7 @@ def top_wall():
     allstats = []
     for h in CHANNELS:
         try:
-            ch = yt.channels().list(part="contentDetails", forHandle=h).execute()
+            ch = yt.channels().list(part="contentDetails", **_chan_kw(h)).execute()
             up = ch["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
             ids, page = [], None
             while True:
