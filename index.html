@@ -136,6 +136,20 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
 .ps-k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
 .ps-v{font-size:14.5px;color:var(--tan);line-height:1.65}
 .ps-v b{color:var(--gold);font-family:'JetBrains Mono',monospace;font-weight:700}
+
+.fold{border:1px solid var(--border);border-radius:16px;background:var(--surface);overflow:hidden}
+.fold>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 26px}
+.fold>summary::-webkit-details-marker{display:none}
+.fold>summary .section-label{margin-bottom:6px}
+.fold>summary .section-title{margin:0}
+.fold>summary .chev{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);position:relative;transition:transform .2s,border-color .2s}
+.fold>summary .chev::after{content:"";position:absolute;left:11px;top:10px;width:9px;height:9px;border-right:2px solid var(--orange);border-bottom:2px solid var(--orange);transform:rotate(45deg)}
+.fold[open]>summary .chev{transform:rotate(180deg)}
+.fold>summary:hover .chev{border-color:var(--orange)}
+.fold-body{padding:0 26px 26px}
+.section.has-fold{padding-top:24px;padding-bottom:24px}
+.proof-fold{max-width:1040px;margin:26px auto 0;padding:0 32px}
+@media(max-width:560px){.fold>summary{padding:18px}.fold-body{padding:0 18px 22px}.proof-fold{padding:0 16px}.section.has-fold{padding-left:16px;padding-right:16px}}
 </style>
 </head>
 <body>
@@ -184,13 +198,13 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
     <div class="stat"><div class="n" id="s-recent" data-n="353162">353,162</div><div class="l">Views, last 30 days</div></div>
     <div class="stat"><div class="n">24/7</div><div class="l">Systems in production</div></div>
   </div>
-  <div class="wall" id="wall"></div>
+  <div class="proof-fold"><details class="fold"><summary><span><div class="section-label">The clips</div><h2 class="section-title">See the clip wall</h2></span><span class="chev"></span></summary><div class="fold-body">
+  <div class="wall" id="wall"></div></div></details></div>
   <div class="proof-foot">Every tile is a real short our pipelines wrote, cut, captioned, and posted — automatically. <a href="examples.html" style="color:inherit;text-decoration:underline">See more formats &rarr;</a></div>
 </section>
 
-<section class="section" id="try">
-  <div class="section-label">Open these right now</div>
-  <h2 class="section-title">Don't take our word for it.</h2>
+<section class="section has-fold" id="try">
+<details class="fold"><summary><span><div class="section-label">Open these right now</div><h2 class="section-title">Don't take our word for it.</h2></span><span class="chev"></span></summary><div class="fold-body">
   <p class="section-sub">All live on the public internet, right now. No signup, no demo call, no waiting on us.</p>
   <div class="tiles">
 
@@ -239,11 +253,11 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
     </a>
 
   </div>
+</div></details>
 </section>
 
-<section class="section" id="shop">
-  <div class="section-label">The shop</div>
-  <h2 class="section-title">Monkey merch.</h2>
+<section class="section has-fold" id="shop">
+<details class="fold"><summary><span><div class="section-label">The shop</div><h2 class="section-title">Monkey merch.</h2></span><span class="chev"></span></summary><div class="fold-body">
   <p class="section-sub">Funny monkey ugly sweaters for Thanksgiving and the holidays. Printed on demand and shipped from the shop on Etsy.</p>
   <div class="tiles">
     <a class="tile-x" href="https://www.etsy.com/listing/4592205565/gobble-gobble-monkey-ugly-thanksgiving" target="_blank" rel="noopener"><img src="brand/shop/gobble.jpg" alt="Gobble Gobble Monkey ugly Thanksgiving sweater" loading="lazy" style="width:100%;border-radius:10px"><span class="tx-n">Gobble Gobble sweater</span><span class="tx-go">See it on Etsy &rarr;</span></a>
@@ -252,11 +266,11 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
     <a class="tile-x" href="https://www.etsy.com/listing/4592219032/food-coma-monkey-ugly-thanksgiving" target="_blank" rel="noopener"><img src="brand/shop/coma.jpg" alt="Food Coma monkey ugly Thanksgiving sweater" loading="lazy" style="width:100%;border-radius:10px"><span class="tx-n">Food Coma sweater</span><span class="tx-go">See it on Etsy &rarr;</span></a>
   </div>
   <p class="section-sub" style="margin-top:22px"><a class="btn btn-primary" href="https://www.etsy.com/shop/findyourmonkeyshop" target="_blank" rel="noopener">Visit the whole shop</a></p>
+</div></details>
 </section>
 
-<section class="section" id="build">
-  <div class="section-label">What we build</div>
-  <h2 class="section-title">Everything we do, on one screen.</h2>
+<section class="section has-fold" id="build">
+<details class="fold"><summary><span><div class="section-label">What we build</div><h2 class="section-title">Everything we do, on one screen.</h2></span><span class="chev"></span></summary><div class="fold-body">
   <div class="rails">
 
     <div class="rail">
@@ -315,11 +329,11 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
     </div>
     <a class="btn btn-primary" href="price.html">Price your show &rarr;</a>
   </div>
+</div></details>
 </section>
 
-<section class="section" id="care">
-  <div class="section-label">Why ours are different</div>
-  <h2 class="section-title">The machine checks its own work.</h2>
+<section class="section has-fold" id="care">
+<details class="fold"><summary><span><div class="section-label">Why ours are different</div><h2 class="section-title">The machine checks its own work.</h2></span><span class="chev"></span></summary><div class="fold-body">
   <p class="section-sub">Anything can cut a video into pieces. These are the things that go wrong when nobody is watching &mdash; and what we do about each one.</p>
   <div class="rails">
     <div class="rail">
@@ -359,16 +373,17 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
   <div class="alsoline">
     <b>What that&#39;s worth:</b> the failures above are the ones that make a clip unpostable &mdash; a punchline cut in half, captions a second behind the mouth, your sponsor&#39;s promo code in a Short. We found each one the hard way, on our own output, and the checks run on every clip whether or not anyone is looking.
   </div>
+</div></details>
 </section>
 
-<section class="section" id="how">
-  <div class="section-label">How it works</div>
-  <h2 class="section-title">Three steps. Then it just runs.</h2>
+<section class="section has-fold" id="how">
+<details class="fold"><summary><span><div class="section-label">How it works</div><h2 class="section-title">Three steps. Then it just runs.</h2></span><span class="chev"></span></summary><div class="fold-body">
   <div class="steps">
     <div class="step"><div class="k">STEP 1</div><h3>Tell us the grind</h3><p>The task you do over and over — or the thing you wish existed. A conversation is enough.</p></div>
     <div class="step"><div class="k">STEP 2</div><h3>We build the machine</h3><p>Days, not months. You see it working before you commit to anything ongoing.</p></div>
     <div class="step"><div class="k">STEP 3</div><h3>It runs while you don't</h3><p>We host it, watch it, and fix it. You get the output — and your time back.</p></div>
   </div>
+</div></details>
 </section>
 
 <section class="anywhere">
@@ -427,6 +442,12 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
   fetch('clips.json?t='+Date.now()).then(function(r){return r.json()}).then(renderWall)
     .catch(function(){/* baked-in numbers remain */});
 })();
+</script>
+<script>
+(function(){function openFor(h){if(!h||h.length<2)return;var el=document.getElementById(h.slice(1));if(!el)return;var d=el.querySelector('details');if(d)d.open=true;}
+window.addEventListener('hashchange',function(){openFor(location.hash)});
+document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"]');if(a)openFor(a.getAttribute('href'));});
+openFor(location.hash);})();
 </script>
 </body>
 </html>
