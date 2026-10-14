@@ -85,6 +85,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:99;display:flex;align-items:cent
 .tile .name{position:absolute;left:8px;bottom:34px;max-width:calc(100% - 16px);background:rgba(22,19,17,.85);backdrop-filter:blur(4px);color:#f5ede1;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;padding:4px 9px;border-radius:8px;border:1px solid var(--border);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:900px){.wall{grid-template-columns:repeat(4,1fr)}.tile:nth-child(n+9){display:none}}
 @media(max-width:560px){.wall{grid-template-columns:repeat(3,1fr);gap:8px;padding:0 20px}.tile:nth-child(n+7){display:none}}
+
+/* formats card (14 Oct) */
+.fmt-wrap{max-width:1040px;margin:0 auto;padding:0 32px}
+.fmt{border:1px solid var(--border);border-radius:16px;background:var(--surface);overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;text-decoration:none;color:inherit;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.fmt-t{padding:28px 26px 26px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.fmt-t .section-title{margin:0}
+.fmt-t p{color:var(--tan);font-size:15px;line-height:1.5;margin:0;max-width:44ch}
+.fmt-t .go{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--orange);margin-top:4px}
+.fmt-s{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px;background:var(--surface2);align-content:center}
+.fmt-s img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:8px;display:block;background:#000}
+.fmt:hover .go{text-decoration:underline}
+@media(max-width:760px){.fmt-wrap{padding:0 16px}.fmt{grid-template-columns:1fr}.fmt-s{grid-template-columns:repeat(4,1fr);order:-1}.fmt-t{padding:20px 18px 22px}}
 .proof-foot{text-align:center;margin-top:26px;font-size:13px;color:var(--muted)}
 
 .section{padding:80px 32px;max-width:1040px;margin:0 auto}
@@ -198,9 +210,21 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
     <div class="stat"><div class="n" id="s-recent" data-n="353162">353,162</div><div class="l">Views, last 30 days</div></div>
     <div class="stat"><div class="n">24/7</div><div class="l">Systems in production</div></div>
   </div>
+  <div class="fmt-wrap"><a class="fmt" href="formats.html">
+    <div class="fmt-t">
+      <div class="section-label">The formats</div>
+      <h2 class="section-title">Pick a look. We cut every episode in it.</h2>
+      <p>Cinematic story cards, boxed hosts, crowd moments, line art drawn to the sentence, and a cartoon monkey who says whatever your host says. One of each, on one page &mdash; tap to play.</p>
+      <span class="go">See every format &rarr;</span>
+    </div>
+    <div class="fmt-s">
+      <img src="media/formats/ocean.jpg" alt="" loading="lazy"><img src="media/formats/corners.jpg" alt="" loading="lazy"><img src="media/formats/pencil.jpg" alt="" loading="lazy"><img src="media/formats/tim_toon.jpg" alt="" loading="lazy">
+      <img src="media/formats/star.jpg" alt="" loading="lazy"><img src="media/formats/kt_moment.jpg" alt="" loading="lazy"><img src="media/formats/pat_monkey.jpg" alt="" loading="lazy"><img src="media/formats/aj_toon.jpg" alt="" loading="lazy">
+    </div>
+  </a></div>
   <div class="proof-fold"><details class="fold"><summary><span><div class="section-label">The clips</div><h2 class="section-title">See the clip wall</h2></span><span class="chev"></span></summary><div class="fold-body">
   <div class="wall" id="wall"></div></div></details></div>
-  <div class="proof-foot">Every tile is a real short our pipelines wrote, cut, captioned, and posted — automatically. <a href="examples.html" style="color:inherit;text-decoration:underline">See more formats &rarr;</a></div>
+  <div class="proof-foot">Every tile is a real short our pipelines wrote, cut, captioned, and posted — automatically. <a href="formats.html" style="color:inherit;text-decoration:underline">See every format &rarr;</a></div>
 </section>
 
 <section class="section has-fold" id="try">
