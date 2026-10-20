@@ -97,6 +97,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:99;display:flex;align-items:cent
 .fmt-s img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:8px;display:block;background:#000}
 .fmt:hover .go{text-decoration:underline}
 @media(max-width:760px){.fmt-wrap{padding:0 16px}.fmt{grid-template-columns:1fr}.fmt-s{grid-template-columns:repeat(4,1fr);order:-1}.fmt-t{padding:20px 18px 22px}}
+.say-wrap{max-width:1040px;margin:26px auto 0;padding:0 32px}
+.say{border:1px solid var(--border);border-radius:16px;background:var(--surface);display:grid;grid-template-columns:1.5fr 1fr;overflow:hidden}
+.say-t{padding:30px 28px 26px;display:flex;flex-direction:column;gap:14px}
+.say-t .pull{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(20px,2.4vw,26px);line-height:1.25;color:var(--cream);margin:0}
+.say-t .pull::before{content:"\201C";color:var(--orange)}.say-t .pull::after{content:"\201D";color:var(--orange)}
+.say-t .full{color:var(--tan);font-size:15px;line-height:1.55;margin:0}
+.say-t .who{font-size:14px;color:var(--cream)}.say-t .who a{color:var(--orange);text-decoration:none}.say-t .who a:hover{text-decoration:underline}
+.say-t .who span{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.say-s{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px;background:var(--surface2);align-content:center}
+.say-s a{display:block}.say-s img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:10px;display:block;background:#000}
+@media(max-width:760px){.say-wrap{padding:0 16px}.say{grid-template-columns:1fr}.say-s{order:-1}.say-t{padding:20px 18px 22px}}
 .proof-foot{text-align:center;margin-top:26px;font-size:13px;color:var(--muted)}
 
 .section{padding:80px 32px;max-width:1040px;margin:0 auto}
@@ -224,6 +235,18 @@ footer a{color:var(--muted);text-decoration:none;font-size:13px}footer a:hover{c
       <img src="media/formats/star.jpg" alt="" loading="lazy"><img src="media/formats/kt_moment.jpg" alt="" loading="lazy"><img src="media/formats/pat_monkey.jpg" alt="" loading="lazy"><img src="media/formats/aj_toon.jpg" alt="" loading="lazy">
     </div>
   </a></div>
+  <div class="say-wrap" id="clients"><div class="say">
+    <div class="say-t">
+      <div class="section-label">What clients say</div>
+      <p class="pull">Their professionalism, creativity, and commitment to excellence truly set them apart.</p>
+      <p class="full">&ldquo;Working with Chris and the team at Find Your Monkey has been an absolute pleasure! They consistently deliver beautifully designed, high-quality video clips with impressively fast turnaround times and absolutely no drama. Communication is seamless, the process is effortless, and they routinely go above and beyond to exceed expectations. It&rsquo;s rare to find a creative partner who combines exceptional talent with such reliability and genuine care for their clients. I couldn&rsquo;t be happier with their work on <em>Notes From the Edge</em> and highly recommend them to anyone looking for outstanding creative services!&rdquo;</p>
+      <div class="who">Lisa Lacy<span>Host, <a href="https://www.youtube.com/channel/UCmw_6l1-Sd-rf4JJLvF6oJQ" target="_blank" rel="noopener">Notes From the Edge</a></span></div>
+    </div>
+    <div class="say-s">
+      <a href="formats.html"><img src="media/formats/ocean.jpg" alt="A Notes From the Edge clip" loading="lazy"></a>
+      <a href="formats.html"><img src="media/formats/star.jpg" alt="A Notes From the Edge clip" loading="lazy"></a>
+    </div>
+  </div></div>
   <div class="proof-fold"><details class="fold"><summary><span><div class="section-label">The clips</div><h2 class="section-title">See the clip wall</h2></span><span class="chev"></span></summary><div class="fold-body">
   <div class="wall" id="wall"></div></div></details></div>
   <div class="proof-foot">Every tile is a real short our pipelines wrote, cut, captioned, and posted — automatically. <a href="formats.html" style="color:inherit;text-decoration:underline">See every format &rarr;</a></div>
