@@ -305,7 +305,7 @@ footer{border-top:1px solid var(--border);margin-top:60px}
 
 <nav id="nav">
   <div class="nav-in">
-    <a class="logo" href="#top" aria-label="Find Your Monkey home"><img src="brand/mark-160.png" alt="" width="38" height="38"><span class="wm">findyour<span>monkey</span></span></a>
+    <a class="logo" id="navLogo" href="#top" aria-label="Find Your Monkey home"><img src="brand/mark-160.png" alt="" width="38" height="38"><span class="wm">findyour<span>monkey</span></span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">☰</button>
     <div class="nav-links" id="navLinks">
       <a href="#services">What we do</a>
@@ -692,6 +692,8 @@ footer{border-top:1px solid var(--border);margin-top:60px}
   }
   fetch('clips.json?t='+Date.now()).then(function(r){return r.json()}).then(render).catch(function(){});
 
+  // easter egg: tap the top logo while already at the top of the page to open the brain
+  document.getElementById('navLogo').addEventListener('click',function(e){if(window.scrollY<40){e.preventDefault();location.href='brain.html'}});
   // easter egg: type "monkey" anywhere (outside a form field) to open the brain
   var typed='';document.addEventListener('keydown',function(e){var t=e.target;if(t&&/INPUT|TEXTAREA|SELECT/.test(t.tagName))return;if(!e.key||e.key.length!==1)return;typed=(typed+e.key.toLowerCase()).slice(-6);if(typed==='monkey')location.href='brain.html'});
 
