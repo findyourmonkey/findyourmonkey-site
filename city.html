@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Monkey City · Find Your Monkey</title>
+<meta name="description" content="Every building is a machine Find Your Monkey runs. The tall ones work hardest.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico">
+<meta property="og:title" content="Monkey City">
+<meta property="og:description" content="Every building is a machine Find Your Monkey runs.">
+<meta property="og:image" content="https://findyourmonkey.com/brand/og-card.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#161311;--surface:#1f1a17;--surface2:#2a231f;--cream:#f5ede1;--tan:#c9a988;--orange:#e8834f;--gold:#f2c14e;--mint:#5fd9b4;--line:#3a3029;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--cream);font-family:Inter,system-ui,sans-serif;overflow:hidden;position:relative;-webkit-font-smoothing:antialiased}
+#c{position:absolute;inset:0;width:100%!important;height:100%!important;display:block;touch-action:none;cursor:grab}
+#c:active{cursor:grabbing}
+.hud{position:absolute;pointer-events:none;z-index:2}
+#brand{top:calc(env(safe-area-inset-top,0px) + 18px);left:18px;display:flex;gap:12px;align-items:center;pointer-events:auto;text-decoration:none;color:inherit}
+#brand img{width:44px;height:44px;filter:drop-shadow(0 0 16px rgba(232,131,79,.5))}
+#brand h1{font-family:Syne,sans-serif;font-weight:800;font-size:22px;margin:0;letter-spacing:-.01em;line-height:1}
+#brand p{margin:4px 0 0;font-size:12px;color:var(--tan);letter-spacing:.02em}
+#stats{top:calc(env(safe-area-inset-top,0px) + 18px);right:18px;display:grid;grid-template-columns:repeat(3,auto);gap:6px 18px;text-align:right;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
+#stats b{display:block;font-size:20px;color:var(--gold);font-weight:500;line-height:1}
+#stats span{font-size:10px;color:var(--tan);letter-spacing:.08em;text-transform:uppercase}
+#legend{bottom:calc(env(safe-area-inset-bottom,0px) + 16px);left:18px;display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--tan);letter-spacing:.04em}
+#legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+#nav{position:absolute;z-index:5;right:18px;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);display:flex;gap:8px}
+.btn{font:600 13px Inter,system-ui,sans-serif;text-decoration:none;border-radius:999px;padding:10px 16px;white-space:nowrap;cursor:pointer;border:0}
+.btn.p{background:var(--orange);color:#1a0f08;box-shadow:0 8px 30px -8px rgba(232,131,79,.8)}
+.btn.g{background:var(--surface);color:var(--cream);border:1px solid var(--line)}
+.btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#tip{position:absolute;z-index:3;pointer-events:none;background:var(--surface);border:1px solid var(--line);padding:6px 10px;border-radius:6px;font-size:12px;transform:translate(-50%,-140%);white-space:nowrap;display:none}
+#tip small{color:var(--tan);margin-left:6px;font-family:'JetBrains Mono',monospace;font-size:10px}
+#panel{position:absolute;z-index:4;left:18px;bottom:calc(env(safe-area-inset-bottom,0px) + 56px);width:min(340px,calc(100vw - 36px));background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:0 20px 60px rgba(0,0,0,.6);transform:translateY(12px);opacity:0;transition:.25s;pointer-events:none}
+#panel.on{transform:none;opacity:1;pointer-events:auto}
+#panel .d{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tan)}
+#panel h2{font-family:Syne,sans-serif;font-size:20px;margin:4px 0 8px;font-weight:800;text-wrap:balance}
+#panel p{margin:0 0 12px;font-size:13px;line-height:1.5;color:var(--cream)}
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;padding:3px 8px;border-radius:999px;border:1px solid currentColor;margin-bottom:10px}
+#panel a{display:inline-block;background:var(--orange);color:#161311;font-weight:600;text-decoration:none;padding:8px 14px;border-radius:6px;font-size:13px}
+#panel a:focus-visible,#x:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#x{position:absolute;top:8px;right:10px;background:none;border:0;color:var(--tan);font-size:18px;cursor:pointer;padding:4px 8px}
+#live{position:absolute;top:calc(env(safe-area-inset-top,0px) + 84px);left:18px;z-index:2;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mint);pointer-events:none;max-width:60vw}
+#live::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--mint);margin-right:8px;box-shadow:0 0 10px var(--mint);animation:blink 1.4s infinite}
+#hint{top:calc(env(safe-area-inset-top,0px) + 70px);right:18px;font-size:11px;color:var(--tan);opacity:.8;text-align:right}
+@keyframes blink{50%{opacity:.3}}
+@media (max-width:760px){
+  #brand{left:14px;gap:9px}#brand img{width:34px;height:34px}#brand h1{font-size:17px}#brand p{font-size:10px}
+  #stats{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 104px);right:14px;left:14px;gap:4px 8px;text-align:left}
+  #stats b{font-size:15px}#stats span{font-size:8px;letter-spacing:.05em}
+  #hint{display:none}
+  #live{top:calc(env(safe-area-inset-top,0px) + 62px);left:14px;font-size:10px;max-width:80vw}
+  #legend{left:14px;right:14px;gap:8px;font-size:10px;bottom:calc(env(safe-area-inset-bottom,0px) + 74px)}
+  #nav{left:14px;right:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 14px)}
+  #nav .btn{flex:1;text-align:center}
+  #panel{bottom:calc(env(safe-area-inset-bottom,0px) + 160px)}
+}
+@media (prefers-reduced-motion:reduce){#live::before{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="c" aria-label="3D map of the Find Your Monkey systems, one building per machine"></canvas>
+
+<a class="hud" id="brand" href="/" aria-label="Back to Find Your Monkey"><img src="brand/mark-160.png" alt=""><div><h1>Monkey City</h1><p>We are no longer burdened by the impossible</p></div></a>
+<div class="hud" id="stats">
+  <div><b id="sv">—</b><span>clip views</span></div>
+  <div><b id="sc">—</b><span>clips shipped</span></div>
+  <div><b id="s30">—</b><span>views, last 30 days</span></div>
+</div>
+<div class="hud" id="hint">drag to orbit · scroll to zoom<br>tap a building · double-tap to reset</div>
+<div id="live">waking the city…</div>
+<div class="hud" id="legend">
+  <span><i style="background:#f2c14e"></i>running</span>
+  <span><i style="background:#c9a988"></i>hand-driven</span>
+  <span><i style="background:#5a4b41"></i>resting</span>
+  <span><i style="background:#5fd9b4"></i>monkeys = jobs moving</span>
+</div>
+<nav id="nav">
+  <a class="btn g" href="brain.html">&larr; The brain</a>
+  <a class="btn p" href="/#start">Get a free clip &rarr;</a>
+</nav>
+<div id="tip"></div>
+<div id="panel" role="dialog" aria-live="polite">
+  <button id="x" aria-label="close">×</button>
+  <div class="d" id="pd"></div><h2 id="ph"></h2><span class="pill" id="ps"></span><p id="pp"></p><a id="pa" target="_blank" rel="noopener" hidden>Open it</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+// ---------- THE CITY (one building per machine) ----------
+var D = {
+  clips:  {name:'Clip District', hue:0x9a5a30, x:-22, z:-6},
+  search: {name:'Search Quarter', hue:0x5a7a60, x:14,  z:-18},
+  ebay:   {name:'Resale Row',     hue:0x6a5a80, x:22,  z:8},
+  client: {name:'Client Harbor',  hue:0x4a6a80, x:-4,  z:20},
+  sales:  {name:'Outreach Yard',  hue:0x8a6a30, x:-24, z:20},
+  infra:  {name:'The Foundry',    hue:0x505050, x:0,   z:-2}
+};
+var B = [
+ {d:'clips',n:'Kill Tony pipeline',s:'run',t:4,p:'Downloads every episode, finds each comedian\'s set, crops it vertical with face tracking, burns in captions, checks it for anything unsafe, and posts it. Millions of views, no hands.'},
+ {d:'clips',n:'Audience Moments',s:'run',t:3,p:'Listens to the crowd, not the transcript. It hears laughter and applause and ranks moments by how hard the room reacted.'},
+ {d:'clips',n:'Cartoon studio',s:'run',t:3,p:'Turns a rant into a cartoon: the real clip on top, a paper-cutout monkey acting it out underneath.'},
+ {d:'clips',n:'Reaction lane',s:'run',t:2,p:'Clip-plus-response format on its own channel and its own schedule.'},
+ {d:'clips',n:'Puppet sets',s:'run',t:2,p:'A stop-motion puppet monkey performs one-liners, line by line, in sync.'},
+ {d:'clips',n:'ClipMonkey',s:'run',t:3,p:'Point it at any show and it makes clips. For audio-only podcasts it draws pictures from the words being said.'},
+ {d:'clips',n:'Visual Audiobook',s:'run',t:3,p:'A podcast has no video, so this invents it: imagery planned from what is said, mood set by the subject, never a repeated picture.'},
+ {d:'clips',n:'Ad markers',s:'run',t:2,p:'Finds the right second to place an ad break and hands the timestamps to the hosting platform.'},
+ {d:'clips',n:'You Heard The Sirens',s:'run',t:2,p:'Local incident news for one small town, written from a live police scanner and a radio dongle plugged into the desktop.'},
+ {d:'clips',n:'Older clippers',s:'park',t:1,p:'Earlier clippers for other comedians. Built, working, resting.'},
+ {d:'clips',n:'Character channel',s:'park',t:1,p:'An AI character with her own channel and character bible. Resting.'},
+ {d:'search',n:'Search Tony',s:'run',t:4,p:'Every word ever said on Kill Tony, searchable. Type a joke fragment, land on the exact second in the exact episode.',u:'https://searchtony.com'},
+ {d:'search',n:'Index Factory',s:'run',t:3,p:'The machine that builds those search sites for anyone with a back catalogue. Hundreds of hours become a searchable library.'},
+ {d:'search',n:'Comedy archive search',s:'run',t:2,p:'A 492-episode standup archive, indexed word by word.'},
+ {d:'search',n:'Podcast archive search',s:'run',t:2,p:'A long-running history podcast, fully searchable.'},
+ {d:'search',n:'Supercut',s:'some',t:2,p:'Every time a phrase was ever said across an archive, stitched into one clip in order.'},
+ {d:'ebay',n:'Picker AI',s:'run',t:3,p:'Photograph a pile of stuff. It cuts out each item, identifies it and prices it from real sold listings.',u:'https://picker.findyourmonkey.com'},
+ {d:'ebay',n:'eBay Lister',s:'run',t:3,p:'Phone camera to live eBay listing. It writes the title, checks the price and posts.'},
+ {d:'ebay',n:'Store Audit',s:'run',t:2,p:'Reads a whole eBay store and reports what is priced wrong, what is stale and what is missing.',u:'https://audit.findyourmonkey.com'},
+ {d:'ebay',n:'Watchers',s:'run',t:1,p:'Small machines that watch the internet for one rare thing and say when it shows up.'},
+ {d:'client',n:'Podcast back office',s:'run',t:4,p:'A podcaster\'s whole back office: episodes arrive, clips get cut, shorts get scheduled, ad markers placed, a board updated. It runs itself.'},
+ {d:'client',n:'Course platform',s:'run',t:3,p:'A paid online course host built from scratch: video, access codes, welcome emails, checkout.',u:'https://relay.findyourmonkey.com/learn/sample/join'},
+ {d:'client',n:'Merch tracker',s:'run',t:2,p:'Inventory and flip tracker for a wrestling merch seller, plus a retro game of his family.'},
+ {d:'client',n:'Melt',s:'run',t:2,p:'Precious-metals spot price calculator. Open to anyone.',u:'https://melt.findyourmonkey.com'},
+ {d:'client',n:'Band app',s:'run',t:1,p:'Set lists and tips for a working band.'},
+ {d:'client',n:'Travel companion',s:'run',t:1,p:'An AI travel companion app.'},
+ {d:'sales',n:'The Hunt',s:'run',t:3,p:'Finds shows that could use help, checks them against their own feeds, and cuts a free sample clip from their own episode first.'},
+ {d:'sales',n:'Outreach HQ',s:'run',t:2,p:'One board where every message waits for a human thumbs-up before it goes anywhere.'},
+ {d:'sales',n:'findyourmonkey.com',s:'run',t:2,p:'The storefront. Live numbers, live demos, a free clip for the asking.',u:'https://findyourmonkey.com'},
+ {d:'infra',n:'Free model waterfall',s:'run',t:4,p:'A waterfall across hundreds of free AI models. Every machine asks one address and it finds capacity somewhere.'},
+ {d:'infra',n:'The Brain',s:'run',t:3,p:'Monkey\'s memory: every lesson, rule and fix, searchable and firing in real time.',u:'https://findyourmonkey.com/brain.html'},
+ {d:'infra',n:'Autocrop + captions',s:'run',t:3,p:'Shared services every clipper calls: face-tracking vertical crop, word-timed captions, a profanity filter, a music detector.'},
+ {d:'infra',n:'Local image + video',s:'run',t:3,p:'Image and video generation on one graphics card. Cartoons and b-roll without paying anyone.'},
+ {d:'infra',n:'Content safety',s:'run',t:2,p:'Every upload passes through it. Anything off-limits is held, never posted.'},
+ {d:'infra',n:'Watchdogs',s:'run',t:2,p:'Memory guards, unit watchdogs and nightly backups. The things that watch the things.'},
+ {d:'infra',n:'TV dashboards',s:'run',t:1,p:'Two screens in the computer room: system health and empire activity.'}
+];
+var STAT={run:{c:0xf2c14e,l:'RUNNING'},some:{c:0xc9a988,l:'HAND-DRIVEN'},park:{c:0x5a4b41,l:'RESTING'}};
+
+// live numbers
+function k(v){return v>=1e6?(v/1e6).toFixed(2).replace(/0$/,'')+'M':v>=1000?v.toLocaleString('en-US'):String(v)}
+fetch('clips.json?t='+Date.now()).then(function(r){return r.json()}).then(function(c){
+  document.getElementById('sv').textContent=k(c.total_views||0);document.getElementById('sc').textContent=(c.total_clips||0).toLocaleString('en-US');document.getElementById('s30').textContent=k(c.views_30d||0);
+}).catch(function(){document.getElementById('stats').style.display='none'});
+
+// ---------- SCENE ----------
+var cv=document.getElementById('c');
+var R=new THREE.WebGLRenderer({canvas:cv,antialias:true});
+R.setPixelRatio(Math.min(devicePixelRatio,2));
+var S=new THREE.Scene(); S.background=new THREE.Color(0x161311); S.fog=new THREE.Fog(0x161311,70,150);
+var CAM=new THREE.PerspectiveCamera(42,1,.1,800);
+var az=0.7, el=innerWidth<innerHeight?0.8:0.62, dist=78, target=new THREE.Vector3(0,2,0);
+function placeCam(){CAM.position.set(target.x+dist*Math.cos(el)*Math.sin(az),target.y+dist*Math.sin(el),target.z+dist*Math.cos(el)*Math.cos(az));CAM.lookAt(target)}
+S.add(new THREE.HemisphereLight(0x4a4f6a,0x161311,.9));
+var sun=new THREE.DirectionalLight(0xffd9b0,.9); sun.position.set(-30,50,20); S.add(sun);
+var moon=new THREE.PointLight(0xe8834f,1.2,120); moon.position.set(0,40,0); S.add(moon);
+var ground=new THREE.Mesh(new THREE.CircleGeometry(75,64),new THREE.MeshStandardMaterial({color:0x1b1613,roughness:1})); ground.rotation.x=-Math.PI/2; ground.position.y=-0.01; S.add(ground);
+var grid=new THREE.GridHelper(140,56,0x2a231f,0x241e1a); S.add(grid);
+
+function winTex(hue,density,warm){
+  var c=document.createElement('canvas');c.width=64;c.height=128;var g=c.getContext('2d');
+  g.fillStyle='#'+new THREE.Color(hue).multiplyScalar(.35).getHexString();g.fillRect(0,0,64,128);
+  for(var y=6;y<128;y+=10)for(var x=5;x<64;x+=9){if(Math.random()<density){var a=.5+Math.random()*.5;g.fillStyle=warm?'rgba(242,193,78,'+a+')':'rgba(232,131,79,'+(a*.7)+')';g.fillRect(x,y,5,6)}}
+  var t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;return t;
+}
+var buildings=[], pick=[], beacons=[];
+var box=new THREE.BoxGeometry(1,1,1);
+function district(d){var g=new THREE.Group();g.position.set(d.x,0,d.z);S.add(g);
+  var ring=new THREE.Mesh(new THREE.RingGeometry(9.5,9.8,48),new THREE.MeshBasicMaterial({color:d.hue,transparent:true,opacity:.35,side:THREE.DoubleSide}));ring.rotation.x=-Math.PI/2;ring.position.y=.02;g.add(ring);
+  return g;}
+function label(txt){var c=document.createElement('canvas');c.width=512;c.height=96;var g=c.getContext('2d');g.font='700 44px Syne, sans-serif';g.textAlign='center';g.fillStyle='rgba(201,169,136,.95)';g.fillText(txt.toUpperCase(),256,62);var sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false}));sp.scale.set(11,2.1,1);return sp}
+var DG={};for(var key in D){DG[key]=district(D[key]);var l=label(D[key].name);l.position.set(0,.8,11);DG[key].add(l)}
+var perD={};B.forEach(function(b){perD[b.d]=(perD[b.d]||0)+1});
+var cnt={};
+B.forEach(function(b,i){
+  var d=D[b.d],G=DG[b.d],n=perD[b.d],kk=cnt[b.d]=(cnt[b.d]||0);cnt[b.d]++;
+  var ang=(kk/n)*Math.PI*2+b.d.length, r=b.t>=4?0:(3.2+(kk%2)*2.4);
+  var x=Math.cos(ang)*r, z=Math.sin(ang)*r;
+  var h=[2.2,4,7,12][b.t-1]*(0.85+Math.random()*.3), w=[1.6,2,2.4,3][b.t-1];
+  var live=b.s==='run', dens=live?.55:b.s==='some'?.3:.08;
+  var wt=winTex(d.hue,dens,live);wt.repeat.set(1,Math.max(1,Math.round(h/3)));
+  var mat=new THREE.MeshStandardMaterial({map:wt,emissiveMap:wt,emissive:0xffffff,emissiveIntensity:live?.55:.25,roughness:.7,metalness:.1});
+  var g=new THREE.Group(); g.position.set(x,0,z);
+  var m=new THREE.Mesh(box,mat); m.scale.set(w,h,w); m.position.y=h/2; g.add(m); pick.push(m); m.userData.i=i;
+  if(b.t>=3){
+    var m2=new THREE.Mesh(box,mat.clone()); m2.scale.set(w*.62,h*.35,w*.62); m2.position.y=h+h*.175; g.add(m2); pick.push(m2); m2.userData.i=i;
+    var spire=new THREE.Mesh(new THREE.ConeGeometry(w*.12,h*.22,6),new THREE.MeshStandardMaterial({color:0xc9a988,metalness:.6,roughness:.3})); spire.position.y=h*1.35+h*.11; g.add(spire);
+  }
+  if(b.t===4){
+    var crown=new THREE.Mesh(new THREE.TorusGeometry(w*.5,.08,8,24),new THREE.MeshBasicMaterial({color:0xf2c14e})); crown.rotation.x=Math.PI/2; crown.position.y=h+.05; g.add(crown);
+    var ant=new THREE.Mesh(new THREE.CylinderGeometry(.04,.04,h*.3),new THREE.MeshBasicMaterial({color:0xf5ede1})); ant.position.y=h*1.57+h*.15; g.add(ant);
+  }
+  var bc=new THREE.Mesh(new THREE.SphereGeometry(.16,10,10),new THREE.MeshBasicMaterial({color:STAT[b.s].c})); bc.position.y=(b.t>=3?h*1.35+h*.22:h)+.3; g.add(bc); beacons.push({m:bc,ph:Math.random()*6,s:b.s});
+  var pl=new THREE.Mesh(box,new THREE.MeshStandardMaterial({color:0x2a231f,roughness:1})); pl.scale.set(w+.6,.2,w+.6); pl.position.y=.1; g.add(pl);
+  G.add(g);
+  b.h=h; b.world=new THREE.Vector3(); g.getWorldPosition(b.world); b.top=(b.t>=3?h*1.35+h*.22:h);
+  buildings.push({b:b,g:g,mat:mat});
+});
+
+var BB=new THREE.Box3();buildings.forEach(function(o){BB.expandByPoint(o.b.world)});var HOME=BB.getCenter(new THREE.Vector3());HOME.y=2;
+target.copy(HOME);
+var RAD=0;buildings.forEach(function(o){RAD=Math.max(RAD,o.b.world.distanceTo(HOME))});RAD+=6;
+function fitDist(){var a=innerWidth/innerHeight;if(a<1){CAM.setViewOffset(innerWidth,innerHeight,0,innerHeight*.04,innerWidth,innerHeight)}else CAM.clearViewOffset();var t=Math.tan(CAM.fov*Math.PI/360)*Math.min(a,1);var d=RAD/t*(a<1?1.0:.9);S.fog.near=d*1.1;S.fog.far=d*2.2;CAM.far=d*4;CAM.updateProjectionMatrix();return d}
+dist=fitDist();
+var roads=[], hub=new THREE.Vector3(D.infra.x,0.05,D.infra.z);
+var roadMat=new THREE.LineBasicMaterial({color:0x3a3029});
+for(var kd in D){if(kd==='infra')continue;var a0=new THREE.Vector3(D[kd].x,0.05,D[kd].z);
+  var mid=a0.clone().lerp(hub,.5).add(new THREE.Vector3((Math.random()-.5)*8,0,(Math.random()-.5)*8));
+  var curve=new THREE.QuadraticBezierCurve3(a0,mid,hub);
+  S.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(40)),roadMat));roads.push(curve)}
+
+var pkG=new THREE.SphereGeometry(.14,8,8);
+var packets=[];for(var i=0;i<26;i++){var pm=new THREE.Mesh(pkG,new THREE.MeshBasicMaterial({color:i%3?0x5fd9b4:0xf2c14e}));S.add(pm);packets.push({m:pm,r:roads[i%roads.length],t:Math.random(),v:.12+Math.random()*.2,dir:i%2?1:-1})}
+
+// ---------- MONKEYS ----------
+function monkey(){
+  var g=new THREE.Group();
+  var fur=new THREE.MeshStandardMaterial({color:0x7a4a2a,roughness:.9}), face=new THREE.MeshStandardMaterial({color:0xd9a97a,roughness:.8});
+  var body=new THREE.Mesh(new THREE.SphereGeometry(.34,12,12),fur);body.scale.y=1.15;body.position.y=.4;g.add(body);
+  var head=new THREE.Mesh(new THREE.SphereGeometry(.26,12,12),fur);head.position.y=.95;g.add(head);
+  var fc=new THREE.Mesh(new THREE.SphereGeometry(.17,10,10),face);fc.position.set(0,.9,.16);fc.scale.z=.6;g.add(fc);
+  [-1,1].forEach(function(s){var e=new THREE.Mesh(new THREE.SphereGeometry(.09,8,8),face);e.position.set(s*.26,1,0);g.add(e);
+    var eye=new THREE.Mesh(new THREE.SphereGeometry(.035,6,6),new THREE.MeshBasicMaterial({color:0x111111}));eye.position.set(s*.07,.95,.31);g.add(eye)});
+  var tail=new THREE.Mesh(new THREE.TorusGeometry(.32,.045,6,16,Math.PI*1.2),fur);tail.position.set(0,.55,-.3);tail.rotation.y=Math.PI/2;g.add(tail);
+  var gear=new THREE.Mesh(new THREE.TorusGeometry(.13,.05,6,8),new THREE.MeshBasicMaterial({color:0xe8834f}));gear.position.set(.32,.55,.15);g.add(gear);
+  g.userData.tail=tail;g.userData.gear=gear;g.userData.body=body;
+  return g;
+}
+var monkeys=[];
+var liveB=buildings.filter(function(o){return o.b.s==='run'});
+for(i=0;i<14;i++){
+  var mk=monkey();mk.scale.setScalar(1.7);S.add(mk);
+  var fa=liveB[Math.floor(Math.random()*liveB.length)],fb=liveB[Math.floor(Math.random()*liveB.length)];
+  monkeys.push({m:mk,from:fa,to:fb,t:Math.random(),spd:.06+Math.random()*.06,hop:Math.random()*6,mode:i<4?'roof':'run',roof:fa});
+}
+
+// ---------- INTERACTION ----------
+var ray=new THREE.Raycaster(),mouse=new THREE.Vector2(),hover=-1,sel=-1,auto=true,lastInter=0;
+var tip=document.getElementById('tip'),panel=document.getElementById('panel');
+var drag=false,px=0,py=0,moved=0,pinch=0,pang=0,touchN=0,flyTo=null;
+cv.addEventListener('pointerdown',function(e){if(touchN>1)return;drag=true;px=e.clientX;py=e.clientY;moved=0;auto=false;lastInter=performance.now()});
+function pan(dx,dy){var kk=dist*.0016;var f=new THREE.Vector3(-Math.sin(az),0,-Math.cos(az)),r=new THREE.Vector3(Math.cos(az),0,-Math.sin(az));target.addScaledVector(r,dx*kk).addScaledVector(f,dy*kk);var off=target.clone().sub(HOME);off.y=0;if(off.length()>RAD)target.copy(HOME).addScaledVector(off.normalize(),RAD).setY(2);flyTo=null}
+var lastTap=0;addEventListener('pointerup',function(e){if(!drag)return;drag=false;if(moved<6){var now=performance.now();if(now-lastTap<350){fitCity()}else click();lastTap=now}});
+addEventListener('pointermove',function(e){
+  mouse.set((e.clientX/innerWidth)*2-1,-(e.clientY/innerHeight)*2+1);
+  if(drag&&touchN<2){var dx=e.clientX-px,dy=e.clientY-py;moved+=Math.abs(dx)+Math.abs(dy);if(e.shiftKey)pan(dx,dy);else{az-=dx*.006;el=Math.min(1.35,Math.max(.18,el+dy*.005))}px=e.clientX;py=e.clientY;lastInter=performance.now()}
+  else{tip.style.left=e.clientX+'px';tip.style.top=e.clientY+'px'}
+});
+cv.addEventListener('wheel',function(e){e.preventDefault();dist=Math.min(RAD*8,Math.max(12,dist*(1+e.deltaY*.0012)));auto=false;lastInter=performance.now()},{passive:false});
+function tinfo(e){var a=e.touches[0],b=e.touches[1];return[Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY),Math.atan2(a.clientY-b.clientY,a.clientX-b.clientX)]}
+cv.addEventListener('touchstart',function(e){touchN=e.touches.length;if(touchN===2){var t=tinfo(e);pinch=t[0];pang=t[1];drag=false;auto=false}},{passive:true});
+cv.addEventListener('touchend',function(e){touchN=e.touches.length;lastInter=performance.now()},{passive:true});
+cv.addEventListener('touchmove',function(e){if(e.touches.length===2){var t=tinfo(e);dist=Math.min(RAD*8,Math.max(12,dist*(pinch/t[0])));az-=(t[1]-pang);pinch=t[0];pang=t[1];drag=false;lastInter=performance.now()}},{passive:true});
+function hit(){ray.setFromCamera(mouse,CAM);var h=ray.intersectObjects(pick,false);return h.length?h[0].object.userData.i:-1}
+function click(){var i=hit();if(i<0){panel.classList.remove('on');sel=-1;return}sel=i;var b=B[i];
+  document.getElementById('pd').textContent=D[b.d].name;document.getElementById('ph').textContent=b.n;
+  var ps=document.getElementById('ps');ps.textContent=STAT[b.s].l;ps.style.color='#'+new THREE.Color(STAT[b.s].c).getHexString();
+  document.getElementById('pp').textContent=b.p;var a=document.getElementById('pa');a.hidden=!b.u;if(b.u){a.href=b.u;a.target=b.u.indexOf('findyourmonkey.com/brain')>=0?'_self':'_blank'}
+  panel.classList.add('on');
+  var w=buildings[i].b.world;flyTo=new THREE.Vector3(w.x,b.h*.4,w.z);}
+document.getElementById('x').onclick=function(){panel.classList.remove('on');sel=-1;flyTo=HOME.clone();dist=fitDist()};
+
+// live ticker: real signals from the brain feed, in plain words
+var liveEl=document.getElementById('live'),lines=['the city is awake','monkeys are moving gears'];
+fetch('https://relay.findyourmonkey.com/brainfeed/brain.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
+  var ev=(d.events||[]).slice(-20).reverse();if(ev.length)lines=ev.map(function(e){var L=d.lobes[e[0]];return L?(L.name+': '+L.verb):''}).filter(Boolean);
+}).catch(function(){});
+var ji=0;setInterval(function(){liveEl.textContent=lines[ji++%lines.length]},2600);
+
+// ---------- LOOP ----------
+function resize(){R.setSize(innerWidth,innerHeight,true);CAM.aspect=innerWidth/innerHeight;CAM.updateProjectionMatrix()}
+function fitCity(){flyTo=HOME.clone();dist=fitDist();panel.classList.remove('on');sel=-1;el=innerWidth<innerHeight?0.8:0.62}
+addEventListener('resize',function(){resize();if(sel<0)dist=fitDist()});resize();setTimeout(function(){resize();fitCity()},400);
+var clock=new THREE.Clock(),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function tick(){
+  var dt=Math.min(clock.getDelta(),.05),T=clock.elapsedTime;
+  if(!drag&&performance.now()-lastInter>6000)auto=true;
+  if(auto&&!reduce)az+=dt*.08;
+  if(flyTo){target.lerp(flyTo,.06);if(target.distanceTo(flyTo)<.05)flyTo=null}
+  placeCam();
+  beacons.forEach(function(o){var p=o.s==='run'?.5+.5*Math.sin(T*3+o.ph):.6;o.m.scale.setScalar(.7+p*.6);o.m.material.color.setHex(STAT[o.s].c).multiplyScalar(.6+p*.6)});
+  packets.forEach(function(p){p.t+=dt*p.v*p.dir;if(p.t>1||p.t<0){p.dir*=-1;p.t=Math.min(1,Math.max(0,p.t));p.r=roads[Math.floor(Math.random()*roads.length)]}var v=p.r.getPoint(p.t);p.m.position.set(v.x,.3+.2*Math.sin(T*6+p.t*20),v.z)});
+  monkeys.forEach(function(kk){
+    kk.m.userData.tail.rotation.z=Math.sin(T*4+kk.hop)*.5;kk.m.userData.gear.rotation.z+=dt*4;
+    if(kk.mode==='roof'){var w=kk.roof.b.world;kk.m.position.set(w.x+.6,kk.roof.b.top+.1,w.z+.6);kk.m.rotation.y=T*.5;kk.m.userData.body.scale.y=1.1+.08*Math.sin(T*5+kk.hop);if(Math.random()<.002){kk.mode='run';kk.from=kk.roof;kk.to=liveB[Math.floor(Math.random()*liveB.length)];kk.t=0}return}
+    kk.t+=dt*kk.spd;
+    if(kk.t>=1){kk.from=kk.to;kk.t=0;if(Math.random()<.35){kk.mode='roof';kk.roof=kk.from;return}kk.to=liveB[Math.floor(Math.random()*liveB.length)];if(kk.to===kk.from)kk.to=liveB[(liveB.indexOf(kk.from)+1)%liveB.length]}
+    var a=kk.from.b.world,b=kk.to.b.world,p;
+    if(kk.t<.5){p=a.clone().lerp(hub,kk.t*2)}else{p=hub.clone().lerp(b,(kk.t-.5)*2)}
+    var hopY=Math.abs(Math.sin(kk.t*Math.PI*14+kk.hop))*.6;
+    kk.m.position.set(p.x+Math.sin(kk.hop)*1.2,hopY,p.z+Math.cos(kk.hop)*1.2);
+    var nxt=kk.t<.5?hub:b;kk.m.lookAt(nxt.x+Math.sin(kk.hop)*1.2,hopY,nxt.z+Math.cos(kk.hop)*1.2);
+  });
+  if(!drag){var hi=hit();if(hi!==hover){if(hover>=0)buildings[hover].mat.emissiveIntensity=buildings[hover].b.s==='run'?.55:.25;hover=hi;if(hi>=0){buildings[hi].mat.emissiveIntensity=1.2;tip.innerHTML='';tip.appendChild(document.createTextNode(B[hi].n));var sm=document.createElement('small');sm.textContent=STAT[B[hi].s].l;tip.appendChild(sm);tip.style.display=matchMedia('(hover: hover)').matches?'block':'none';cv.style.cursor='pointer'}else{tip.style.display='none';cv.style.cursor='grab'}}}
+  R.render(S,CAM);requestAnimationFrame(tick);
+}
+tick();
+})();
+</script>
+</body>
+</html>

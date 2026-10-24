@@ -276,6 +276,12 @@ form .btn{margin-top:6px}
 .tagline h2 em{font-style:normal;color:var(--orange-ink)}
 .tagline p{color:var(--tan);max-width:560px;margin:14px auto 0}
 footer{border-top:1px solid var(--border);margin-top:60px}
+.egg{display:inline-grid;place-items:center;width:34px;height:34px;margin-top:18px;border-radius:50%;color:var(--orange);opacity:.32;transition:opacity .3s,transform .3s,filter .3s;text-decoration:none}
+.egg svg{width:22px;height:22px;animation:eggspin 14s linear infinite}
+.egg:hover,.egg:focus-visible{opacity:1;transform:scale(1.25);filter:drop-shadow(0 0 10px rgba(232,131,79,.9))}
+.egg:hover svg{animation-duration:2.2s}
+@keyframes eggspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.egg svg{animation:none}}
 .foot{max-width:1120px;margin:0 auto;padding:40px 28px 48px;display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:28px}
 .foot h5{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
 .foot a{display:block;text-decoration:none;color:var(--tan);font-size:14.5px;padding:4px 0}
@@ -629,6 +635,7 @@ footer{border-top:1px solid var(--border);margin-top:60px}
 <div class="tagline">
   <h2>We are no longer burdened by the <em>impossible.</em></h2>
   <p>Built by one person and a rack of machines that never sleep, for anyone with a grind worth killing.</p>
+  <a class="egg" href="brain.html" aria-label="There is something in here" title=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke-width="4" stroke-dasharray="3.1 3.18"/><circle cx="12" cy="12" r="5.6" stroke-width="1.6"/><circle cx="12" cy="12" r="1.8" fill="currentColor" stroke="none"/></svg></a>
 </div>
 
 <footer>
@@ -684,6 +691,9 @@ footer{border-top:1px solid var(--border);margin-top:60px}
     io.observe(document.getElementById('s-views'));
   }
   fetch('clips.json?t='+Date.now()).then(function(r){return r.json()}).then(render).catch(function(){});
+
+  // easter egg: type "monkey" anywhere (outside a form field) to open the brain
+  var typed='';document.addEventListener('keydown',function(e){var t=e.target;if(t&&/INPUT|TEXTAREA|SELECT/.test(t.tagName))return;if(!e.key||e.key.length!==1)return;typed=(typed+e.key.toLowerCase()).slice(-6);if(typed==='monkey')location.href='brain.html'});
 
   // lead form -> relay quote server (/api/lead), mailto fallback on any failure
   var f=document.getElementById('leadForm'),btn=document.getElementById('leadBtn'),err=document.getElementById('leadErr');

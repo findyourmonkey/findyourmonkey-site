@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Monkey Brain · Find Your Monkey</title>
+<meta name="description" content="You found it. The live brain behind Find Your Monkey, firing in real time.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico">
+<meta property="og:title" content="You found the Monkey brain">
+<meta property="og:description" content="The live brain behind Find Your Monkey, firing in real time.">
+<meta property="og:image" content="https://findyourmonkey.com/brand/og-card.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07060a;--ink:#f5ede1;--dim:#9a8f86;--orange:#e8834f;--gold:#f2c14e;--mint:#5fd9b4;--line:rgba(245,237,225,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}
+body{background:radial-gradient(ellipse at 50% 45%,#1a1220 0%,#0c0a10 45%,#050407 100%)}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+#c:active{cursor:grabbing}
+.grain{position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px);mix-blend-mode:overlay;z-index:1}
+.vign{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.65));z-index:1}
+.hud{position:fixed;z-index:3;pointer-events:none;font-family:'JetBrains Mono',monospace}
+.corner{position:fixed;width:26px;height:26px;border-color:rgba(232,131,79,.55);border-style:solid;z-index:2;pointer-events:none}
+.c1{top:14px;left:14px;border-width:1px 0 0 1px}.c2{top:14px;right:14px;border-width:1px 1px 0 0}
+.c3{bottom:14px;left:14px;border-width:0 0 1px 1px}.c4{bottom:14px;right:14px;border-width:0 1px 1px 0}
+#top{top:calc(env(safe-area-inset-top,0px) + 26px);left:30px;right:30px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+#brand{display:flex;gap:12px;align-items:center;pointer-events:auto;text-decoration:none;color:inherit}
+#brand img{width:40px;height:40px;filter:drop-shadow(0 0 14px rgba(232,131,79,.55))}
+#brand b{display:block;font-family:Syne,sans-serif;font-weight:800;font-size:20px;letter-spacing:.14em}
+#brand small{display:block;font-size:10px;letter-spacing:.22em;color:var(--orange);margin-top:3px}
+#live{font-size:11px;letter-spacing:.18em;color:var(--mint);display:flex;align-items:center;gap:8px;white-space:nowrap}
+#live i{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 12px var(--mint);animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.25}}
+#stats{top:calc(env(safe-area-inset-top,0px) + 92px);left:30px;display:grid;gap:14px}
+#stats div b{display:block;font-size:22px;font-weight:500;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1;text-shadow:0 0 18px rgba(242,193,78,.35)}
+#stats div span{display:block;font-size:9px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-top:5px}
+#lobes{top:calc(env(safe-area-inset-top,0px) + 92px);right:30px;width:230px;display:grid;gap:7px}
+#lobes .h{font-size:9px;letter-spacing:.24em;color:var(--dim);margin-bottom:4px}
+.lb{display:grid;grid-template-columns:1fr 70px;align-items:center;gap:10px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#cfc4b9;transition:color .3s}
+.lb .bar{height:3px;background:rgba(245,237,225,.08);border-radius:2px;overflow:hidden}
+.lb .bar i{display:block;height:100%;background:var(--c);box-shadow:0 0 8px var(--c);width:0;transition:width 1.2s}
+.lb.hot{color:#fff}
+#feed{bottom:calc(env(safe-area-inset-bottom,0px) + 104px);left:30px;width:min(380px,calc(100vw - 60px));font-size:11px;display:grid;gap:5px}
+#feed .h{font-size:9px;letter-spacing:.24em;color:var(--dim);margin-bottom:3px}
+#feed .ev{display:flex;gap:10px;opacity:0;transform:translateY(6px);animation:in .5s forwards;white-space:nowrap;overflow:hidden}
+#feed .ev b{color:var(--c);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:10px;min-width:96px}
+#feed .ev span{color:#d8cfc6;overflow:hidden;text-overflow:ellipsis}
+#feed .ev em{color:var(--dim);font-style:normal;margin-left:auto;padding-left:8px}
+@keyframes in{to{opacity:1;transform:none}}
+#cta{position:fixed;z-index:4;bottom:calc(env(safe-area-inset-bottom,0px) + 30px);left:50%;transform:translateX(-50%);display:flex;gap:10px;align-items:center}
+.btn{font-family:Inter,sans-serif;font-weight:600;font-size:14px;text-decoration:none;border-radius:999px;padding:13px 22px;white-space:nowrap;transition:transform .15s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn.p{background:var(--orange);color:#1a0f08;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 10px 40px -8px rgba(232,131,79,.8)}
+.btn.g{color:var(--ink);border:1px solid var(--line);background:rgba(10,8,12,.6);backdrop-filter:blur(6px)}
+.btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+#tag{bottom:calc(env(safe-area-inset-bottom,0px) + 34px);right:30px;font-size:10px;letter-spacing:.2em;color:var(--dim);text-align:right}
+.label{position:fixed;z-index:2;pointer-events:none;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,237,225,.55);transform:translate(-50%,-50%);white-space:nowrap;transition:color .25s,text-shadow .25s}
+.label.hot{color:#fff;text-shadow:0 0 12px var(--c),0 0 24px var(--c)}
+.label:before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--c);margin-right:7px;vertical-align:1px;box-shadow:0 0 8px var(--c)}
+#intro{position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:#050407;transition:opacity 1.1s ease .2s;text-align:center;padding:24px}
+#intro.off{opacity:0;pointer-events:none}
+#intro p{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.3em;color:var(--orange);margin-bottom:16px;min-height:1.2em}
+#intro h1{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(34px,7vw,72px);letter-spacing:-.01em;line-height:1.02}
+#intro h1 span{color:var(--orange)}
+@media (max-width:760px){
+  #top{left:20px;right:20px}#brand b{font-size:16px}#brand img{width:32px;height:32px}
+  #stats{left:20px;top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 214px);grid-template-columns:repeat(3,auto);gap:10px 18px}
+  #stats div b{font-size:15px}#stats div span{font-size:8px;letter-spacing:.14em}
+  #stats .xs{display:none}
+  #lobes{display:none}
+  #feed{left:20px;bottom:calc(env(safe-area-inset-bottom,0px) + 96px);width:calc(100vw - 40px)}
+  #feed .ev:nth-child(n+5){display:none}
+  #feed .ev b{min-width:84px}
+  #cta{bottom:calc(env(safe-area-inset-bottom,0px) + 26px);width:calc(100vw - 40px)}
+  #cta .btn{flex:1;text-align:center;padding:13px 10px;font-size:13px}
+  #tag{display:none}
+  .label{font-size:8px;letter-spacing:.14em}
+  .corner{display:none}
+}
+@media (prefers-reduced-motion:reduce){#live i{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="c" aria-label="A live 3D map of the Monkey brain. Each point is a memory, each flash is a real system doing work."></canvas>
+<div class="grain"></div><div class="vign"></div>
+<div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
+
+<div class="hud" id="top">
+  <a id="brand" href="/" aria-label="Back to Find Your Monkey"><img src="brand/mark-160.png" alt=""><div><b>MONKEY</b><small>NEURAL ACTIVITY</small></div></a>
+  <div id="live"><i></i><span id="liveTxt">CONNECTING</span></div>
+</div>
+
+<div class="hud" id="stats">
+  <div><b id="sNeurons">—</b><span>Memories</span></div>
+  <div><b id="sSyn">—</b><span>Connections</span></div>
+  <div><b id="sSig">—</b><span>Signals, last 10 min</span></div>
+  <div class="xs"><b id="sNew">—</b><span>New memories today</span></div>
+  <div class="xs"><b id="sViews">—</b><span>Clip views, all time</span></div>
+</div>
+
+<div class="hud" id="lobes"><div class="h">REGION ACTIVITY · 10 MIN</div></div>
+<div class="hud" id="feed"><div class="h">LIVE SIGNALS</div></div>
+<div class="hud" id="tag">WE ARE NO LONGER<br>BURDENED BY THE IMPOSSIBLE</div>
+
+<nav id="cta">
+  <a class="btn g" href="/">&larr; Back to the site</a>
+  <a class="btn p" href="city.html">Enter Monkey City &rarr;</a>
+</nav>
+
+<div id="intro" aria-hidden="true"><div><p id="type"></p><h1>You found the <span>brain</span>.</h1></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var FEED='https://relay.findyourmonkey.com/brainfeed/brain.json';
+var COLORS=['#e8834f','#f2c14e','#5fd9b4','#c78bff','#7fb8ff','#ff6f91','#ffd27a','#8fe3ff','#f5ede1'];
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var mobile=innerWidth<760;
+
+// ---------- intro ----------
+var intro=document.getElementById('intro'),ty=document.getElementById('type'),msg='> ACCESS GRANTED',k=0;
+(function t(){ty.textContent=msg.slice(0,k++)+(k%2?'_':'');if(k<=msg.length)setTimeout(t,55)})();
+setTimeout(function(){intro.classList.add('off')},reduce?600:2300);
+
+// ---------- scene ----------
+var cv=document.getElementById('c');
+var R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+R.setPixelRatio(Math.min(devicePixelRatio,2));R.setClearColor(0x000000,0);
+var S=new THREE.Scene();
+var CAM=new THREE.PerspectiveCamera(45,1,.1,500);
+var brain=new THREE.Group();S.add(brain);
+var SC=[11,9.5,14]; // half-width, half-height, half-length (front is +z)
+
+function rnd(){return Math.random()*2-1}
+// ---- a brain-shaped cloud: two hemispheres, temporal lobes, cerebellum and stem ----
+function inCerebellum(x,y,z){var a=x/.5,b=(y+.56)/.24,c=(z+.68)/.3;return a*a+b*b+c*c<=1}
+function inStem(x,y,z){return y>-.98&&y<-.42&&(x*x+(z+.36)*(z+.36))<.016}
+function inCerebrum(x,y,z){
+  if(Math.abs(x)<.035)return false; // the fissure between hemispheres
+  var r=x*x/.92+y*y+z*z; if(r>1)return false;
+  var floor=-.42-.3*Math.max(0,Math.abs(x)-.25)/.7*(z>-.45&&z<.55?1:0); // temporal lobes hang lower at the sides
+  if(y<floor)return false;
+  if(y<-.2&&z>.62)return false; // tuck the frontal underside
+  return true;
+}
+var HOME=[[0,.28,-.84],[.8,-.38,.06],[-.6,.06,.66],[.56,.6,-.32],[.6,.26,.66],[-.56,.6,-.32],[0,.76,.46],[0,-.6,-.6],[0,.96,0]];
+var CLOUD=[];
+(function(){
+  var tries=0;
+  while(CLOUD.length<(mobile?5200:8000)&&tries<200000){tries++;
+    var x=rnd(),y=rnd(),z=rnd(),lb=-1;
+    if(inCerebellum(x,y,z)||inStem(x,y,z))lb=7;
+    else if(inCerebrum(x,y,z)){
+      var r=Math.sqrt(x*x/.92+y*y+z*z);
+      // most tissue sits near the cortex surface; gyri make it lumpy
+      var gyri=.5+.5*Math.sin(x*23+Math.sin(z*17)*2)*Math.sin(z*19+y*13);
+      if(r<.72&&Math.random()>.18)continue;
+      if(gyri<.32&&Math.random()>.35)continue;
+      var best=0,bd=9;for(var k=0;k<HOME.length;k++){if(k===7)continue;var h=HOME[k],hx=(k===1&&x<0)?-h[0]:h[0],dd=(x-hx)*(x-hx)+(y-h[1])*(y-h[1])+(z-h[2])*(z-h[2]);if(dd<bd){bd=dd;best=k}}
+      lb=best;
+    } else continue;
+    CLOUD.push({p:new THREE.Vector3(x*SC[0],y*SC[1],z*SC[2]),lb:lb,used:false});
+  }
+})();
+var byLobe=[];CLOUD.forEach(function(c,i){(byLobe[c.lb]=byLobe[c.lb]||[]).push(i)});
+function place(lobe){
+  var pool=byLobe[lobe]||byLobe[8];
+  for(var t=0;t<30;t++){var c=CLOUD[pool[Math.floor(Math.random()*pool.length)]];if(!c.used){c.used=true;return c.p.clone()}}
+  var c2=CLOUD[pool[Math.floor(Math.random()*pool.length)]];return c2.p.clone().add(new THREE.Vector3(rnd()*.25,rnd()*.25,rnd()*.25));
+}
+
+// glow sprite texture
+function glowTex(){var c=document.createElement('canvas');c.width=c.height=64;var g=c.getContext('2d');var r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(.18,'rgba(255,255,255,.85)');r.addColorStop(.45,'rgba(255,255,255,.25)');r.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=r;g.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)}
+var TEX=glowTex();
+
+var pts,ptsGeo,lines,lineGeo,nodeLobe=[],base=[],heat,edgeArr=[],lobeNodes=[],lobeCenter=[],labels=[],data=null,tissue,tissueGlow,tissueLobe=[];
+var vs='attribute float size;attribute vec3 color;attribute float glow;varying vec3 vC;varying float vG;uniform float px;void main(){vC=color;vG=glow;vec4 mv=modelViewMatrix*vec4(position,1.);gl_PointSize=size*(1.+glow*1.6)*px*(120./-mv.z);gl_Position=projectionMatrix*mv;}';
+var fs='uniform sampler2D map;varying vec3 vC;varying float vG;void main(){vec4 t=texture2D(map,gl_PointCoord);gl_FragColor=vec4(mix(vC,vec3(1.),vG*.55)*(.55+vG*1.4),t.a*(.55+vG*.45));}';
+var fsT='uniform sampler2D map;varying vec3 vC;varying float vG;void main(){vec4 t=texture2D(map,gl_PointCoord);gl_FragColor=vec4(vC*(.6+vG*1.1),t.a*(.42+vG*.5));}';
+
+function build(d){
+  var N=d.nodes.length,pos=new Float32Array(N*3),col=new Float32Array(N*3),size=new Float32Array(N),glow=new Float32Array(N);
+  for(var i=0;i<d.lobes.length;i++){lobeNodes[i]=[];lobeCenter[i]=new THREE.Vector3()}
+  for(i=0;i<N;i++){
+    var n=d.nodes[i],lb=Math.min(n[0],HOME.length-1),p=place(lb);
+    pos.set([p.x,p.y,p.z],i*3);var c=new THREE.Color(COLORS[lb]);col.set([c.r,c.g,c.b],i*3);
+    size[i]=1+n[1]*1.5+(n[2]===2?.7:0);nodeLobe[i]=lb;lobeNodes[lb].push(i);base.push(p);
+  }
+  // label anchors: the middle of each region's tissue
+  for(i=0;i<lobeCenter.length;i++){var pl=byLobe[i]||[];pl.forEach(function(j){lobeCenter[i].add(CLOUD[j].p)});if(pl.length)lobeCenter[i].multiplyScalar(1/pl.length)}
+  heat=glow;
+  ptsGeo=new THREE.BufferGeometry();ptsGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));ptsGeo.setAttribute('color',new THREE.BufferAttribute(col,3));ptsGeo.setAttribute('size',new THREE.BufferAttribute(size,1));ptsGeo.setAttribute('glow',new THREE.BufferAttribute(glow,1));
+  var mat=new THREE.ShaderMaterial({uniforms:{map:{value:TEX},px:{value:R.getPixelRatio()}},vertexShader:vs,fragmentShader:fs,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending});
+  pts=new THREE.Points(ptsGeo,mat);brain.add(pts);
+  // the tissue: every unused point of the cloud, dim, tinted by its region; it lights up when the region fires
+  var free=CLOUD.filter(function(c){return !c.used}),M=free.length,tp=new Float32Array(M*3),tc=new Float32Array(M*3),ts=new Float32Array(M);tissueGlow=new Float32Array(M);
+  free.forEach(function(c,q){tp.set([c.p.x,c.p.y,c.p.z],q*3);var cc=new THREE.Color(COLORS[c.lb]).lerp(new THREE.Color(0x8a7a9a),.35);tc.set([cc.r,cc.g,cc.b],q*3);ts[q]=.7+Math.random()*.6;tissueLobe[q]=c.lb});
+  var tg=new THREE.BufferGeometry();tg.setAttribute('position',new THREE.BufferAttribute(tp,3));tg.setAttribute('color',new THREE.BufferAttribute(tc,3));tg.setAttribute('size',new THREE.BufferAttribute(ts,1));tg.setAttribute('glow',new THREE.BufferAttribute(tissueGlow,1));
+  tissue=new THREE.Points(tg,new THREE.ShaderMaterial({uniforms:{map:{value:TEX},px:{value:R.getPixelRatio()}},vertexShader:vs,fragmentShader:fsT,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));brain.add(tissue);
+  // connections: real edges that stay local, plus short links inside each region
+  var E=[];d.edges.forEach(function(e){if(e[0]<N&&e[1]<N&&base[e[0]].distanceTo(base[e[1]])<5.5)E.push(e)});
+  for(i=0;i<N;i++){var L=lobeNodes[nodeLobe[i]];for(var r2=0;r2<2;r2++){var best=-1,bd=1e9;for(var t=0;t<12;t++){var j=L[Math.floor(Math.random()*L.length)];if(j===i)continue;var dd=base[i].distanceTo(base[j]);if(dd<bd){bd=dd;best=j}}if(best>=0&&bd<4.5)E.push([i,best])}}
+  edgeArr=E;
+  var lp=new Float32Array(E.length*6),lc=new Float32Array(E.length*6);
+  E.forEach(function(e,q){var a=base[e[0]],b=base[e[1]];lp.set([a.x,a.y,a.z,b.x,b.y,b.z],q*6);var c1=new THREE.Color(COLORS[nodeLobe[e[0]]]),c2=new THREE.Color(COLORS[nodeLobe[e[1]]]);lc.set([c1.r,c1.g,c1.b,c2.r,c2.g,c2.b],q*6)});
+  lineGeo=new THREE.BufferGeometry();lineGeo.setAttribute('position',new THREE.BufferAttribute(lp,3));lineGeo.setAttribute('color',new THREE.BufferAttribute(lc,3));
+  lines=new THREE.LineSegments(lineGeo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.16,blending:THREE.AdditiveBlending,depthWrite:false}));brain.add(lines);
+  nbr=new Array(N);for(i=0;i<N;i++)nbr[i]=[];E.forEach(function(e){nbr[e[0]].push(e[1]);nbr[e[1]].push(e[0])});
+  // region labels
+  var lb=document.getElementById('lobes');
+  d.lobes.forEach(function(L,i){
+    var el=document.createElement('div');el.className='label';el.textContent=L.name;el.style.setProperty('--c',COLORS[i]);document.body.appendChild(el);labels.push(el);
+    var row=document.createElement('div');row.className='lb';row.style.setProperty('--c',COLORS[i]);row.innerHTML='<span>'+L.name+'</span><div class="bar"><i></i></div>';lb.appendChild(row);L._row=row;
+  });
+}
+var nbr=[];
+
+// ambient dust shell
+(function(){var M=900,p=new Float32Array(M*3);for(var i=0;i<M;i++){var v=new THREE.Vector3(rnd(),rnd(),rnd()).normalize().multiplyScalar(1.15+Math.random()*.9);p.set([v.x*SC[0],v.y*SC[1],v.z*SC[2]],i*3)}
+var g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(p,3));
+S.add(new THREE.Points(g,new THREE.PointsMaterial({size:.12,color:0x8a7a9a,transparent:true,opacity:.5,depthWrite:false})))})();
+// orbit rings
+var rings=[];
+[[19,0xe8834f,.18],[22,0x5fd9b4,.1]].forEach(function(r,i){var m=new THREE.Mesh(new THREE.TorusGeometry(r[0],.03,6,160),new THREE.MeshBasicMaterial({color:r[1],transparent:true,opacity:r[2]}));m.rotation.x=Math.PI/2+(i?.35:-.2);m.rotation.y=i?.3:-.1;S.add(m);m.userData.spin=i?-.04:.06;rings.push(m)});
+
+// ---------- signals ----------
+var SIG=mobile?90:180,sigPos=new Float32Array(SIG*3),sigCol=new Float32Array(SIG*3),sigSize=new Float32Array(SIG),sigGlow=new Float32Array(SIG),sigs=[];
+var sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.BufferAttribute(sigPos,3));sg.setAttribute('color',new THREE.BufferAttribute(sigCol,3));sg.setAttribute('size',new THREE.BufferAttribute(sigSize,1));sg.setAttribute('glow',new THREE.BufferAttribute(sigGlow,1));
+var sigPts=new THREE.Points(sg,new THREE.ShaderMaterial({uniforms:{map:{value:TEX},px:{value:R.getPixelRatio()}},vertexShader:vs,fragmentShader:fs,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));brain.add(sigPts);
+for(var i=0;i<SIG;i++){sigs.push({on:false});sigPos[i*3+1]=9999}
+function spawn(from,hops){for(var i=0;i<SIG;i++)if(!sigs[i].on){var to=nbr[from]&&nbr[from].length?nbr[from][Math.floor(Math.random()*nbr[from].length)]:from;var c=new THREE.Color(COLORS[nodeLobe[from]]);sigs[i]={on:true,a:from,b:to,t:0,v:1.4+Math.random()*1.6,hops:hops};sigCol.set([c.r,c.g,c.b],i*3);sigSize[i]=1.1;sigGlow[i]=1;return}}
+
+var lobeHot=[];
+function fire(lobe,strength){
+  if(!data||!lobeNodes[lobe]||!lobeNodes[lobe].length)return;
+  var n=Math.max(3,Math.round((mobile?6:10)*strength));
+  for(var q=0;q<n;q++){var i=lobeNodes[lobe][Math.floor(Math.random()*lobeNodes[lobe].length)];heat[i]=Math.min(1,heat[i]+.9);if(q<4)spawn(i,2+Math.floor(Math.random()*3))}
+  lobeHot[lobe]=1;
+  if(tissueGlow)for(var q2=0;q2<tissueGlow.length;q2++)if(tissueLobe[q2]===lobe&&Math.random()<.5*strength)tissueGlow[q2]=Math.min(1,tissueGlow[q2]+.5);
+}
+
+// ---------- data ----------
+function fmt(n){return n==null?'—':Number(n).toLocaleString('en-US')}
+function ago(t){var s=Math.max(0,Math.round(Date.now()/1000-t));return s<60?s+'s ago':Math.round(s/60)+'m ago'}
+var feed=document.getElementById('feed'),lastT=0,queue=[];
+function pushEv(ev){
+  var L=data.lobes[ev[0]];if(!L)return;
+  var row=document.createElement('div');row.className='ev';row.style.setProperty('--c',COLORS[ev[0]]);
+  row.innerHTML='<b></b><span></span><em></em>';row.children[0].textContent=L.name;row.children[1].textContent=L.verb;row.children[2].textContent=ago(ev[1]);row.dataset.t=ev[1];
+  feed.insertBefore(row,feed.children[1]);while(feed.children.length>8)feed.removeChild(feed.lastChild);
+  fire(ev[0],1.3);
+}
+setInterval(function(){[].forEach.call(feed.querySelectorAll('.ev'),function(r){r.lastChild.textContent=ago(+r.dataset.t)})},1000);
+
+function apply(d,first){
+  if(first){data=d;build(d)}else{data.stats=d.stats;d.lobes.forEach(function(L,i){if(data.lobes[i]){data.lobes[i].fire=L.fire}})}
+  document.getElementById('sNeurons').textContent=fmt(d.stats.neurons);
+  document.getElementById('sSyn').textContent=fmt(d.stats.synapses);
+  document.getElementById('sSig').textContent=fmt(d.stats.signals_10m);
+  document.getElementById('sNew').textContent=fmt(d.stats.new_today);
+  var mx=Math.max.apply(null,d.lobes.map(function(L){return Math.log(1+L.fire)}))||1;
+  data.lobes.forEach(function(L){L._row.querySelector('i').style.width=(Math.log(1+L.fire)/mx*100)+'%'});
+  var age=Math.round(Date.now()/1000-d.generated);
+  document.getElementById('liveTxt').textContent=age<600?'LIVE':'LAST SYNC '+Math.round(age/60)+' MIN AGO';
+  var evs=d.events.filter(function(e){return e[1]>lastT});
+  if(first){ // catch up: replay the recent past quickly, newest last
+    evs.slice(-14).forEach(function(e,i){setTimeout(function(){pushEv(e)},(reduce?300:2500)+i*420)});
+  }else{
+    var span=Math.max(1,evs.length);evs.forEach(function(e,i){setTimeout(function(){pushEv(e)},i*(110000/span))});
+  }
+  if(d.events.length)lastT=Math.max(lastT,d.events[d.events.length-1][1]);
+}
+function load(first){
+  fetch(FEED+'?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){if(d&&d.nodes)apply(d,first)}).catch(function(){
+    if(first){document.getElementById('liveTxt').textContent='OFFLINE · REPLAY';fallback()}
+  });
+}
+function fallback(){ // feed unreachable: still show a living brain, clearly marked as a replay
+  var lobes=['Clip Engine','Memory','Language','Imagination','Resale','Outreach','Client Work','Senses','Self'],verbs=['cutting a clip','remembering a word','routing a thought','drawing a character','pricing an item','finding a new show','serving a client','hearing the world','checking itself'];
+  var nodes=[];for(var i=0;i<700;i++)nodes.push([i%9,Math.random(),0]);
+  apply({generated:Date.now()/1000,stats:{},lobes:lobes.map(function(n,i){return{name:n,verb:verbs[i],fire:5}}),nodes:nodes,edges:[],events:[]},true);
+  document.getElementById('liveTxt').textContent='OFFLINE · REPLAY';
+}
+load(true);setInterval(function(){load(false)},120000);
+fetch('clips.json?t='+Date.now()).then(function(r){return r.json()}).then(function(c){document.getElementById('sViews').textContent=fmt(c.total_views)}).catch(function(){});
+
+// ---------- interaction ----------
+var az=1.05,el=.22,dist=mobile?62:46,drag=false,px=0,py=0,last=performance.now(),pinch=0;
+cv.addEventListener('pointerdown',function(e){drag=true;px=e.clientX;py=e.clientY;last=performance.now()});
+addEventListener('pointerup',function(){drag=false});
+addEventListener('pointermove',function(e){if(!drag)return;az-=(e.clientX-px)*.006;el=Math.max(-.9,Math.min(.9,el+(e.clientY-py)*.004));px=e.clientX;py=e.clientY;last=performance.now()});
+cv.addEventListener('wheel',function(e){e.preventDefault();dist=Math.max(26,Math.min(90,dist*(1+e.deltaY*.001)))},{passive:false});
+cv.addEventListener('touchmove',function(e){if(e.touches.length===2){var a=e.touches[0],b=e.touches[1],d=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);if(pinch)dist=Math.max(26,Math.min(95,dist*pinch/d));pinch=d;drag=false}},{passive:true});
+cv.addEventListener('touchend',function(){pinch=0},{passive:true});
+cv.addEventListener('click',function(){ // tap anywhere to make the brain think
+  if(!data)return;var l=Math.floor(Math.random()*data.lobes.length);fire(l,1.6);
+});
+
+function resize(){mobile=innerWidth<760;R.setSize(innerWidth,innerHeight,false);CAM.aspect=innerWidth/innerHeight;var portrait=innerWidth<innerHeight;if(portrait)CAM.setViewOffset(innerWidth,innerHeight,0,innerHeight*.07,innerWidth,innerHeight);else CAM.clearViewOffset();CAM.updateProjectionMatrix();dist=portrait?Math.min(112,45/(innerWidth/innerHeight)):46}
+addEventListener('resize',resize);resize();
+
+// ---------- loop ----------
+var clock=new THREE.Clock(),v3=new THREE.Vector3(),amb=0;
+function tick(){
+  var dt=Math.min(clock.getDelta(),.05),T=clock.elapsedTime;
+  if(!drag&&performance.now()-last>2500)az+=dt*(reduce?.02:.12);
+  CAM.position.set(dist*Math.cos(el)*Math.sin(az),dist*Math.sin(el),dist*Math.cos(el)*Math.cos(az));CAM.lookAt(0,0,0);
+  brain.position.y=Math.sin(T*.6)*.4;
+  rings.forEach(function(r){r.rotation.z+=dt*r.userData.spin});
+  if(data){
+    // ambient firing, proportional to each region's real activity over the last 10 minutes
+    amb+=dt;if(amb>(reduce?1.6:.35)){amb=0;var tot=0;data.lobes.forEach(function(L){tot+=Math.sqrt(L.fire+1)});var r=Math.random()*tot;for(var i=0;i<data.lobes.length;i++){r-=Math.sqrt(data.lobes[i].fire+1);if(r<=0){fire(i,.45);break}}}
+    for(i=0;i<heat.length;i++)heat[i]*=Math.pow(.25,dt); // decay
+    // a slow breathing shimmer
+    var sh=Math.floor(Math.random()*heat.length);heat[sh]=Math.max(heat[sh],.35);
+    ptsGeo.attributes.glow.needsUpdate=true;
+    for(i=0;i<tissueGlow.length;i++)tissueGlow[i]*=Math.pow(.18,dt);tissue.geometry.attributes.glow.needsUpdate=true;
+    lines.material.opacity=.09+.03*Math.sin(T*1.3);
+    for(i=0;i<SIG;i++){var s=sigs[i];if(!s.on)continue;s.t+=dt*s.v;
+      if(s.t>=1){heat[s.b]=Math.min(1,heat[s.b]+.6);if(s.hops>0&&nbr[s.b]&&nbr[s.b].length){s.a=s.b;s.b=nbr[s.a][Math.floor(Math.random()*nbr[s.a].length)];s.t=0;s.hops--}else{s.on=false;sigPos[i*3+1]=9999;continue}}
+      v3.copy(base[s.a]).lerp(base[s.b],s.t);sigPos.set([v3.x,v3.y,v3.z],i*3);sigGlow[i]=.8+.2*Math.sin(T*20)}
+    sg.attributes.position.needsUpdate=true;sg.attributes.glow.needsUpdate=true;sg.attributes.color.needsUpdate=true;
+    // labels follow their region
+    labels.forEach(function(lab,i){lobeHot[i]=(lobeHot[i]||0)*Math.pow(.2,dt);
+      v3.copy(lobeCenter[i]).multiplyScalar(1.18);v3.y+=brain.position.y;v3.project(CAM);
+      var vis=v3.z<1&&lobeNodes[i].length>0;lab.style.display=vis?'block':'none';
+      var lx=(v3.x+1)/2*innerWidth,ly=(1-v3.y)/2*innerHeight,hw=lab.offsetWidth/2+8;lab.style.left=Math.max(hw,Math.min(innerWidth-hw,lx))+'px';lab.style.top=ly+'px';
+      var hot=lobeHot[i]>.35;lab.classList.toggle('hot',hot);if(data.lobes[i]._row)data.lobes[i]._row.classList.toggle('hot',hot)});
+  }
+  R.render(S,CAM);requestAnimationFrame(tick);
+}
+tick();
+})();
+</script>
+</body>
+</html>
