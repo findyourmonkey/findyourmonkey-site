@@ -1,19 +1,19 @@
 {
- "updated": "2026-11-26",
+ "updated": "2026-11-27",
  "total_views": 7660494,
- "total_clips": 3344,
- "views_30d": 333546,
- "views_30d_ig": 314385,
- "views_30d_yt": 19161,
+ "total_clips": 3346,
+ "views_30d": 334142,
+ "views_30d_ig": 314813,
+ "views_30d_yt": 19329,
  "followers": 3982,
- "yt_views": 817107,
+ "yt_views": 817275,
  "top": [
   {
    "id": "18180451762418052",
-   "views": 1027644,
+   "views": 1027718,
    "platform": "ig",
    "url": "https://www.instagram.com/reel/DdR_U7cElYn/",
-   "thumb": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-15/810778114_17946242652325989_4247781384446296564_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=SYseczloVUkQ7kNvwGwce2D&_nc_oc=AdoMzWPL7Cl5IolB5YnRX_FOF9XVRFY1r-Q28b2OiyPqGDevY-i4C_jJhtecDLLE1jSVho-JGUsJzH6lfXV4QmFW&_nc_zt=23&_nc_ht=scontent-lga3-2.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=VPvN4sWGKCF_oSmnfvoIdA&_nc_tpa=Q5bMBQLwfSnmQi9hIk2OvJoBvhty8mOUk5OxjPCGxYgQoelXe8yTyulk042_jQbtSU1bjQyoIrnAHa4uxg&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQWehj-U5-4n0l_ngAzWfvYp38D3DJnGMMDvHGGlDAcAwQ&oe=6B0EA390",
+   "thumb": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-15/810778114_17946242652325989_4247781384446296564_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=SYseczloVUkQ7kNvwGmbrhO&_nc_oc=AdrQHEiHw0Yr_XC2y7EVJaSSSgqgh9ipqChWVXCVKHJi73IydvJpHrXUw6O5Na842Gwz97JLPEStjZ1IZRMngjbW&_nc_zt=23&_nc_ht=scontent-lga3-2.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=31C2TRDpPKRuFbOgPo42pA&_nc_tpa=Q5bMBQLazSZBH4agWBjbuSZMgTokr-v0kguwCIT5a7Mjd7NYmHXbLM8xytddh_uP9ClT2Vh95RTCTjt4bg&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQViTakn2orXqb3Cvh14tb7DemXH9_0EpS9eid-Vdn95sw&oe=6B0EDBD0",
    "name": ""
   },
   {
@@ -21,16 +21,40 @@
    "views": 131211,
    "platform": "ig",
    "url": "https://www.instagram.com/reel/DcenB3ujkII/",
-   "thumb": "https://scontent-lga3-3.cdninstagram.com/v/t51.82787-15/784232942_17942995998325989_873283874510879973_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=rWvwU9frCPoQ7kNvwHLKHWB&_nc_oc=Adphu775YwNM7UC-uhpAtTICZyNw6Yv4CDhmIp7zPIOPCUo5Nh3c-koCbvCH9UlRFFEIXJlOA7N6TQb07xW1Fml6&_nc_zt=23&_nc_ht=scontent-lga3-3.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=nwckGAbRtZRsw_R60miLVw&_nc_tpa=Q5bMBQK01LpX7tPEmHiXezT9Gpp23WfhsIDQFdMf2buZLdyfi1au1-V_phT4xhyQRtyTkjjG__CsKmRslg&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQUp0yIo56wKLaRBp0W_sVnj9srPz2SbuUvcCQWzL4_MYA&oe=6B0EB14F",
+   "thumb": "https://scontent-lga3-3.cdninstagram.com/v/t51.82787-15/784232942_17942995998325989_873283874510879973_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=rWvwU9frCPoQ7kNvwGdVw18&_nc_oc=AdrAzxFQn03c6OyGBWj5tbFkW1_qY_uIOitZwi_h8cBUYcoaiNCbo9U-kQnHY7_-1enT8ER4cHLBeJetamcY8Ssu&_nc_zt=23&_nc_ht=scontent-lga3-3.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=4FGwtAqlGGgNwffXi_h_RA&_nc_tpa=Q5bMBQLTD-6sshih6-JCg5L4HXSd4U_uLasI_ChpxvAj87AXCCOnEJ9IK2NWZvhs1eOJ9PLGsEAlkuAzrA&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQVfOoZYAgeHQUIZujvdF3hM13AJQ0uZ382S9J5jJ0GKvg&oe=6B0EE98F",
    "name": "Aaron Health"
   },
   {
-   "id": "17903655243491778",
-   "views": 28453,
+   "id": "18109761257238627",
+   "views": 74786,
    "platform": "ig",
-   "url": "https://www.instagram.com/reel/Db9ksNDgebK/",
-   "thumb": "https://scontent-lga3-3.cdninstagram.com/v/t51.82787-15/774512220_17940503484325989_6057490954569115856_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=w2GXBOK2v4oQ7kNvwHyTmHA&_nc_oc=AdqVP81231ViG1JQZ1kDx4NUg7SCW8jiz9qfPV2x-ELK49maDE-T1iQLPzUdsEJfA0ANnbTPOxj1AMo9MnOOnuKJ&_nc_zt=23&_nc_ht=scontent-lga3-3.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=TqiaTvEmQtn5CFBsUsYW6w&_nc_tpa=Q5bMBQKhhx7BG70Z-Rqs7LwGYBKFVuUzwY89_GtpgMBBrzdNPk6ARpjiaNPgFoDogxlv_I3Z1YTZdlZy3w&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQVu7R3t-mEVQWKR72fTpziqSsMAxijJ4F5Y9qI2zlaXNg&oe=6B0E9272",
-   "name": "Carrie Miller"
+   "url": "https://www.instagram.com/reel/DeCVnJ3k3AS/",
+   "thumb": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-15/830882883_17949360132325989_5501346153126930441_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=ur1agKImwfIQ7kNvwGIAUPf&_nc_oc=AdqZgXsxEa5YqbmQchV30CBZLA5jEBG84BjQLEtzopdplh6R54mTgMGJ_YtSBu-1H2k2iuknV97NVFCGjGAKDmSw&_nc_zt=23&_nc_ht=scontent-lga3-2.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=mdE89H_M2DehIvcwHy3i2g&_nc_tpa=Q5bMBQJe9qaUO9WPgjPKC1PPidXvAZj01vT0yE9UDe9ObL2zfjlhQovRPwH8c6sdI92hjYO-XSi4iEUpAQ&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQXrhkP4JUJzm5wClGTk3TnQu-RCEPIjS7Y7WHPoVgcgyw&oe=6B0EDBC3",
+   "name": ""
+  },
+  {
+   "id": "18097850618565394",
+   "views": 44324,
+   "platform": "ig",
+   "url": "https://www.instagram.com/reel/DcRf_fqDPiG/",
+   "thumb": "https://scontent-lga3-3.cdninstagram.com/v/t51.82787-15/777352762_17942154288325989_5529720450698244139_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=mkUlzmGIpFoQ7kNvwFEkU2V&_nc_oc=AdqgL4tG_gCQi03TOen2R9C6IAD-2UPRsLsVDf3C2QML9r3aV6VFigBjnFQwjZSn21f7SGcih5wOc8_QPg8cTE-C&_nc_zt=23&_nc_ht=scontent-lga3-3.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=PSvoGuzAHKAzW6N9ZLyBGA&_nc_tpa=Q5bMBQLkF_jcQjuNdoy1EjBJv5M7zqnMpr_8nT-uWu0JezrCIJ4JbKzAFa2aHEqwv45nKZOZx1LMg6djnw&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQXE9-cLRRyl4zeD0n0ixC6U0MTtpMyOJrfDpSeICukJmA&oe=6B0EF07E",
+   "name": "Luke"
+  },
+  {
+   "id": "18181605379411041",
+   "views": 39451,
+   "platform": "ig",
+   "url": "https://www.instagram.com/reel/Dce085qDxVr/",
+   "thumb": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-15/782018974_17943009075325989_1675847848766088187_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=pqeprMQJIpsQ7kNvwGMdAzb&_nc_oc=AdqdQwws9_qJBTWlmPmV0WGkltUBti__dF8ethz1Sb3cAXLVTmV3xUyDYFIyCOSwbrcoFdiq63KR5--MaJq-uuOQ&_nc_zt=23&_nc_ht=scontent-lga3-2.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=B6rgb3ZD9v5m6_akftDpCA&_nc_tpa=Q5bMBQL3fWpIXzorRRQMPY6LjFgQb2qZyr1CGNpvAt3hYyW8UI_YfCquh8QYKg_YHLNYC8_Wvdh8tw4O4Q&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQUa-XjLK6TwuJIStqaFxMFK9rqjIGwSpmi8dn2Pk6O_8w&oe=6B0EE0B3",
+   "name": "Pat O'Neill"
+  },
+  {
+   "id": "17939160033367814",
+   "views": 26195,
+   "platform": "ig",
+   "url": "https://www.instagram.com/reel/DdR4mNqlVqj/",
+   "thumb": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-15/809978969_17946238053325989_1576928254787740920_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=iMKt3APNAmwQ7kNvwGh-Evx&_nc_oc=Adq7zR4hZ-7zLDjKuE-CmH_GmleZBh6e4PhGrl5INwzpKSDzlDIf6UF0n1zNzLgnWwb7miYrtHBh99HBcrzTe79u&_nc_zt=23&_nc_ht=scontent-lga3-2.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=OivKa-WvkjYK1bxvxME9MA&_nc_tpa=Q5bMBQLRaFisNOsWkQ-xqjh5XdexaDakePyqRKqhAXcRcxTg9kJC2vVrFLMvkudA9G9c-aydOK3j7BMQHA&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQUhxqafjUNPHMTlu1YK49qioKeQ0_biC0Ua8vPjU5h24g&oe=6B0EE0D6",
+   "name": ""
   },
   {
    "id": "V-Y9oXFGy3s",
@@ -69,43 +93,19 @@
    "views": 12923
   },
   {
-   "id": "18139347124565993",
-   "views": 1800,
+   "id": "18052715669818712",
+   "views": 1933,
    "platform": "ig",
-   "url": "https://www.instagram.com/reel/DgIr_u1im5_/",
-   "thumb": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-15/928734147_17958220098325989_6848524069303550795_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=QnTx_KVlAJwQ7kNvwERqy8G&_nc_oc=AdrHZjqaCuzVGPxOU7WyxkOMA-_rw6uh0Ek_LRnnn4YGaeAu6RMvc7ikYo4vhOU-L7ZEexVqQn9iIs5S2o0de9MS&_nc_zt=23&_nc_ht=scontent-lga3-1.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=IA6IQaLP_m3RKlAjOYhpPw&_nc_tpa=Q5bMBQJMtoirZrXyQEWaSVuZNJHfggoZMR4Yd2E9_Zl-0ePtzBC8GW9p0oHhH0ttjNVOueYbi9Sm6bKCsQ&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQUdXAJQ8YjHXE6i67jE3vpIo1Qb3b6amxF5HQzEESHuTQ&oe=6B0E90A0",
-   "name": "Amber Joy Lane"
+   "url": "https://www.instagram.com/reel/DgK1VEPR6x2/",
+   "thumb": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-15/902949071_17958328713325989_8301006953662208886_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=0kw4OZU_60cQ7kNvwEvR99b&_nc_oc=AdoGdhPRh0Eby1hpUEOUJZ9YvHxBEQfxZBqo8YvhtiZHbTE2OLkbKhvoHgU2gUsAU93JaEOmkiV1SJTZ660IfSUR&_nc_zt=23&_nc_ht=scontent-lga3-2.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=mfAnzmXtt9Iq2GsLjXViJA&_nc_tpa=Q5bMBQLhTNh25XhIxiWdODwCjUxdvShvualDcRcAr4ogAIxOBNLMM54UX8v6Vy0NbTTNa5R23uG33ir4vQ&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQX6iD--a3kEMrRBiXeecZhf_UkoJkNTkydP2SOIANMAaA&oe=6B0ED34A",
+   "name": "Michael A. Gonzales"
   },
   {
-   "id": "18131037514873444",
-   "views": 1204,
+   "id": "17897323089436927",
+   "views": 511,
    "platform": "ig",
-   "url": "https://www.instagram.com/reel/DgH83pbDr9y/",
-   "thumb": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-15/927046315_17958172620325989_1649699999131717558_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=_-UjKAntHSEQ7kNvwEXV6YO&_nc_oc=Adq7eW8Hk6v7w7K4D8TLPAcguyTzsjbkyq8TBndXzXc07iA2jHLdFovlpeVatdb-VBHWC5FeiGjp9wXtLbPyADNZ&_nc_zt=23&_nc_ht=scontent-lga3-1.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=wQDnzJ6u1LoiHNgUWYUAeg&_nc_tpa=Q5bMBQJ94hMkz_6CdS4D1ZaY_-Hy3Pb1W1vV5unX56pHV0n4YfA6lfo5hK7vSZRwse__SLQkIyNXUTXXAA&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQWMRxwjy-ZBzDP0vGnQXuqI4igTNsL6j64PM21pSZXNWQ&oe=6B0E9379",
-   "name": ""
-  },
-  {
-   "id": "18082942190403661",
-   "views": 868,
-   "platform": "ig",
-   "url": "https://www.instagram.com/reel/DgNowo3IUGA/",
-   "thumb": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-15/932191162_17958469071325989_1105382277101428950_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=100&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=J8HCRM48JUMQ7kNvwF9sSvR&_nc_oc=AdrPGS61ItRyBdn0eamQT_p-EVYSCQ1QUAfbr_myRLLIasnUVOdwvFYdTXDmCXGLeav_p-SwwX-mtjDE-Bs_ctPa&_nc_zt=23&_nc_ht=scontent-lga3-1.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=G8w7XKS78A6_89q62zKb6Q&_nc_tpa=Q5bMBQJk5PJUriqPKTSvYois326oobT6BaMlpmS4QAAv2Bee-7ynvwrxaTtJkjX1ov_Zm7qJC8dfxTAs9g&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQXiErn9_XeNcq-VRjjKZ57kGiXIqtHc_iHwmeMCqkZ3Vw&oe=6B0E9500",
-   "name": ""
-  },
-  {
-   "id": "17917985802469529",
-   "views": 667,
-   "platform": "ig",
-   "url": "https://www.instagram.com/reel/DgJVNTtBiXt/",
-   "thumb": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-15/924207602_17958247581325989_1104970934311824226_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=ke0N0OUZqwIQ7kNvwGUv1tj&_nc_oc=Adrb39A1yoiL2fkqyyO3ngp8ZYnTJIAxUpAdNUcSBOpAqq3ciP2z-fh5PxZsGf03zWKw-mPL15bo3v9ee863t7nc&_nc_zt=23&_nc_ht=scontent-lga3-2.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=9MKx6fhALWXjAHNPNQTwjg&_nc_tpa=Q5bMBQIIkrBYveOI7MZ5tjPfpufisYSB6t28Hz_ua46rcs3tHTEjCDZ5H0fdf4qKBobZFV9t5Vsyk7tvSA&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQVBdEZCGMQtd_H7WAsCNxgYWu4ubJMORmjYDs_WsazbtQ&oe=6B0EA3BA",
-   "name": "Jack Long"
-  },
-  {
-   "id": "17962468635011864",
-   "views": 512,
-   "platform": "ig",
-   "url": "https://www.instagram.com/reel/DgKhmlqzyUw/",
-   "thumb": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-15/927591176_17958311595325989_1135302941172021379_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=0nYHcnSkaQgQ7kNvwGrEaPV&_nc_oc=AdruZPsxV_nICIEggbRWEJwgdROeYT108W_Aj_Mnh5G53GKmQ7yljLmPK_1Tt05LtLsTknLJx_VoIcK7HU4kMyfV&_nc_zt=23&_nc_ht=scontent-lga3-1.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=jWO63TkIuBuQ1ajnnJKDOg&_nc_tpa=Q5bMBQIpN6SOuV9VnG9X7Y-j3PlmuuvTwktS_sHKV5qmW2TWNH8rQ5kGxnVcAJMCjv81-QP4PB4EEAaBig&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQUI8k5lc8J2v3GJxzPPbsQ_IMTw-8OKz6CZGUdcrReI8A&oe=6B0E9C7D",
+   "url": "https://www.instagram.com/reel/DgMBvoKzDzs/",
+   "thumb": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-15/928375777_17958380556325989_1454434977328408462_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=na81g3Ynum0Q7kNvwFXCip2&_nc_oc=AdoeCFWFlU2ZlPfy8kgisQLj9-Qe3CrzV5WQya4K-Vm__NNCn1IrqInSxmmOTj6Bri0PZ7UMwM2TS09SLqzIFdhE&_nc_zt=23&_nc_ht=scontent-lga3-1.cdninstagram.com&edm=AIZKd-4EAAAA&_nc_gid=pfVMylE8ssmhpJe-Q_WYiQ&_nc_tpa=Q5bMBQJzatEfgRFTFnISRjRrjBRy_qfSSvdYFynQJdSFOHXPThQfBLiklPfwkdPpU8PttKx-CgsJN5NiFg&_nc_ct=RQosPBUKFQQAAAA&oh=00_AQXsJoUtZoz6iO718SMv0a1ZziHf3E6LRkYC0WES8vSG2w&oe=6B0ECBC3",
    "name": ""
   }
  ]
